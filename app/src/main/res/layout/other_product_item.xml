@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="productModel"
+            type="com.onetechsol.ipayment.pojo.ProductModel" />
+
+        <variable
+            name="productItemClickListener"
+            type="com.onetechsol.ipayment.databinding.ProductItemClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvPlanItem"
+        style="@style/Widget.Material3.CardView.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2dp"
+        android:onClick="@{() -> productItemClickListener.onClickItem(productModel)}"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_12dp"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tvProductImage"
+                android:layout_width="@dimen/_70dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:src="@drawable/baseline_account_balance_wallet_24_purple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvValidityLabel" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvValidityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@{productModel.name()}"
+                android:textColor="#454E69"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintStart_toEndOf="@+id/tvProductImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvValidity"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@{``+productModel.maxEarn()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView12"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView11"
+                app:layout_constraintTop_toTopOf="@+id/appCompatImageView12" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@{`Sell and Earn `+productModel.maxEarn()}"
+                android:textColor="#454E69"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintStart_toStartOf="@+id/tvValidityLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvValidityLabel" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView11"
+                android:layout_width="@dimen/_15sp"
+                android:layout_height="@dimen/_15sp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/coin"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView12"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView12"
+                app:layout_constraintTop_toTopOf="@+id/appCompatImageView12" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView12"
+                android:layout_width="@dimen/_15sp"
+                android:layout_height="@dimen/_15sp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/baseline_add_24"
+                app:layout_constraintStart_toStartOf="@+id/tvDataLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvDataLabel" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvProdDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:lines="2"
+                android:text="Instant credit line of up to Rs 20,000"
+                android:textColor="#454E69"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvProductImage"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView12" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

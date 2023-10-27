@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="prepaidPlanMobileDto"
+            type="com.onetechsol.ipayment.pojo.PrepaidPlanMobileDto" />
+
+        <variable
+            name="prepaidPlanItemClickListener"
+            type="com.onetechsol.ipayment.databinding.PrepaidPlanItemClickListener" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvPlanItem"
+        style="@style/Widget.Material3.CardView.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2dp"
+        android:onClick="@{() -> prepaidPlanItemClickListener.selectedPrepaidPlan(prepaidPlanMobileDto)}"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_12dp"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPlanAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="42dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="@{`₹`+prepaidPlanMobileDto.amount()}"
+                android:textColor="@color/text_black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvValidityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="Validity"
+                android:textColor="#454E69"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintStart_toEndOf="@+id/tvPlanAmount"
+                app:layout_constraintTop_toTopOf="@+id/tvPlanAmount" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvValidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@{prepaidPlanMobileDto.validity()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintStart_toEndOf="@+id/tvPlanAmount"
+                app:layout_constraintTop_toBottomOf="@+id/tvValidityLabel" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="Data"
+                android:textColor="#454E69"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintStart_toEndOf="@+id/tvValidityLabel"
+                app:layout_constraintTop_toTopOf="@+id/tvPlanAmount" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@{prepaidPlanMobileDto.data()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintStart_toStartOf="@+id/tvDataLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvValidityLabel" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPlanDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:lines="2"
+                android:text="@{prepaidPlanMobileDto.details()}"
+                android:textColor="#454E69"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvPlanAmount"
+                app:layout_constraintTop_toBottomOf="@+id/tvValidity" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

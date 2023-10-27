@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="planItem"
+            type="com.onetechsol.ipayment.pojo.PlanItem" />
+
+        <variable
+            name="planTitleClickListener"
+            type="com.onetechsol.ipayment.databinding.PlanTitleClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_8dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvPlanName"
+            style="@style/Widget.Material3.CardView.Outlined"
+            android:layout_width="@dimen/_100dp"
+            android:layout_height="@dimen/_40dp"
+            android:onClick="@{() -> planTitleClickListener.selectedPlan(planItem)}"
+            app:cardBackgroundColor="@{planItem.isSelected ? @color/colorPrimary_Deep : @color/white}"
+            app:cardPreventCornerOverlap="true"
+            app:cornerRadius="@dimen/_13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPlanName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:gravity="center"
+                    android:text="@{planItem.planName()}"
+                    android:textColor="@{planItem.isSelected ? @color/white : @color/text_black}"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

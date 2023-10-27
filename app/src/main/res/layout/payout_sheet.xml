@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <data>
+
+        <variable
+            name="remitterCheckClickListener"
+            type="com.onetechsol.ipayment.databinding.RemitterCheckClickListener" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRemitterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Payout Check"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivCancel" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCancel"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> remitterCheckClickListener.closeBottomSheet()}"
+                android:src="@drawable/baseline_cancel_24"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFilterMonthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Remitter Details"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_14sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvRemitterTitle" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvRemitterMobile"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="@dimen/_15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvFilterMonthLabel"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clRemitterMobile"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etRemitterMobile"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/float_transparent"
+                            android:hint="Enter Mobile number"
+                            android:imeOptions="actionGo"
+                            android:inputType="number"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_10dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textColorHint="@color/light_black"
+                            android:textSize="@dimen/_18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvRemitterName"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="@dimen/_15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvRemitterMobile"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clRemitterName"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etName"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/float_transparent"
+                            android:hint="Enter Name"
+                            android:imeOptions="actionGo"
+                            android:inputType="text"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_10dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textColorHint="@color/light_black"
+                            android:textSize="@dimen/_18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvRemitterOtp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="@dimen/_15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvRemitterName"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clRemitterOtp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etOtp"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/float_transparent"
+                            android:hint="Otp"
+                            android:imeOptions="actionGo"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_10dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textColorHint="@color/light_black"
+                            android:textSize="@dimen/_18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btCheckRemitter"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="@dimen/_120dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{() -> remitterCheckClickListener.submit(etRemitterMobile.getText().toString())}"
+                android:singleLine="true"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary_Deep"
+                android:textSize="@dimen/_18sp"
+                app:cornerRadius="@dimen/_18dp"
+                app:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvRemitterOtp"
+                app:strokeColor="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

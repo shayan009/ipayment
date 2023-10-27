@@ -1,0 +1,22 @@
+{
+  "UserAgent": "aws-amplify-cli/0.1.0",
+  "Version": "0.1.0",
+  "IdentityManager": {
+    "Default": {}
+  },
+  "AppSync": {
+    "Default": {
+      "ApiUrl": "https://cr4p2xy4qbek3nvgkby7oqr7ta.appsync-api.ap-south-1.amazonaws.com/graphql",
+      "Region": "ap-south-1",
+      "AuthMode": "API_KEY",
+      "ApiKey": "da2-o7r3yypi3bfgnd7cxojjuzhpga",
+      "ClientDatabasePrefix": "ipayment_API_KEY"
+    },
+    "ipayment_AWS_IAM": {
+      "ApiUrl": "https://cr4p2xy4qbek3nvgkby7oqr7ta.appsync-api.ap-south-1.amazonaws.com/graphql",
+      "Region": "ap-south-1",
+      "AuthMode": "AWS_IAM",
+      "ClientDatabasePrefix": "ipayment_AWS_IAM"
+    }
+  }
+}

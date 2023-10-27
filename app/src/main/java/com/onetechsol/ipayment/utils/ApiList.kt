@@ -1,0 +1,57 @@
+package  com.onetechsol.ipayment.utils
+
+
+interface ApiList {
+    companion object {
+        val URL = "https://saturdaymorningapp.com/"
+        val IMAGE_PATH = "http://saturdaymorningapp.com/public/uploads"
+        val BASE_URL = URL + "api/"
+        val SIGNUP = BASE_URL + "signup"
+        val ADDKID = BASE_URL + "addchild"
+        val USERDETAILS = BASE_URL + "getting_user_details"
+        val PARENT_LOGIN = BASE_URL + "login"
+        val PARENT_HOME = BASE_URL + "home"
+        val PARENT_SLOT_CHORE = BASE_URL + "new_fetchchore"
+        val PARENT_PENDING_APPROVE_CHORE = BASE_URL + "fetch_chores_approval"
+        val PARENT_CHORE_CATEGORY = BASE_URL + "fetch_default_all_chores_title"
+        val PARENT_CHORE_BY_ID = BASE_URL + "fetch_chores_details_by_choresids"
+        val EDIT_CHORE_BY_ID = BASE_URL + "new_editchores"
+        val ADD_CHORE_IMAGE = BASE_URL + "add_chore_image"
+        val FETCH_CHORE_DETAILS = BASE_URL + "fetch_edit_data"
+        val SUBMIT_SINGLE_CHORE = BASE_URL + "add_chores"
+        val CHORE_SLOTS = BASE_URL + "fetch_default_chore_slots"
+        val FILTERS = BASE_URL + "fetch_filter"
+        val UPDATE_DEVICE_TOKEN = BASE_URL + "update_device_token"
+        val FORGOT_PASSWORD = BASE_URL + "forgotPassword"
+        val FETCH_SETTINGS_DETAILS = BASE_URL + "fetch_app_settings_details"
+        val INSERT_CUSTUM_SETTINGS_DETAILS = BASE_URL + "insert_custom_slot_details"
+        val APP_SETTING_USER_UPDATE =
+            BASE_URL + "app_setting_user_update" //fetch_parent_profile_details app_setting_user_update
+        val FETCH_PARENT_PROFILE_DETAILS = BASE_URL + "fetch_parent_profile_details"
+        val PROFILE_IMAGE_UPLOAD = BASE_URL + "profile_image_upload"
+        val UPDATE_NOTIFY_SETTINGS = BASE_URL + "update_app_notification_settings_details"
+        val UPDATE_CUSTUM_SLOT = BASE_URL + "update_custom_slot_details"
+        val NOTIFICATION_DETAILS = BASE_URL + "notification_details"
+        val FETCH_KID_DETAILS = BASE_URL + "kid_profile_details"
+        val UPDATE_KID_DETAILS = BASE_URL + "update_kid_profile_details"
+        val APPROVE_CHORE = BASE_URL + "newapprove_chore"
+        val ADD_PLAN_UPGRADE = BASE_URL + "add_plan_upgrade_details"
+        val UPGRADE_DETAILS = BASE_URL + "upgrade_details"
+        val CREATE_ENROLL_TOKEN = BASE_URL + "create_enrollment_token"
+        val FETCH_CONATACTS = BASE_URL + "fetch_emergency_contact_details"
+        val REPORT_DETAILS = BASE_URL + "reports_details"
+        val INDIVIDUAL_REPORT_DETAILS = BASE_URL + "individual_reports_details"
+        val PAUSE_RESUME_DEVICE = BASE_URL + "pause_or_resume_device"
+        val OTP_VERIFY = BASE_URL + "otpVerification"
+        val RESET_PASSWORD = BASE_URL + "resetPassword"
+        val FETCH_LOCATION_SETTINGS = BASE_URL + "fetch_location_information_details_setting"
+        val UPDATE_LOCATION_SETTINGS = BASE_URL + "location_information_details_setting"
+        val FETCH_LOCATION_HISTORY = BASE_URL + "fetch_location_tracking_details"
+        val FETCH_DEVICES = BASE_URL + "fetch_device"
+        val FETCH_PLANS = BASE_URL + "fetch_plan"
+        val COUNT_UNAPPROVE_CHORE = BASE_URL + "count_unapprove"
+        val INDIVIDUAL_NOTIFY_UPDATE = BASE_URL + "individual_notification_update"
+        val ENTERPRISE_NAME = "enterprises/LC033op5zp"
+    }
+
+}

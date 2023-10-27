@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="benefitAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.BenefitAdapter" />
+
+        <variable
+            name="instructionAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.InstructionAdapter" />
+
+        <variable
+            name="whomToSellAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.WhomToSellAdapter" />
+
+        <variable
+            name="termsConditionAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.TermsConditionAdapter" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F7FB">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBenefitsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@string/benefit"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBenefitsSubTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@string/list_of_benefits_you_can_have"
+                android:textColor="@color/light_grey"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvBenefitsTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvBenefitsTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBenefits"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adapter="@{benefitAdapter}"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/tvBenefitsSubTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvBenefitsSubTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvBenefitsSubTitle"
+                tools:listitem="@layout/benefit_item" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvWhomToSellTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@string/whom_to_sell"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_19sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvBenefitsSubTitle"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvBenefitsSubTitle"
+                app:layout_constraintTop_toBottomOf="@+id/rvBenefits" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvWhomToSellSubTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="List of conditions must hold for the receiver"
+                android:textColor="@color/light_grey"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvWhomToSellTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvWhomToSellTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvWhomToSell"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adapter="@{whomToSellAdapter}"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/tvWhomToSellSubTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvWhomToSellSubTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvWhomToSellSubTitle"
+                tools:listitem="@layout/whom_to_sell_item" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHowItWorksTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@string/how_it_works"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_19sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvBenefitsSubTitle"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvBenefitsSubTitle"
+                app:layout_constraintTop_toBottomOf="@+id/rvWhomToSell" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHowItWorksSubTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@string/list_of_instruction_on_how_all_works"
+                android:textColor="@color/light_grey"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvHowItWorksTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvHowItWorksTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHowItWorkSell"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adapter="@{instructionAdapter}"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/tvHowItWorksSubTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvHowItWorksSubTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvHowItWorksSubTitle"
+                tools:listitem="@layout/instruction_item" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTocTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@string/terms_amp_conditions"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_19sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvBenefitsSubTitle"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvBenefitsSubTitle"
+                app:layout_constraintTop_toBottomOf="@+id/rvHowItWorkSell" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTocSubTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@string/list_of_our_terms_and_conditions"
+                android:textColor="@color/light_grey"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvTocTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTocTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTocSell"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adapter="@{termsConditionAdapter}"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/tvTocSubTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvTocSubTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTocSubTitle"
+                tools:listitem="@layout/terms_condition_item" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

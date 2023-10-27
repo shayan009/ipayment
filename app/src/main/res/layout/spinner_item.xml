@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="sideSheetItem"
+            type="com.onetechsol.ipayment.pojo.SideSheetItem" />
+
+        <import type="com.onetechsol.ipayment.R" />
+
+        <import type="android.graphics.Color" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="sideSheetItemClickListener"
+            type="com.onetechsol.ipayment.databinding.SideSheetItemClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvStateItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:elevation="@dimen/_5dp"
+        android:focusable="true"
+        android:onClick="@{() -> sideSheetItemClickListener.onClickItem(sideSheetItem)}"
+        app:cardBackgroundColor="@{sideSheetItem.odd ? @color/text_shade : @color/white}"
+        app:cardCornerRadius="@dimen/_4dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clServiceItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvServiceText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@{sideSheetItem.name()}"
+                android:textSize="@dimen/_12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

@@ -1,0 +1,20 @@
+package com.onetechsol.ipayment.pojo;
+
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
+@Root(name = "PidOptions", strict = false)
+public class PidOptions {
+
+    @Attribute(name = "ver", required = false)
+    public String ver;
+    @Element(name = "Opts", required = false)
+    public Opts Opts;
+    @Element(name = "CustOpts", required = false)
+    public CustOpts custOpts;
+
+    public PidOptions() {
+    }
+
+}

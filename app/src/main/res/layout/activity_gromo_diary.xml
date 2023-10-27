@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="gromoClickListener"
+            type="com.onetechsol.ipayment.databinding.GromoDiaryClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.screen.mydiary.GromoDiaryActivity">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBackDashBoard"
+            android:layout_width="@dimen/_30dp"
+            android:layout_height="@dimen/_30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="@{(view) -> gromoClickListener.onBackPressed(view)}"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHeaderDiary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="My Diary"
+            android:textColor="@color/colorPrimary_Deep"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBackDashBoard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivBackDashBoard"
+            app:layout_constraintTop_toTopOf="@+id/ivBackDashBoard" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivBackDashBoard">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivGromoDiaryImg"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_250dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:src="@drawable/placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDiaryTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18sp"
+                    android:fontFamily="@font/sfprotext_semibold"
+                    android:gravity="center"
+                    android:text="Store all your client vehicle numbers in your Diary."
+                    android:textColor="@color/deep_black"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivGromoDiaryImg"
+                    app:layout_constraintStart_toStartOf="@+id/ivGromoDiaryImg"
+                    app:layout_constraintTop_toBottomOf="@+id/ivGromoDiaryImg" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDiaryBody"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="center"
+                    android:text="Never miss a client. We will remind you before time when insurance expires."
+                    android:textColor="#808487"
+                    android:textSize="@dimen/_20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivGromoDiaryImg"
+                    app:layout_constraintStart_toStartOf="@+id/ivGromoDiaryImg"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDiaryTitle" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDiaryConclusion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="center"
+                    android:text="Now you can share youur website link with clients to check their vehicle challam. Those vehicles automatically get added to your Diary."
+                    android:textColor="#808487"
+                    android:textSize="@dimen/_20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivGromoDiaryImg"
+                    app:layout_constraintStart_toStartOf="@+id/ivGromoDiaryImg"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDiaryBody" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btCheckVehicle"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:layout_marginEnd="24dp"
+                    android:onClick="@{(view) -> gromoClickListener.openCheckVehicle(view)}"
+                    android:text="CHECK VEHICLE DETAILS"
+                    android:textSize="@dimen/_14sp"
+                    app:backgroundTint="@color/colorPrimary_Deep"
+                    app:layout_constraintEnd_toEndOf="@+id/ivGromoDiaryImg"
+                    app:layout_constraintStart_toStartOf="@+id/ivGromoDiaryImg"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDiaryConclusion" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btCheckChallan"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:onClick="@{(view) -> gromoClickListener.openCheckChallan(view)}"
+                    android:text="SHARE CHALLAN LINK"
+                    android:textSize="@dimen/_14sp"
+                    app:backgroundTint="@color/colorPrimary_Deep"
+                    app:layout_constraintEnd_toEndOf="@+id/btCheckVehicle"
+                    app:layout_constraintStart_toStartOf="@+id/btCheckVehicle"
+                    app:layout_constraintTop_toBottomOf="@+id/btCheckVehicle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

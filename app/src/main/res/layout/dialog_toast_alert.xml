@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="toastOnClickListener"
+            type="com.onetechsol.ipayment.databinding.ToastOnClickListener" />
+
+        <variable
+            name="toastItem"
+            type="com.onetechsol.ipayment.pojo.ToastItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loading"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/dialog_background">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleUpgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{toastItem.title()}"
+            android:textColor="@color/colorPrimary_Deep"
+            android:textSize="20sp"
+            app:fontFamily="@font/sfprotext_semibold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.13" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSubTitleUpgrade"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="2"
+            android:text="@{toastItem.subTitle()}"
+            android:textColor="@color/text_black"
+            android:textSize="16sp"
+            app:fontFamily="@font/balsamiqsansregular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleUpgrade" />
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="#DDDDDD"
+            app:layout_constraintEnd_toEndOf="@+id/tvSubTitleUpgrade"
+            app:layout_constraintStart_toStartOf="@+id/tvSubTitleUpgrade"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubTitleUpgrade" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view7">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mbCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/colorPrimary_Deep"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> toastOnClickListener.onCancelClick()}"
+                android:padding="@dimen/_12dp"
+                android:text="@string/cancel"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button.ElevatedButton"
+                android:visibility="gone"
+                app:cornerRadius="@dimen/_10dp"
+                app:fontFamily="@font/sfprotext_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/view5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="@dimen/_1dp"
+                android:layout_height="0dp"
+                android:background="#DBDBDB"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/mbCancel"
+                app:layout_constraintEnd_toStartOf="@+id/mbOk"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mbCancel"
+                app:layout_constraintTop_toTopOf="@+id/mbCancel" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mbOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/colorPrimary_Deep"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> toastOnClickListener.onClickOk()}"
+                android:padding="@dimen/_12dp"
+                android:text="@string/ok"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button.OutlinedButton"
+                android:visibility="visible"
+                app:cornerRadius="@dimen/_10dp"
+                app:fontFamily="@font/sfprotext_semibold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/view5"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

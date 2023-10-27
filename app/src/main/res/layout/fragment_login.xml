@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="loginViewData"
+            type="com.onetechsol.ipayment.dto.LoginViewData" />
+
+        <variable
+            name="loginClickEvent"
+            type="com.onetechsol.ipayment.ui.screen.login_singup.login.LoginClickEvent" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Fragment.LoginFragment2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvLoginSignup"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="@dimen/_15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clMobileLogin"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etLoginMobile"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/float_transparent"
+                            android:hint="Enter Mobile"
+                            android:imeOptions="actionGo"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_10dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textColorHint="@color/light_black"
+                            android:textSize="@dimen/_18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/ivClear"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivClear"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:onClick="@{(view) -> loginClickEvent.clearMobileField(view)}"
+                            android:src="@drawable/ic_clear"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/etLoginMobile"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvOtp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginTop="24dp"
+                android:visibility="@{loginViewData.otpFieldVisible() ? View.VISIBLE : View.GONE}"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="@dimen/_15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcvLoginSignup"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clOtp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etOtp"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/float_transparent"
+                            android:hint="Enter Otp"
+
+                            android:imeOptions="actionGo"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_10dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textColorHint="@color/light_black"
+                            android:textSize="@dimen/_18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvResendOtp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:onClick="@{() -> loginClickEvent.reSendOtp()}"
+                android:text="Resend Otp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHighlight="@color/colorPrimary_Deep"
+                android:textSize="15sp"
+                android:visibility="@{loginViewData.otpFieldVisible() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/mbRequestOtp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.93"
+                app:layout_constraintStart_toStartOf="@+id/mcvOtp"
+                app:layout_constraintTop_toBottomOf="@+id/mcvOtp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mbRequestOtp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/colorPrimary_Deep"
+                android:elevation="@dimen/_3dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:onClick="@{() -> loginClickEvent.requestOtp()}"
+                android:text="Send Otp"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sp"
+                app:cornerRadius="@dimen/_30dp"
+                app:layout_constraintEnd_toEndOf="@+id/mcvLoginSignup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcvOtp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:behavior_hideable="true"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCheckVehicleTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="Check Vehicle Details"
+                android:textColor="@color/textview_black"
+                android:textSize="@dimen/_16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCheckVehicleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="Vehicle registration number"
+                android:textAllCaps="true"
+                android:textColor="@color/textview_light_black"
+                android:textSize="@dimen/_12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCheckVehicleTitle" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etCheckVehicle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/drawable_round"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:hint="E.g. HR26AB 1234"
+                android:imeOptions="actionDone"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/_10dp"
+                android:textColor="@color/deep_black"
+                android:textSize="@dimen/_14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvCheckVehicleLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvCheckVehicleLabel" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btOk"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_45dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/sfprotext_regular"
+                android:text="Check Now"
+                android:textAllCaps="true"
+                android:textSize="@dimen/_16sp"
+                app:backgroundTint="@color/colorPrimary_Deep"
+                app:cornerRadius="@dimen/_4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/etCheckVehicle"
+                app:layout_constraintStart_toStartOf="@+id/etCheckVehicle"
+                app:layout_constraintTop_toBottomOf="@+id/etCheckVehicle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

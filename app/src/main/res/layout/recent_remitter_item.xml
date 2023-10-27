@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="recentRemitterItem"
+            type="com.onetechsol.ipayment.pojo.RecentRemitterItem" />
+
+        <import type="com.onetechsol.ipayment.R" />
+
+        <import type="android.graphics.Color" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="recentRemitterItemClickListener"
+            type="com.onetechsol.ipayment.databinding.RecentRemitterItemClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> recentRemitterItemClickListener.onClickItem(recentRemitterItem)}"
+        android:theme="@style/Widget.Material3.CardView.Elevated"
+        app:cardCornerRadius="@dimen/_20dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBeneficiaryItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="@dimen/_50dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/report_card_icon_bg"
+                android:clickable="true"
+                android:elevation="@dimen/_5dp"
+                android:focusable="true"
+                android:theme="@style/Widget.Material3.CardView.Filled"
+                app:cardCornerRadius="@dimen/_20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivRemitterIcon"
+                        android:layout_width="@dimen/_20dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:src="@drawable/movile_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRemitterMobile"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_20dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="start"
+                android:lines="1"
+                android:text="@{recentRemitterItem.remMobile()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                app:layout_constraintTop_toTopOf="@+id/materialCardView"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRemitterName"
+                android:layout_width="@dimen/_150dp"
+                android:layout_height="@dimen/_20dp"
+                android:layout_marginTop="5dp"
+                android:gravity="start"
+                android:lines="1"
+                android:text="@{recentRemitterItem.remName()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_14sp"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterMobile"
+                app:layout_constraintTop_toBottomOf="@+id/tvRemitterMobile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTime"
+                android:layout_width="@dimen/_150dp"
+                android:layout_height="@dimen/_20dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="start"
+                android:text="@{recentRemitterItem.time()}"
+                android:textColor="@color/light_text_grey"
+                android:textSize="@dimen/_14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterMobile"
+                app:layout_constraintTop_toBottomOf="@+id/tvRemitterName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

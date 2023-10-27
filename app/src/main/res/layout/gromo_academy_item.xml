@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="academyItem"
+            type="com.onetechsol.ipayment.pojo.AcademyItem" />
+
+        <variable
+            name="itemClickListener"
+            type="com.onetechsol.ipayment.databinding.AcademyItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvAcademyItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5dp"
+            android:clickable="true"
+            android:elevation="@dimen/_5dp"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgGromoItem"
+                    android:layout_width="@dimen/_70dp"
+                    android:layout_height="@dimen/_25dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:src="@drawable/logo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sf_pro_display_medium"
+                    android:text="@{academyItem.name()}"
+                    android:textColor="@color/deep_black"
+                    android:textSize="@dimen/_16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgGromoItem" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvItemType"
+                    android:layout_width="@dimen/_80dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginEnd="20dp"
+                    android:elevation="@dimen/_5dp"
+                    app:cardCornerRadius="@dimen/_10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgGromoItem"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/imgGromoItem"
+                    app:layout_constraintTop_toTopOf="@+id/imgGromoItem"
+                    app:strokeColor="#D0D6DC"
+                    app:strokeWidth="1dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvItemType"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:gravity="center"
+                        android:text="@{academyItem.type()}"
+                        android:textColor="#727983"
+                        android:textSize="@dimen/_13sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_medium"
+                    android:text="@{academyItem.trainingTime()}"
+                    android:textColor="#546673"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/mbRegister"
+                    app:layout_constraintStart_toStartOf="@+id/tvItemName"
+                    app:layout_constraintTop_toTopOf="@+id/mbRegister"
+                    app:layout_constraintVertical_bias="0.45" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mbRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="@{() -> itemClickListener.registerNow(academyItem)}"
+                    android:text="Register Now"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sp"
+                    app:backgroundTint="@color/colorPrimary_Deep"
+                    app:cornerRadius="@dimen/_4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/mcvItemType"
+                    app:layout_constraintTop_toBottomOf="@+id/tvItemName" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

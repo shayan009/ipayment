@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="reportItem"
+            type="com.onetechsol.ipayment.pojo.ReportItem" />
+
+        <variable
+            name="reportItemClickListener"
+            type="com.onetechsol.ipayment.databinding.ReportItemClickListener" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> reportItemClickListener.onClickItem(reportItem)}"
+        android:theme="@style/Widget.Material3.CardView.Outlined"
+        app:cardCornerRadius="@dimen/_20dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAeps1ReportItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/report_card_icon_bg"
+                android:clickable="true"
+                android:elevation="@dimen/_5dp"
+                android:focusable="true"
+                android:theme="@style/Widget.Material3.CardView.Filled"
+                app:cardCornerRadius="@dimen/_20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivAepsStausIcon"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUserName"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_20dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:lines="1"
+                android:text="@{reportItem.user()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvBalance"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                app:layout_constraintTop_toTopOf="@+id/materialCardView"
+                app:layout_constraintVertical_bias="0.060000002" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTxnNo"
+                android:layout_width="@dimen/_150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="start"
+                android:lines="2"
+                android:text="@{reportItem.txn()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintStart_toStartOf="@+id/tvUserName"
+                app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTxnDate"
+                android:layout_width="@dimen/_150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="start"
+                android:text="@{reportItem.date()}"
+                android:textColor="@color/light_text_grey"
+                android:textSize="@dimen/_10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/materialCardView"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@{reportItem.txnStatus().equals(`Failed`) ? reportItem.amt() : (reportItem.txnType().contains(`Withdrawal`) ? `-`+reportItem.amt() : `+`+reportItem.amt())}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_14sp"
+                app:layout_constraintBottom_toTopOf="@+id/ivTxtStatImg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.83" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txnStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{reportItem.txnStatus()}"
+                android:textColor="@{reportItem.txnStatus().equals(`Failed`) ? @color/red : @color/color_green }"
+                android:textSize="@dimen/_10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTxnDate"
+                app:layout_constraintEnd_toEndOf="@+id/tvBalance"
+                app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+                app:layout_constraintVertical_bias="0.92" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivTxtStatImg"
+                android:layout_width="@dimen/_15dp"
+                android:layout_height="@dimen/_15dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txnStatus"
+                app:layout_constraintEnd_toStartOf="@+id/txnStatus"
+                app:layout_constraintTop_toTopOf="@+id/txnStatus"
+                app:srcCompat="@drawable/ic_failed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

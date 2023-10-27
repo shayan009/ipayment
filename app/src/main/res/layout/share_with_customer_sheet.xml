@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
+
+    <data>
+
+        <variable
+            name="shareLinkCustomerAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.ShareLinkCustomerAdapter" />
+
+        <variable
+            name="shareUrlSheetOnClickListener"
+            type="com.onetechsol.ipayment.databinding.ShareUrlSheetOnClickListener" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOpCircleTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Share with customer"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivCancel" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCancel"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> shareUrlSheetOnClickListener.closeSheet()}"
+                android:src="@drawable/baseline_cancel_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFilterMonthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Share link with customer through"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_14sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintStart_toStartOf="@+id/tvOpCircleTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvOpCircleTitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvWhatsAppLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center"
+                android:text="WhatsApp"
+                android:textColor="@color/text_black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/mrbWhatsApp"
+                app:layout_constraintStart_toStartOf="@+id/tvFilterMonthLabel"
+                app:layout_constraintTop_toTopOf="@+id/mrbWhatsApp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSMSLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginStart="60dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center"
+                android:text="SMS"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/mrbSMS"
+                app:layout_constraintStart_toEndOf="@+id/mrbWhatsApp"
+                app:layout_constraintTop_toTopOf="@+id/mrbSMS" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/mrbWhatsApp"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/drawable_checkbox"
+                android:button="@null"
+                android:checked="true"
+                android:paddingEnd="@dimen/_50dp"
+                app:layout_constraintStart_toEndOf="@+id/tvWhatsAppLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvFilterMonthLabel" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/mrbSMS"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginStart="32dp"
+                android:background="@drawable/drawable_checkbox"
+                android:button="@null"
+                app:layout_constraintBottom_toBottomOf="@+id/mrbWhatsApp"
+                app:layout_constraintStart_toEndOf="@+id/tvSMSLabel"
+                app:layout_constraintTop_toTopOf="@+id/mrbWhatsApp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mvcDirection"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:elevation="0dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_8dp"
+                app:cardPreventCornerOverlap="true"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="@+id/tvOpCircleTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvWhatsAppLabel"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_3dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvDirection"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:adapter="@{shareLinkCustomerAdapter}"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/direction_item" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btShareUrl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{() -> shareUrlSheetOnClickListener.shareLink()}"
+                android:text="Share with customer"
+                android:textSize="@dimen/_14sp"
+                app:backgroundTint="@color/colorPrimary_Deep"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mvcDirection" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

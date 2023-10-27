@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+
+    <color name="colorPrimary">#806750A4</color>
+    <color name="colorbtnGreen">#5FB900</color>
+    <color name="colorPrimary_Deep">#6750A4</color>
+    <color name="colorPrimaryDark">#5437A1</color>
+    <color name="palete">#ffe8def8</color>
+    <color name="colorAccent">@color/emerald_translucent</color>
+
+
+    <color name="emerald_translucent">#80FFFBFE</color>
+    <color name="emerald_text">#30B050</color>
+    <color name="chip_checked_color">#EADDFA</color>
+    <color name="red_translucent">#90FF2040</color>
+    <color name="card_bg_light">#F9F9F9</color>
+    <color name="card_bg">#F6F7FB</color>
+    <color name="edit_text_bg_light">#F6EDFF</color>
+
+    <color name="lilac_default">#F080F0</color>
+    <color name="lilac_disabled">#F0F6FA</color>
+    <color name="sand_default">#FFFBFE</color>
+    <color name="sand_default_dark">#6E4F66</color>
+    <color name="sand_disabled">#FFC080</color>
+    <color name="sand_checked">#AED2E4</color>
+
+    <color name="test_red">#FF6030</color>
+    <color name="test_green">#50E080</color>
+    <color name="test_blue">#3050CF</color>
+    <color name="float_transparent">#03000000</color>
+    <color name="progress_colour">#845BE2</color>
+    <color name="color_green">#4CAF50</color>
+    <color name="red">#BE2317</color>
+    <color name="white">#FFFFFF</color>
+    <color name="report_card_icon_bg">#FFE9CA</color>
+    <color name="report_card_icon_bg2">#DBECFF</color>
+    <color name="report_card_icon_bg3">#FFE5F9</color>
+    <color name="deep_black">#000000</color>
+    <color name="side_menu_selected">#6C6F74</color>
+    <color name="side_menu_unselected">#BAC0C6</color>
+    <color name="light_black">#1E1E1E</color>
+    <color name="light_grey">#3C3C3C</color>
+    <color name="calender_grey">#C2C5CD</color>
+    <color name="border_color">#3E3D3D</color>
+    <color name="textview_black">#2B3034</color>
+    <color name="textview_light_black">#9EA8B0</color>
+    <color name="bg_grey">#D4D5D7</color>
+    <color name="text_black">#292929</color>
+    <color name="dark_text_black">#272C2E</color>
+    <color name="text_shade">#F6F5FA</color>
+    <color name="card_light_purple">#F6EDFF</color>
+
+
+    <color name="sweet_dialog_bg_color">#FFFFFF</color>
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="gray_btn_bg_color">#D0D0D0</color>
+    <color name="gray_btn_bg_pressed_color">#B6B6B6</color>
+    <color name="blue_btn_bg_color">#AEDEF4</color>
+    <color name="blue_btn_bg_pressed_color">#96BFD2</color>
+    <color name="red_btn_bg_color">#DD6B55</color>
+    <color name="red_btn_bg_pressed_color">#CD5B55</color>
+    <color name="error_stroke_color">#F27474</color>
+    <color name="success_stroke_color">#A5DC86</color>
+    <color name="trans_success_stroke_color">#33A5DC86</color>
+    <color name="warning_stroke_color">#F8BB86</color>
+    <color name="text_color">#575757</color>
+    <color name="material_blue_grey_80">#ff37474f</color>
+    <color name="material_blue_grey_90">#ff263238</color>
+    <color name="material_blue_grey_95">#ff21272b</color>
+    <color name="material_deep_teal_20">#ff80cbc4</color>
+    <color name="material_deep_teal_50">#ff009688</color>
+    <color name="light_text_grey">#888D97</color>
+    <color name="light_kyc_text">#696E79</color>
+
+    <color name="kit_cardbg_unselected">#FFFBFE</color>
+    <color name="kit_cardbg_selected">#EADDFF</color>
+
+    <color name="kit_iconbg_unselected">#F6EDFF</color>
+    <color name="kit_iconbg_selected">#CFBDED</color>
+    <color name="bg_blue">#F5FAFE</color>
+    <color name="bg_green">#EDFDFA</color>
+
+
+</resources>

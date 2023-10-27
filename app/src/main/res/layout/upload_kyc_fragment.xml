@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="uploadKycClickListener"
+            type="com.onetechsol.ipayment.databinding.UploadKycClickListener" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F9F9F9">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBack"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:elevation="@dimen/_8dp"
+                android:focusable="true"
+                android:onClick="@{() -> uploadKycClickListener.goBack()}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.06"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".60">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBackCC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/baseline_arrow_back_black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleKYC"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:gravity="center"
+                android:text="Kyc Details"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/mcvBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mcvBack"
+                app:layout_constraintTop_toTopOf="@+id/mcvBack" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvKycOtpTitle"
+                android:layout_width="@dimen/_250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:lines="2"
+                android:text="Enter the below details to start the KYC process"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitleKYC"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleKYC" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvKycAdhar"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="32dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitleKYC"
+                app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                app:layout_constraintTop_toBottomOf="@+id/tvKycOtpTitle"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clAdharKyc"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvAdharLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="Adhar Card"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etKycAdharNo"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:hint="3212-4575-6985"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:maxLength="14"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvAdharLabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvKycBusinessName"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitleKYC"
+                app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                app:layout_constraintTop_toBottomOf="@+id/mcvKycAdhar"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clAdharName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAdharName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="Business Name"
+                        android:textColor="@color/light_kyc_text"
+                        android:textSize="@dimen/_13sp"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etKycName"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:backgroundTint="@color/float_transparent"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:hint="test"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:overScrollMode="always"
+                        android:padding="@dimen/_5dp"
+                        android:paddingStart="@dimen/_18dp"
+                        android:scrollbarStyle="insideInset"
+                        android:scrollbars="vertical"
+                        android:selectAllOnFocus="true"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/light_kyc_text"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvAdharName"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btApply"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:onClick="@{() -> uploadKycClickListener.proceed(etKycAdharNo.getText().toString,etKycName.getText().toString())}"
+                android:singleLine="true"
+                android:text="Proceed"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sp"
+                android:visibility="visible"
+                app:cornerRadius="@dimen/_18dp"
+                app:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcvKycBusinessName"
+                app:strokeColor="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

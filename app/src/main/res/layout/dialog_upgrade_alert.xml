@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="upgradeOnClickListener"
+            type="com.onetechsol.ipayment.databinding.UpgradeOnClickListener" />
+
+        <variable
+            name="customerUpgradeInfoResponseData"
+            type="com.onetechsol.ipayment.pojo.CustomerUpgradeInfoResponseData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loading"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/dialog_background">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleUpgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/upgrade_to_business"
+            android:textColor="@color/colorPrimary_Deep"
+            android:textSize="20sp"
+            app:fontFamily="@font/sfprotext_semibold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.13" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSubTitleUpgrade"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="2"
+            android:text="@string/please_update_your_package_to_business_to_avail_existing_benefits"
+            android:textColor="@color/text_black"
+            android:textSize="16sp"
+            app:fontFamily="@font/balsamiqsansregular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleUpgrade" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPackageImage"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_200dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="@+id/tvSubTitleUpgrade"
+            app:layout_constraintStart_toStartOf="@+id/tvSubTitleUpgrade"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubTitleUpgrade" />
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="#DDDDDD"
+            app:layout_constraintEnd_toEndOf="@+id/tvSubTitleUpgrade"
+            app:layout_constraintStart_toStartOf="@+id/tvSubTitleUpgrade"
+            app:layout_constraintTop_toBottomOf="@+id/ivPackageImage" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view7">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mbUpgradeLater"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> upgradeOnClickListener.onCancelClick()}"
+                android:padding="@dimen/_12dp"
+                android:text="@string/cancel"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button.ElevatedButton"
+                app:cornerRadius="@dimen/_10dp"
+                app:fontFamily="@font/sfprotext_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/view5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="@dimen/_1dp"
+                android:layout_height="0dp"
+                android:background="#DBDBDB"
+                app:layout_constraintBottom_toBottomOf="@+id/mbUpgradeLater"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mbUpgradeLater" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mbUpgradeNow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/colorPrimary_Deep"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> upgradeOnClickListener.upgradeNow(customerUpgradeInfoResponseData.learnerAmt())}"
+                android:padding="@dimen/_12dp"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button.OutlinedButton"
+                android:visibility="visible"
+                app:cornerRadius="@dimen/_10dp"
+                app:fontFamily="@font/sfprotext_semibold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view5"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

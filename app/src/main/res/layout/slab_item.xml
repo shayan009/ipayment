@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="packageSlabItem"
+            type="com.onetechsol.ipayment.pojo.PackageSlabItem" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvPlanItem"
+        style="@style/Widget.Material3.CardView.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_12dp"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSlabName"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="42dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:lines="2"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="@{packageSlabItem.name()}"
+                android:textColor="@color/text_black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSlabComm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="Commission"
+                android:textColor="#454E69"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintStart_toEndOf="@+id/tvSlabName"
+                app:layout_constraintTop_toTopOf="@+id/tvSlabName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSlabCommPerc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@{packageSlabItem.commission()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintStart_toEndOf="@+id/tvSlabName"
+                app:layout_constraintTop_toBottomOf="@+id/tvSlabComm" />
+
+            <!--android:text="@{`₹`+packageSlabItem.commission()}"-->
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSlabRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="Range"
+                android:textColor="#454E69"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintStart_toEndOf="@+id/tvSlabComm"
+                app:layout_constraintTop_toTopOf="@+id/tvSlabName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSlabRangeAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:text="@{packageSlabItem.range()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintStart_toStartOf="@+id/tvSlabRange"
+                app:layout_constraintTop_toBottomOf="@+id/tvSlabComm" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSlabDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center_vertical"
+                android:lines="2"
+                android:text="@{`Recharge and enjoy ` +packageSlabItem.commission()+`% of commission with `+packageSlabItem.charge()+` charge `}"
+                android:textColor="#454E69"
+                android:textSize="@dimen/_11sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvSlabName"
+                app:layout_constraintTop_toBottomOf="@+id/tvSlabCommPerc" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <data>
+
+        <variable
+            name="beneficiaryModel"
+            type="com.onetechsol.ipayment.pojo.BeneficiaryModel" />
+
+        <variable
+            name="dmtMoneyTransferClickListener"
+            type="com.onetechsol.ipayment.databinding.DMTMoneyTransferClickListener" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRemitterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Money Transfer"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivCancel" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCancel"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> dmtMoneyTransferClickListener.closeBottomSheet()}"
+                android:src="@drawable/baseline_cancel_24"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFilterMonthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Receiver Details"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_14sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvRemitterTitle" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBenName"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="32dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvFilterMonthLabel"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clBenName"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenNameLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="Name"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenName"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:text="@{beneficiaryModel.beneficiaryName()}"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvBenNameLabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBenBank"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="32dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBenName"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clBenBank"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenBankLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="Bank Name"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenBank"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:text="@{beneficiaryModel.beneficiaryBank()}"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvBenBankLabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBenIfsc"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="32dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBenBank"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clBenIfsc"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenIfscLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="IFSC"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenIfsc"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLength="14"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:text="@{beneficiaryModel.beneIfsc()}"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvBenIfscLabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBenAcc"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="32dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBenIfsc"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clBenAcc"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenAccLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="Account Number"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenAcc"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:imeOptions="actionNext"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:text="@{beneficiaryModel.beneficiaryAccount()}"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvBenAccLabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBenAmount"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="32dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBenAcc"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clBenAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenAmtLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="Amount"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etBenAmt"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:hint="Enter Amount"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvBenAmtLabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBenAmtTotal"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="32dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBenDMTCharge"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clBenAmtTotal"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenAmtTotalLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="Final Amount"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenAmtTotal"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:imeOptions="actionNext"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvBenAmtTotalLabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBenDMTCharge"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="32dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBenAmount"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clBenDMTCharge"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBenDMTChargeLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="DMT Charge"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/tvBenDMTCharge"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:hint="Enter Amount"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvBenDMTChargeLabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btSubmitPayment"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="@dimen/_120dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{() -> dmtMoneyTransferClickListener.submit(etBenAmt.getText().toString())}"
+                android:singleLine="true"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary_Deep"
+                android:textSize="@dimen/_18sp"
+                app:cornerRadius="@dimen/_18dp"
+                app:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBenAmtTotal"
+                app:strokeColor="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

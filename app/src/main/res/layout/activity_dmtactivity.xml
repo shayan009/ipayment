@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="dmtOnClickListener"
+            type="com.onetechsol.ipayment.databinding.DmtOnClickListener" />
+
+        <variable
+            name="dmtViewPagerAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.DMTViewPagerAdapter" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F7FB">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F6F7FB">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBack"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginTop="32dp"
+                android:clickable="true"
+                android:elevation="@dimen/_8dp"
+                android:focusable="true"
+                android:onClick="@{() -> dmtOnClickListener.goBack()}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.06"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".60">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBackCC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/baseline_arrow_back_black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleDMT"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:gravity="center"
+                android:text="DMT"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/mcvBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mcvBack"
+                app:layout_constraintTop_toTopOf="@+id/mcvBack" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBeneficiary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:elevation="5dp"
+                app:cardBackgroundColor="@color/text_shade"
+                app:cardCornerRadius="@dimen/_20dp"
+                app:cardElevation="@dimen/_5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleDMT"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btBeneficiaryAdd"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="145dp"
+                        android:layout_height="@dimen/_50dp"
+                        android:onClick="@{() -> dmtOnClickListener.addBeneficiary()}"
+                        android:singleLine="true"
+                        android:text="Register"
+                        android:textAllCaps="false"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_10sp"
+                        app:backgroundTint="@color/float_transparent"
+                        app:cornerRadius="@dimen/_18dp"
+                        app:elevation="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btBeneficiary"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@color/white" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btBeneficiary"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="145dp"
+                        android:layout_height="@dimen/_50dp"
+                        android:elevation="0dp"
+                        android:onClick="@{() -> dmtOnClickListener.showBeneficiaryList()}"
+                        android:singleLine="true"
+                        android:text="Beneficiary"
+                        android:textAllCaps="false"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_10sp"
+                        app:cornerRadius="@dimen/_18dp"
+                        app:elevation="@dimen/_5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/btBeneficiaryAdd"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@color/colorPrimaryDark"
+                        app:strokeWidth="0dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpBeneficiaryItems"
+                android:layout_width="0dp"
+                android:layout_height="800dp"
+                android:layout_marginTop="16dp"
+                android:adapter="@{dmtViewPagerAdapter}"
+                app:layout_constraintEnd_toEndOf="@+id/mcvBeneficiary"
+                app:layout_constraintStart_toStartOf="@+id/mcvBeneficiary"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBeneficiary" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

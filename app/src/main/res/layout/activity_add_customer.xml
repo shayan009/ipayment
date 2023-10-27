@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="addCustClickListener"
+            type="com.onetechsol.ipayment.databinding.AddCustClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clRegisterRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#D8DDF1">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_30dp"
+            app:cardElevation="@dimen/_2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsvRegisterRoot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <RelativeLayout
+                    android:id="@+id/rlRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvBack"
+                            android:layout_width="@dimen/_60dp"
+                            android:layout_height="@dimen/_60dp"
+                            android:layout_marginTop="32dp"
+                            android:clickable="true"
+                            android:elevation="@dimen/_8dp"
+                            android:focusable="true"
+                            android:onClick="@{() -> addCustClickListener.goBack()}"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_12dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.06"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent=".60">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/ivBackSignup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_30dp"
+                                    android:layout_marginStart="5dp"
+                                    android:src="@drawable/baseline_arrow_back_black"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTitleCC"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="32dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/mcvBack"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.86"
+                            app:layout_constraintStart_toEndOf="@+id/mcvBack"
+                            app:layout_constraintTop_toTopOf="@+id/mcvBack" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvCustName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:elevation="0dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_7dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvBack">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvCustNameLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_15dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Name * (As per customer's PAN card)"
+                                    android:textColor="#A0A2C0"
+                                    android:textSize="@dimen/_12sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.04"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/etCustName"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/_35dp"
+                                    android:background="@color/float_transparent"
+                                    android:hint="Enter customer's name"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/tvCustNameLabel"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvCustNameLabel" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvCustMobile"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:elevation="0dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_7dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintEnd_toEndOf="@+id/mcvCustName"
+                            app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvCustName">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvCustMobile"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_15dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Mobile number * (linked with AADHAR card)"
+                                    android:textColor="#A0A2C0"
+                                    android:textSize="@dimen/_12sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.04"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/etCustMobile"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/_35dp"
+                                    android:background="@color/float_transparent"
+                                    android:hint="Enter customer's mobile number"
+                                    android:inputType="number"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/tvCustMobile"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvCustMobile" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvCustEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:elevation="0dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_7dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintEnd_toEndOf="@+id/mcvCustName"
+                            app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvCustMobile">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvCustEmailLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_15dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Email address*"
+                                    android:textColor="#A0A2C0"
+                                    android:textSize="@dimen/_12sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.04"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/etCustEmail"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/_35dp"
+                                    android:background="@color/float_transparent"
+                                    android:hint="Enter customer's email address"
+                                    android:inputType="textEmailAddress"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/tvCustEmailLabel"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvCustEmailLabel" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvCustAge"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:elevation="0dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_7dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintEnd_toEndOf="@+id/mcvCustName"
+                            app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvCustEmail">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvCustAgeLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_15dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Age*"
+                                    android:textColor="#A0A2C0"
+                                    android:textSize="@dimen/_12sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.04"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/etCustAge"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/_35dp"
+                                    android:background="@color/float_transparent"
+                                    android:hint="Enter customer's age"
+                                    android:inputType="text"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/tvCustAgeLabel"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvCustAgeLabel" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvPincode"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:elevation="0dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_7dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintEnd_toEndOf="@+id/mcvCustName"
+                            app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvCustAge">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvPinCodeLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_15dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Pin code*"
+                                    android:textColor="#A0A2C0"
+                                    android:textSize="@dimen/_12sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.04"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/etCustPincode"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/_35dp"
+                                    android:background="@color/float_transparent"
+                                    android:hint="Enter customer's pincode"
+                                    android:inputType="number"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/tvPinCodeLabel"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvPinCodeLabel" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvEmployment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:elevation="0dp"
+                            android:onClick="@{() -> addCustClickListener.openEmployment()}"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_7dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintEnd_toEndOf="@+id/mcvPincode"
+                            app:layout_constraintStart_toStartOf="@+id/mcvPincode"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvPincode">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvEmploymentTypeLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_15dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="employment"
+                                    android:textColor="#A0A2C0"
+                                    android:textSize="@dimen/_12sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.04"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvEmploymentType"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/_35dp"
+                                    android:layout_marginEnd="32dp"
+                                    android:background="@color/float_transparent"
+                                    android:gravity="center_vertical"
+                                    android:hint="Select your employment"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/tvEmploymentTypeLabel"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvEmploymentTypeLabel" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/ivDropDown"
+                                    android:layout_width="@dimen/_20dp"
+                                    android:layout_height="@dimen/_20dp"
+                                    android:src="@drawable/baseline_arrow_drop_down_24"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/tvEmploymentType"
+                                    app:layout_constraintTop_toTopOf="@+id/tvEmploymentType" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvIncome"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:elevation="0dp"
+                            android:onClick="@{() -> addCustClickListener.openIncome()}"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_7dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintEnd_toEndOf="@+id/mcvPincode"
+                            app:layout_constraintStart_toStartOf="@+id/mcvPincode"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvEmployment">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvIncomeLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_15dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="income"
+                                    android:textColor="#A0A2C0"
+                                    android:textSize="@dimen/_12sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.04"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvIncomeType"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/_35dp"
+                                    android:layout_marginEnd="32dp"
+                                    android:background="@color/float_transparent"
+                                    android:gravity="center_vertical"
+                                    android:hint="Select your income"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/tvIncomeLabel"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvIncomeLabel" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/ivDropDownIcome"
+                                    android:layout_width="@dimen/_20dp"
+                                    android:layout_height="@dimen/_20dp"
+                                    android:src="@drawable/baseline_arrow_drop_down_24"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/tvIncomeType"
+                                    app:layout_constraintTop_toTopOf="@+id/tvIncomeType" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvHasCC"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:elevation="0dp"
+                            android:onClick="@{() -> addCustClickListener.openHasCC()}"
+                            android:theme="@style/Widget.Material3.CardView.Filled"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_7dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintEnd_toEndOf="@+id/mcvPincode"
+                            app:layout_constraintStart_toStartOf="@+id/mcvPincode"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvIncome">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvhasCCLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_15dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Do you have a credit card ?"
+                                    android:textColor="#A0A2C0"
+                                    android:textSize="@dimen/_12sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.04"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvHasCC"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/_35dp"
+                                    android:layout_marginEnd="32dp"
+                                    android:background="@color/float_transparent"
+                                    android:gravity="center_vertical"
+                                    android:hint="Select your answer"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/tvhasCCLabel"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvhasCCLabel" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/ivDropDownCC"
+                                    android:layout_width="@dimen/_20dp"
+                                    android:layout_height="@dimen/_20dp"
+                                    android:src="@drawable/baseline_arrow_drop_down_24"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/tvHasCC"
+                                    app:layout_constraintTop_toTopOf="@+id/tvHasCC" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btAddCustContinue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_50dp"
+                            android:layout_marginTop="32dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:onClick="@{() -> addCustClickListener.addCustomer(etCustName.getText().toString(),etCustEmail.getText().toString(),etCustMobile.getText().toString(),etCustAge.getText().toString(),etCustPincode.getText().toString())}"
+                            android:text="Continue"
+                            android:textSize="@dimen/_14sp"
+                            app:backgroundTint="@color/colorPrimary_Deep"
+                            app:layout_constraintEnd_toEndOf="@+id/mcvHasCC"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvHasCC" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

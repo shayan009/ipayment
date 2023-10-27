@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fetchBillDetails"
+            type="com.onetechsol.ipayment.pojo.FetchBillDetails" />
+
+        <variable
+            name="billPaymentSheetClickListener"
+            type="com.onetechsol.ipayment.databinding.BillPaymentSheetClickListener" />
+
+        <variable
+            name="billDetailsAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.BillDetailsAdapter" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRechargeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Bill Payment"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivCancel" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCancel"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> billPaymentSheetClickListener.closeBottomSheet()}"
+                android:src="@drawable/baseline_cancel_24"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivOperatorImg"
+                android:layout_width="@dimen/_50dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="24dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="@+id/tvRechargeTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvRechargeTitle"
+                app:shapeAppearanceOverlay="@style/SpecificCornerRound" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{fetchBillDetails.opCircleItemDto().title()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_14sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintStart_toEndOf="@+id/ivOperatorImg"
+                app:layout_constraintTop_toTopOf="@+id/ivOperatorImg" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{fetchBillDetails.mobile()}"
+                android:textColor="@color/text_black"
+                app:layout_constraintStart_toStartOf="@+id/tvSubTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/bg_grey"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="@+id/ivOperatorImg"
+                app:layout_constraintTop_toBottomOf="@+id/ivOperatorImg" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clConsumerDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="@+id/ivOperatorImg"
+                app:layout_constraintTop_toBottomOf="@+id/view3">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvConsumerIdLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="consumer id"
+                    android:textColor="@color/material_blue_grey_90"
+                    android:textSize="@dimen/_13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvConsumerId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:text="@{fetchBillDetails.customerId()}"
+                    android:textColor="@color/material_blue_grey_90"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvConsumerIdLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvConsumerIdLabel" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvConsumerNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="consumer name"
+                    android:textColor="@color/material_blue_grey_90"
+                    android:textSize="@dimen/_13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvConsumerIdLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/tvConsumerIdLabel"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvConsumerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:text="@{fetchBillDetails.customerName()}"
+                    android:textColor="@color/material_blue_grey_90"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvConsumerNameLabel"
+                    app:layout_constraintEnd_toEndOf="@+id/tvConsumerId"
+                    app:layout_constraintTop_toTopOf="@+id/tvConsumerNameLabel" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBillRecords"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:adapter="@{billDetailsAdapter}"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/ivOperatorImg"
+                app:layout_constraintTop_toBottomOf="@+id/clConsumerDetail"
+                tools:listitem="@layout/bill_item" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOrLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:text="OR"
+
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_16sp"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="@+id/ivOperatorImg"
+                app:layout_constraintTop_toBottomOf="@+id/rvBillRecords" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBillAmount"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{() -> billPaymentSheetClickListener.submit(`0`)}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:cardElevation="@dimen/_3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="@+id/ivOperatorImg"
+                app:layout_constraintTop_toBottomOf="@+id/tvOrLabel"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clOtherAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/etOtherAmt"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:text="enter other amount"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/appCompatImageView10"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/appCompatImageView10"
+                            android:layout_width="@dimen/_40dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/ic_baseline_navigate_next_grey"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

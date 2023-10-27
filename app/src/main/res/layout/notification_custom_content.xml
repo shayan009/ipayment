@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/image_icon"
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_50dp"
+            android:paddingEnd="@dimen/_3dp"
+
+            android:paddingBottom="@dimen/_3dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/img_logo_down"
+            android:layout_width="12.2dp"
+            android:layout_height="12.2dp"
+            android:layout_alignEnd="@id/image_icon"
+            android:layout_alignBottom="@id/image_icon"
+            android:src="@drawable/logo"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_3dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:text="SeeAll"
+            android:textSize="@dimen/_16sp" />
+
+        <TextView
+            android:id="@+id/text_message"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_35sp"
+            android:ellipsize="end"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:maxLines="2"
+            android:text="be_friendly_and_write_a_brief_review_about_the_place be_friendly_and_write_a_brief_review_about_the_place"
+            android:textSize="@dimen/_14sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

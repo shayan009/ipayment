@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="myCustomerDetail"
+            type="com.onetechsol.ipayment.pojo.MyCustomerDetail" />
+
+        <variable
+            name="myCustomerItemClickListener"
+            type="com.onetechsol.ipayment.databinding.MyCustomerItemClickListener" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{myCustomerDetail.dateCreated()}"
+            android:textColor="#6F787F"
+            android:textSize="@dimen/_14sp"
+            app:fontFamily="@font/balsamiqsansbold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#FBFCFE"
+            app:cardCornerRadius="@dimen/_5dp"
+            app:cardElevation="@dimen/_3dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDateTime">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCustomerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_25dp"
+                        android:layout_marginStart="@dimen/_18dp"
+                        android:layout_marginTop="@dimen/_18dp"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:paddingEnd="@dimen/_9dp"
+                        android:text="@{myCustomerDetail.customerName()}"
+                        android:textColor="#393C42"
+                        android:textSize="@dimen/_14sp"
+                        app:fontFamily="@font/balsamiqsansregular"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvProductName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_25dp"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:paddingEnd="@dimen/_9dp"
+                        android:text="@{myCustomerDetail.serviceCategoryName()}"
+                        android:textColor="#70777E"
+                        android:textSize="@dimen/_14sp"
+                        app:fontFamily="@font/balsamiqsansregular"
+                        app:layout_constraintStart_toStartOf="@+id/tvCustomerName"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCustomerName" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvFooter"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_100dp"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#F5F4FA"
+                        app:cardCornerRadius="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvProductName"
+                        app:layout_constraintTop_toBottomOf="@+id/tvProductName"
+                        app:strokeColor="#C0BDD1"
+                        app:strokeWidth="0.7dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clCcEarnings"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:text="Yet To Start (Updates in 1-2 Days)"
+                                android:textColor="@color/sand_default_dark"
+                                android:textSize="@dimen/_13sp"
+                                app:fontFamily="@font/balsamiqsansbold"
+                                app:layout_constraintBottom_toBottomOf="@+id/tvCircleDot"
+                                app:layout_constraintStart_toEndOf="@+id/tvCircleDot"
+                                app:layout_constraintTop_toTopOf="@+id/tvCircleDot" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvStatusMsg"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="45dp"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:text="Please follow up the customer to get the application completed"
+                                android:textColor="#70777E"
+                                android:textSize="@dimen/_14sp"
+                                app:fontFamily="@font/balsamiqsansregular"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/tvStatus"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatus" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/tvCircleDot"
+                                android:layout_width="@dimen/_20dp"
+                                android:layout_height="@dimen/_20dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="12dp"
+                                android:src="@drawable/selected_dot"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvLastUpdateDateLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Last updated on"
+                        android:textColor="#70777E"
+                        android:textSize="@dimen/_13sp"
+                        app:fontFamily="@font/balsamiqsansregular"
+                        app:layout_constraintEnd_toStartOf="@+id/ivDivider"
+                        app:layout_constraintStart_toStartOf="@+id/mcvFooter"
+                        app:layout_constraintTop_toBottomOf="@+id/mcvFooter" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvLastUpdateDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="@{myCustomerDetail.lastUpdateAt()}"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_13sp"
+                        app:fontFamily="@font/balsamiqsansregular"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivDivider"
+                        app:layout_constraintStart_toStartOf="@+id/mcvFooter"
+                        app:layout_constraintTop_toBottomOf="@+id/tvLastUpdateDateLabel" />
+
+                    <View
+                        android:id="@+id/ivDivider"
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/_40dp"
+                        android:background="#E4E5E7"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvLastUpdateDate"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/mcvFooter"
+                        app:layout_constraintTop_toTopOf="@+id/tvLastUpdateDateLabel" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNextUpdateDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{myCustomerDetail.nextUpdate()}"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_13sp"
+                        app:fontFamily="@font/balsamiqsansregular"
+                        app:layout_constraintEnd_toEndOf="@+id/mcvFooter"
+                        app:layout_constraintStart_toEndOf="@+id/ivDivider"
+                        app:layout_constraintTop_toBottomOf="@+id/tvNextUpdateDateLabel" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNextUpdateDateLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Next Update"
+                        android:textColor="#70777E"
+                        android:textSize="@dimen/_13sp"
+                        app:fontFamily="@font/balsamiqsansregular"
+                        app:layout_constraintEnd_toEndOf="@+id/mcvFooter"
+                        app:layout_constraintStart_toEndOf="@+id/ivDivider"
+                        app:layout_constraintTop_toTopOf="@+id/ivDivider" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRemindCustomerLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="Remind Customer"
+                    android:textColor="#7A858B"
+                    android:textSize="@dimen/_15sp"
+                    app:fontFamily="@font/balsamiqsansbold"
+                    app:layout_constraintBottom_toBottomOf="@+id/clSMS"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/clSMS" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clSMS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:onClick="@{() -> myCustomerItemClickListener.sendSMS(myCustomerDetail)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/view4"
+                    app:layout_constraintHorizontal_bias="0.6"
+                    app:layout_constraintStart_toEndOf="@+id/tvRemindCustomerLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSMS"
+                        android:layout_width="@dimen/_25dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:src="@drawable/sms_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvSMSLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="SMS"
+                        android:textColor="@color/colorPrimary_Deep"
+                        android:textSize="@dimen/_14sp"
+                        app:fontFamily="@font/balsamiqsansregular"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivSMS"
+                        app:layout_constraintStart_toEndOf="@+id/ivSMS"
+                        app:layout_constraintTop_toTopOf="@+id/ivSMS" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="@dimen/_1dp"
+                    android:layout_height="0dp"
+                    android:background="#E4E5E7"
+                    app:layout_constraintBottom_toBottomOf="@+id/clSMS"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.67"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/clSMS" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clWhatsApp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="@{() -> myCustomerItemClickListener.sendWhatsApp(myCustomerDetail)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/clSMS"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.6"
+                    app:layout_constraintStart_toEndOf="@+id/view4"
+                    app:layout_constraintTop_toTopOf="@+id/clSMS">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivWhatsapp"
+                        android:layout_width="@dimen/_25dp"
+                        android:layout_height="@dimen/_25dp"
+                        android:src="@drawable/whatsapp_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvWhatsAppLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="WhatsApp"
+                        android:textColor="@color/colorPrimary_Deep"
+                        android:textSize="@dimen/_14sp"
+                        app:fontFamily="@font/balsamiqsansregular"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivWhatsapp"
+                        app:layout_constraintStart_toEndOf="@+id/ivWhatsapp"
+                        app:layout_constraintTop_toTopOf="@+id/ivWhatsapp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="planSelectionMobileDto"
+            type="com.onetechsol.ipayment.pojo.PlanSelectionMobileDto" />
+
+        <variable
+            name="rechargeOnClickListener"
+            type="com.onetechsol.ipayment.databinding.RechargeOnClickListener" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="prepaidPlansAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.PrepaidPlansAdapter" />
+
+        <variable
+            name="planTitleAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.PlanTitleAdapter" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp"
+        android:background="#F6F7FB">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F6F7FB">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBack"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginTop="32dp"
+                android:clickable="true"
+                android:elevation="@dimen/_8dp"
+                android:focusable="true"
+                android:onClick="@{() -> rechargeOnClickListener.goBack()}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.06"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBackPD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/baseline_arrow_back_black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ivTitlePlan"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:gravity="center"
+                android:text="Select a Recharge Plan"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/mcvBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mcvBack"
+                app:layout_constraintTop_toTopOf="@+id/mcvBack" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_100dp"
+                android:layout_marginTop="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:theme="@style/Widget.Material3.CardView.Elevated"
+                app:cardBackgroundColor="@color/card_light_purple"
+                app:cardCornerRadius="@dimen/_20dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="@+id/ivTitlePlan"
+                app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                app:layout_constraintTop_toBottomOf="@+id/ivTitlePlan"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clAeps1Item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/materialCardView"
+                        android:layout_width="@dimen/_70dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="@color/white"
+                        android:clickable="true"
+                        android:elevation="0dp"
+                        android:focusable="true"
+                        android:theme="@style/Widget.Material3.CardView.Filled"
+                        app:cardCornerRadius="@dimen/_20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/ivPlanimg"
+                                android:layout_width="@dimen/_45dp"
+                                android:layout_height="@dimen/_45dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvName"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:text="@{planSelectionMobileDto.name()}"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_15sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                        app:layout_constraintTop_toTopOf="@+id/materialCardView"
+                        app:layout_constraintVertical_bias="0.24000001" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNumber"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@{planSelectionMobileDto.mobile()}"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvName"
+                        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSelectOperator"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{() -> rechargeOnClickListener.openOperator()}"
+                app:layout_constraintEnd_toStartOf="@+id/clSelectState"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView6">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#F6F7FB"
+                    android:elevation="0.1dp"
+                    android:padding="@dimen/_4dp"
+                    android:shadowColor="#F6F7FB"
+                    android:text="Prepaid Operator"
+                    android:textColor="@color/bg_color"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvSelectOperator"
+                    android:layout_width="0dp"
+                    android:layout_height="51dp"
+                    android:elevation="0dp"
+                    android:theme="@style/Widget.Material3.CardView.Outlined"
+                    app:cardBackgroundColor="#F6F7FB"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/bg_color"
+                    app:strokeWidth="@dimen/_1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvOpName"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="6dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:text="Select Operator"
+                            android:textColor="@color/text_black"
+                            android:textSize="10sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivOpLogo"
+                            app:layout_constraintEnd_toStartOf="@+id/tvChangeOp"
+                            app:layout_constraintStart_toEndOf="@+id/ivOpLogo"
+                            app:layout_constraintTop_toTopOf="@+id/ivOpLogo"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/ivOpLogo"
+                            android:layout_width="@dimen/_30dp"
+                            android:layout_height="@dimen/_30dp"
+                            android:layout_marginStart="4dp"
+                            android:src="@drawable/operator_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.03"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.6" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvChangeOp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:overScrollMode="never"
+                            android:paddingEnd="5dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:text="Change"
+                            android:textAllCaps="false"
+                            android:textColor="@color/text_black"
+                            android:textSize="10sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivOpLogo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/ivOpLogo"
+                            app:layout_constraintVertical_bias="0.0" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSelectState"
+                android:layout_width="@dimen/_160dp"
+                android:layout_height="@dimen/_70dp"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{() -> rechargeOnClickListener.openState()}"
+                android:visibility="@{planSelectionMobileDto.serviceType().equals(`1`) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="@+id/ivTitlePlan"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView6">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#F6F7FB"
+                    android:elevation="0.1dp"
+                    android:padding="@dimen/_4dp"
+                    android:shadowColor="#F6F7FB"
+                    android:text="Prepaid Circle"
+                    android:textColor="@color/bg_color"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvSelectState"
+                    android:layout_width="0dp"
+                    android:layout_height="51dp"
+                    android:elevation="0dp"
+                    android:theme="@style/Widget.Material3.CardView.Outlined"
+                    app:cardBackgroundColor="#F6F7FB"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/bg_color"
+                    app:strokeWidth="@dimen/_1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStateName"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="6dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:text="Select State"
+                            android:textColor="@color/text_black"
+                            android:textSize="10sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivStateLogo"
+                            app:layout_constraintEnd_toStartOf="@+id/tvChangeState"
+                            app:layout_constraintStart_toEndOf="@+id/ivStateLogo"
+                            app:layout_constraintTop_toTopOf="@+id/ivStateLogo"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/ivStateLogo"
+                            android:layout_width="@dimen/_25dp"
+                            android:layout_height="@dimen/_25dp"
+                            android:layout_marginStart="4dp"
+                            android:paddingStart="3dp"
+                            android:src="@drawable/operator_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.03"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.53" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvChangeState"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="2dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:overScrollMode="never"
+                            android:paddingEnd="3dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:text="Change"
+                            android:textAllCaps="false"
+                            android:textColor="@color/text_black"
+                            android:textSize="10sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivStateLogo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/ivStateLogo"
+                            app:layout_constraintVertical_bias="0.0" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvRechargeAmount"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="@+id/materialCardView6"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/materialCardView6"
+                app:layout_constraintTop_toBottomOf="@+id/clSelectOperator"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clBenAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etRechargeAmount"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center_vertical"
+                            android:hint="Enter Amount"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="14sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/btProceedPay"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btProceedPay"
+                            style="@style/Widget.Material3.Button.TonalButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_50dp"
+                            android:onClick="@{() -> rechargeOnClickListener.proceedPay(etRechargeAmount.getText().toString())}"
+                            android:text="Pay"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14sp"
+                            app:backgroundTint="@color/colorPrimary_Deep"
+                            app:cardCornerRadius="@dimen/_13dp"
+                            app:cornerRadius="@dimen/_8dp"
+                            app:elevation="5dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeColor="@color/white" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPlanTabs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adapter="@{planTitleAdapter}"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/materialCardView6"
+                app:layout_constraintStart_toStartOf="@+id/materialCardView6"
+                app:layout_constraintTop_toBottomOf="@+id/mcvRechargeAmount"
+                tools:listitem="@layout/plan_title_item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPrepaidPlans"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adapter="@{prepaidPlansAdapter}"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/rvPlanTabs"
+                app:layout_constraintStart_toStartOf="@+id/rvPlanTabs"
+                app:layout_constraintTop_toBottomOf="@+id/rvPlanTabs"
+                tools:listitem="@layout/prepaid_plan_item" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>

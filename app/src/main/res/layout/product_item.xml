@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="productModel"
+            type="com.onetechsol.ipayment.pojo.ProductModel" />
+
+        <import type="android.view.View" />
+
+        <import type="com.onetechsol.ipayment.pojo.SellEarnType" />
+
+        <variable
+            name="ccRewardListAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.CCRewardListAdapter" />
+
+        <variable
+            name="goalListAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.GoalListAdapter" />
+
+        <variable
+            name="productItemClickListener"
+            type="com.onetechsol.ipayment.databinding.ProductItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> productItemClickListener.onClickItem(productModel)}"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_5dp"
+            app:cardElevation="@dimen/_3dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clEarn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25dp"
+                    android:background="@drawable/drawable_banner"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivCCIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/ivCCIcon"
+                    app:layout_constraintTop_toTopOf="@+id/ivCCIcon"
+                    app:layout_constraintVertical_bias="0.39999998">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/appCompatTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:text="Earn "
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvEarnAmt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:text="@{`₹`+productModel.maxEarn()}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.21"
+                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCCIcon"
+                    android:layout_width="@dimen/_70dp"
+                    android:layout_height="@dimen/_45dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@{productModel.iconUrl()}"
+                    app:layout_constraintStart_toStartOf="@+id/clTitleCC"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clTitleCC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.09"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivCCIcon">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCCName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_25dp"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:paddingEnd="@dimen/_9dp"
+                        android:text="@{productModel.name()}"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivCCNext"
+                        android:layout_width="@dimen/_40dp"
+                        android:layout_height="0dp"
+                        android:src="@drawable/ic_baseline_navigate_next_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/tvCCName"
+                        app:layout_constraintStart_toEndOf="@+id/tvCCName"
+                        app:layout_constraintTop_toTopOf="@+id/tvCCName" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRewardList"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="24dp"
+                    android:adapter="@{ccRewardListAdapter}"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/clTitleCC"
+                    app:layout_constraintTop_toBottomOf="@+id/clTitleCC"
+                    tools:listitem="@layout/reward_item" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvFooter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:elevation="0dp"
+                    app:cardBackgroundColor="#F5F4FA"
+                    app:cardCornerRadius="5dp"
+                    app:layout_constraintEnd_toEndOf="@+id/rvRewardList"
+                    app:layout_constraintStart_toStartOf="@+id/rvRewardList"
+                    app:layout_constraintTop_toBottomOf="@+id/rvRewardList">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clCcEarnings"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{productModel.sellEarnType() == SellEarnType.CREDIT_CARD ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Joining fee"
+                            android:textColor="@color/sand_default_dark"
+                            android:textSize="@dimen/_13sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/appCompatTextView10"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvJoiningFee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="13dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="@{`₹`+productModel.joinFee()}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView9"
+                            app:layout_constraintStart_toStartOf="@+id/appCompatTextView9"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView9" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Annual fee"
+                            android:textColor="@color/sand_default_dark"
+                            android:textSize="@dimen/_13sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/appCompatTextView11"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/appCompatTextView9"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvAnnualFee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="@{`min ₹`+productModel.annualFee()}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView10"
+                            app:layout_constraintStart_toStartOf="@+id/appCompatTextView10"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView10" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Approval rate"
+                            android:textColor="@color/sand_default_dark"
+                            android:textSize="@dimen/_13sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/appCompatTextView10"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvApprovalRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="8dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/sf_pro_display_bold"
+                            android:maxLines="1"
+                            android:text="@{productModel.approvalRate()}"
+                            android:textColor="@color/color_green"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView11"
+                            app:layout_constraintStart_toStartOf="@+id/appCompatTextView11"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView11" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clCcSavingAc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{productModel.sellEarnType() == SellEarnType.SAVINGS_ACC ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView91"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Min Account Bal"
+                            android:textColor="@color/sand_default_dark"
+                            android:textSize="@dimen/_13sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvMinAccBal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="13dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="@{`₹`+productModel.minAccountBalance()}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView91"
+                            app:layout_constraintStart_toStartOf="@+id/appCompatTextView91"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView91" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="16dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:lines="1"
+                            android:text="Account Creation Time"
+                            android:textColor="@color/sand_default_dark"
+                            android:textSize="@dimen/_13sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/appCompatTextView91"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCreateTime"
+                            android:layout_width="5dp"
+                            android:layout_height="21dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="@{productModel.accountCreationTime() +` Day`}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView18"
+                            app:layout_constraintStart_toStartOf="@+id/appCompatTextView18"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView18" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clDematGoals"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{productModel.sellEarnType() == SellEarnType.DEMAT_ACC ? View.VISIBLE : View.GONE}">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvGoals"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adapter="@{goalListAdapter}"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:listitem="@layout/goal_item" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mbAddCustomer"
+                    android:layout_width="@dimen/_140dp"
+                    android:layout_height="@dimen/_48dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="@{() -> productItemClickListener.addCustomer(productModel)}"
+                    android:text="Add customer"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sp"
+                    android:visibility="@{productModel.sellEarnType() == SellEarnType.CREDIT_CARD ? View.VISIBLE : View.GONE}"
+                    app:backgroundTint="@color/colorPrimary_Deep"
+                    app:cornerRadius="@dimen/_6dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/mbShare"
+                    app:layout_constraintEnd_toStartOf="@+id/mbShare"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvFooter" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mbShare"
+                    android:layout_width="@dimen/_140dp"
+                    android:layout_height="@dimen/_48dp"
+                    android:onClick="@{() -> productItemClickListener.shareLink(productModel)}"
+                    android:text="Share"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sp"
+                    app:backgroundTint="@color/colorPrimary_Deep"
+                    app:cornerRadius="@dimen/_6dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/mbAddCustomer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mbAddCustomer"
+                    app:layout_constraintTop_toTopOf="@+id/mbAddCustomer"
+                    app:layout_constraintVertical_bias="0.01999998" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

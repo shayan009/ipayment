@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="sellEarnClickListener"
+            type="com.onetechsol.ipayment.databinding.SellEarnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/framelayoutSellEarn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationSE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tvAddSE"
+            android:layout_width="@dimen/_60dp"
+            android:layout_height="@dimen/_60dp"
+            android:src="@drawable/circle_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationSE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.94" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomNavigationSE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/nav_bg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clNavHome"
+                    android:layout_width="@dimen/_80dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/clNavCustomer"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cbNavHomeIcon"
+                        android:layout_width="@dimen/_20dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/drawable_menu_home"
+                        android:button="@null"
+                        android:clickable="false"
+                        app:checkedState="unchecked"
+                        app:layout_constraintBottom_toTopOf="@+id/tvNavHomeText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNavHomeText"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="Home"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/_12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/ivNavHomeBg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cbNavHomeIcon" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivNavHomeBg"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_15dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/nav_bg_selected"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clNavCustomer"
+                    android:layout_width="@dimen/_80dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/clNavSellEarn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/clNavHome"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cbNavCustomerIcon"
+                        android:layout_width="@dimen/_20dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:background="@drawable/drawable_menu_customers"
+                        android:button="@null"
+                        android:clickable="false"
+                        app:checkedState="unchecked"
+                        app:layout_constraintBottom_toTopOf="@+id/tvNavCustomerText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNavCustomerText"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="Customer"
+                        android:textColor="@color/light_grey"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/ivNavCustomerBg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cbNavCustomerIcon" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivNavCustomerBg"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_15dp"
+                        android:src="@drawable/nav_bg_selected"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:layout_editor_absoluteX="0dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clNavSellEarn"
+                    android:layout_width="@dimen/_70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/clNavService"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/clNavCustomer"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNavSellEarnText"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="Sell &amp; Earn"
+                        android:textColor="@color/light_grey"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.81" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clNavService"
+                    android:layout_width="@dimen/_80dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/clNavContent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/clNavSellEarn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cbNavServiceIcon"
+                        android:layout_width="@dimen/_20dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:background="@drawable/drawable_menu_service"
+                        android:button="@null"
+                        android:clickable="false"
+                        app:checkedState="unchecked"
+                        app:layout_constraintBottom_toTopOf="@+id/tvNavServiceText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNavServiceText"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="Services"
+                        android:textColor="@color/light_grey"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/ivNavServiceBg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cbNavServiceIcon" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivNavServiceBg"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_15dp"
+                        android:src="@drawable/nav_bg_selected"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:layout_editor_absoluteX="0dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clNavContent"
+                    android:layout_width="@dimen/_80dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/clNavService"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cbNavContentIcon"
+                        android:layout_width="@dimen/_20dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:background="@drawable/drawable_menu_content"
+                        android:button="@null"
+                        android:clickable="false"
+                        android:theme="@style/Widget.Material3.CompoundButton.CheckBox"
+                        app:checkedState="unchecked"
+                        app:layout_constraintBottom_toTopOf="@+id/tvNavContentText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNavContentText"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="Contents"
+                        android:textColor="@color/light_grey"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/ivNavContentBg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cbNavContentIcon" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivNavContentBg"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_15dp"
+                        android:src="@drawable/nav_bg_selected"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:layout_editor_absoluteX="0dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

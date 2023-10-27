@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="productDetailClickListener"
+            type="com.onetechsol.ipayment.databinding.ProductDetailClickListener" />
+
+        <import type="com.onetechsol.ipayment.pojo.SellEarnType" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="benefitAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.BenefitAdapter" />
+
+        <variable
+            name="productDetailViewPagerAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.ProductDetailViewPagerAdapter" />
+
+        <variable
+            name="productModel"
+            type="com.onetechsol.ipayment.pojo.ProductModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F6F7FB">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvBack"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_marginTop="32dp"
+                android:clickable="true"
+                android:elevation="@dimen/_8dp"
+                android:focusable="true"
+                android:onClick="@{() -> productDetailClickListener.goBack()}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.06"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBackPD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/baseline_arrow_back_black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleProduct"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/mcvBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mcvBack"
+                app:layout_constraintTop_toTopOf="@+id/mcvBack" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvLoginSignup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:elevation="5dp"
+                app:cardBackgroundColor="@color/text_shade"
+                app:cardCornerRadius="@dimen/_20dp"
+                app:cardElevation="@dimen/_5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/mcvBack"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleProduct"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btDetails"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="@dimen/_95dp"
+                        android:layout_height="@dimen/_55dp"
+                        android:onClick="@{() -> productDetailClickListener.openDetails()}"
+                        android:singleLine="true"
+                        android:text="Details"
+                        android:textAllCaps="false"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_10sp"
+                        app:backgroundTint="@color/float_transparent"
+                        app:cornerRadius="@dimen/_18dp"
+                        app:elevation="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btShareContent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@color/white" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btShareContent"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="@dimen/_95dp"
+                        android:layout_height="@dimen/_55dp"
+                        android:elevation="0dp"
+                        android:onClick="@{() -> productDetailClickListener.openShareContent()}"
+                        android:singleLine="true"
+                        android:text="Share Content"
+                        android:textAllCaps="false"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_10sp"
+                        app:cornerRadius="@dimen/_18dp"
+                        app:elevation="@dimen/_5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btEarnings"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/btDetails"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@color/colorPrimaryDark"
+                        app:strokeWidth="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btEarnings"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="@dimen/_95dp"
+                        android:layout_height="@dimen/_55dp"
+                        android:elevation="0dp"
+                        android:onClick="@{() -> productDetailClickListener.openEarning()}"
+                        android:singleLine="true"
+                        android:text="Earnings"
+                        android:textAllCaps="false"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_10sp"
+                        app:cornerRadius="@dimen/_18dp"
+                        app:elevation="@dimen/_5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/btShareContent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@color/colorPrimaryDark"
+                        app:strokeWidth="0dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpProductItems"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adapter="@{productDetailViewPagerAdapter}"
+                app:layout_constraintEnd_toEndOf="@+id/mcvLoginSignup"
+                app:layout_constraintStart_toStartOf="@+id/mcvLoginSignup"
+                app:layout_constraintTop_toBottomOf="@+id/mcvLoginSignup" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mbAddCustomer"
+                android:layout_width="@dimen/_140dp"
+                android:layout_height="@dimen/_48dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:onClick="@{() -> productDetailClickListener.addCustomer(productModel)}"
+                android:text="Add customer"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sp"
+                android:visibility="@{productModel.sellEarnType() == SellEarnType.CREDIT_CARD ? View.VISIBLE : View.GONE}"
+                app:backgroundTint="@color/colorPrimary_Deep"
+                app:cornerRadius="@dimen/_6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/mbShare"
+                app:layout_constraintEnd_toStartOf="@+id/mbShare"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vpProductItems" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mbShare"
+                android:layout_width="@dimen/_140dp"
+                android:layout_height="@dimen/_48dp"
+                android:onClick="@{() -> productDetailClickListener.shareLink(productModel)}"
+                android:text="Share"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sp"
+                app:backgroundTint="@color/colorPrimary_Deep"
+                app:cornerRadius="@dimen/_6dp"
+                app:layout_constraintBottom_toBottomOf="@+id/mbAddCustomer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mbAddCustomer"
+                app:layout_constraintTop_toTopOf="@+id/mbAddCustomer"
+                app:layout_constraintVertical_bias="0.01999998" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

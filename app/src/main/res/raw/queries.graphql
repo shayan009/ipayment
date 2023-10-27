@@ -1,0 +1,1847 @@
+# this is an auto generated file. This will be overwritten
+
+query GetInstruction($id: ID!) {
+    getInstruction(id: $id) {
+        id
+        name
+        product_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}
+
+query ListInstructions(
+    $filter: ModelInstructionFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    listInstructions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+            id
+            name
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query SyncInstructions(
+    $filter: ModelInstructionFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+) {
+    syncInstructions(
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+        lastSync: $lastSync
+    ) {
+        items {
+            id
+            name
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query InstructionsByProduct_id(
+    $product_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelInstructionFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    instructionsByProduct_id(
+        product_id: $product_id
+        sortDirection: $sortDirection
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+    ) {
+        items {
+            id
+            name
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query GetTerm($id: ID!) {
+    getTerm(id: $id) {
+        id
+        name
+        product_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}
+
+query ListTerms(
+    $filter: ModelTermFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    listTerms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+            id
+            name
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query SyncTerms(
+    $filter: ModelTermFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+) {
+    syncTerms(
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+        lastSync: $lastSync
+    ) {
+        items {
+            id
+            name
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query TermsByProduct_id(
+    $product_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelTermFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    termsByProduct_id(
+        product_id: $product_id
+        sortDirection: $sortDirection
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+    ) {
+        items {
+            id
+            name
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query GetImage($id: ID!) {
+    getImage(id: $id) {
+        id
+        url
+        product_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}
+
+query ListImages(
+    $filter: ModelImageFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    listImages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+            id
+            url
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query SyncImages(
+    $filter: ModelImageFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+) {
+    syncImages(
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+        lastSync: $lastSync
+    ) {
+        items {
+            id
+            url
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query ImagesByProduct_id(
+    $product_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelImageFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    imagesByProduct_id(
+        product_id: $product_id
+        sortDirection: $sortDirection
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+    ) {
+        items {
+            id
+            url
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query GetVideo($id: ID!) {
+    getVideo(id: $id) {
+        id
+        url
+        product_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}
+
+query ListVideos(
+    $filter: ModelVideoFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    listVideos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+            id
+            url
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query SyncVideos(
+    $filter: ModelVideoFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+) {
+    syncVideos(
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+        lastSync: $lastSync
+    ) {
+        items {
+            id
+            url
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query VideosByProduct_id(
+    $product_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelVideoFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    videosByProduct_id(
+        product_id: $product_id
+        sortDirection: $sortDirection
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+    ) {
+        items {
+            id
+            url
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query GetAudience($id: ID!) {
+    getAudience(id: $id) {
+        id
+        name
+        product_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}
+
+query ListAudiences(
+    $filter: ModelAudienceFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    listAudiences(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+            id
+            name
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query SyncAudiences(
+    $filter: ModelAudienceFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+) {
+    syncAudiences(
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+        lastSync: $lastSync
+    ) {
+        items {
+            id
+            name
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query AudiencesByProduct_id(
+    $product_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelAudienceFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    audiencesByProduct_id(
+        product_id: $product_id
+        sortDirection: $sortDirection
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+    ) {
+        items {
+            id
+            name
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query GetGoal($id: ID!) {
+    getGoal(id: $id) {
+        id
+        goal_id
+        name
+        icon
+        earning
+        product_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}
+
+query ListGoals(
+    $filter: ModelGoalFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    listGoals(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+            id
+            goal_id
+            name
+            icon
+            earning
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query SyncGoals(
+    $filter: ModelGoalFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+) {
+    syncGoals(
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+        lastSync: $lastSync
+    ) {
+        items {
+            id
+            goal_id
+            name
+            icon
+            earning
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query GoalsByProduct_id(
+    $product_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelGoalFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    goalsByProduct_id(
+        product_id: $product_id
+        sortDirection: $sortDirection
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+    ) {
+        items {
+            id
+            goal_id
+            name
+            icon
+            earning
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query GetBenefit($id: ID!) {
+    getBenefit(id: $id) {
+        id
+        benefit_id
+        name
+        icon
+        product_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}
+
+query ListBenefits(
+    $filter: ModelBenefitFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    listBenefits(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+            id
+            benefit_id
+            name
+            icon
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query SyncBenefits(
+    $filter: ModelBenefitFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+) {
+    syncBenefits(
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+        lastSync: $lastSync
+    ) {
+        items {
+            id
+            benefit_id
+            name
+            icon
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query BenefitsByProduct_id(
+    $product_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelBenefitFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    benefitsByProduct_id(
+        product_id: $product_id
+        sortDirection: $sortDirection
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+    ) {
+        items {
+            id
+            benefit_id
+            name
+            icon
+            product_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query GetProduct($id: ID!) {
+    getProduct(id: $id) {
+        id
+        name
+        image
+        product_id
+        is_active
+        earning
+        annual_fee
+        approval_rate
+        opening_charge
+        rate_of_interest
+        min_account_bal
+        creation_time
+        short_name
+        is_vdc_available
+        is_instant_upi_available
+        Benefits {
+            items {
+                id
+                benefit_id
+                name
+                icon
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Goals {
+            items {
+                id
+                goal_id
+                name
+                icon
+                earning
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Audiences {
+            items {
+                id
+                name
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Videos {
+            items {
+                id
+                url
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Images {
+            items {
+                id
+                url
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Terms {
+            items {
+                id
+                name
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Instructions {
+            items {
+                id
+                name
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        type
+        link
+        sell_earn_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}
+
+query ListProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+            id
+            name
+            image
+            product_id
+            is_active
+            earning
+            annual_fee
+            approval_rate
+            opening_charge
+            rate_of_interest
+            min_account_bal
+            creation_time
+            short_name
+            is_vdc_available
+            is_instant_upi_available
+            Benefits {
+                items {
+                    id
+                    benefit_id
+                    name
+                    icon
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Goals {
+                items {
+                    id
+                    goal_id
+                    name
+                    icon
+                    earning
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Audiences {
+                items {
+                    id
+                    name
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Videos {
+                items {
+                    id
+                    url
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Images {
+                items {
+                    id
+                    url
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Terms {
+                items {
+                    id
+                    name
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Instructions {
+                items {
+                    id
+                    name
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            type
+            link
+            sell_earn_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query SyncProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+) {
+    syncProducts(
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+        lastSync: $lastSync
+    ) {
+        items {
+            id
+            name
+            image
+            product_id
+            is_active
+            earning
+            annual_fee
+            approval_rate
+            opening_charge
+            rate_of_interest
+            min_account_bal
+            creation_time
+            short_name
+            is_vdc_available
+            is_instant_upi_available
+            Benefits {
+                items {
+                    id
+                    benefit_id
+                    name
+                    icon
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Goals {
+                items {
+                    id
+                    goal_id
+                    name
+                    icon
+                    earning
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Audiences {
+                items {
+                    id
+                    name
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Videos {
+                items {
+                    id
+                    url
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Images {
+                items {
+                    id
+                    url
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Terms {
+                items {
+                    id
+                    name
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Instructions {
+                items {
+                    id
+                    name
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            type
+            link
+            sell_earn_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query ProductsBySell_earn_id(
+    $sell_earn_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    productsBySell_earn_id(
+        sell_earn_id: $sell_earn_id
+        sortDirection: $sortDirection
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+    ) {
+        items {
+            id
+            name
+            image
+            product_id
+            is_active
+            earning
+            annual_fee
+            approval_rate
+            opening_charge
+            rate_of_interest
+            min_account_bal
+            creation_time
+            short_name
+            is_vdc_available
+            is_instant_upi_available
+            Benefits {
+                items {
+                    id
+                    benefit_id
+                    name
+                    icon
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Goals {
+                items {
+                    id
+                    goal_id
+                    name
+                    icon
+                    earning
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Audiences {
+                items {
+                    id
+                    name
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Videos {
+                items {
+                    id
+                    url
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Images {
+                items {
+                    id
+                    url
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Terms {
+                items {
+                    id
+                    name
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            Instructions {
+                items {
+                    id
+                    name
+                    product_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            type
+            link
+            sell_earn_id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query GetSellEarn($id: ID!) {
+    getSellEarn(id: $id) {
+        id
+        name
+        image
+        is_active
+        sell_earn_id
+        Product {
+            items {
+                id
+                name
+                image
+                product_id
+                is_active
+                earning
+                annual_fee
+                approval_rate
+                opening_charge
+                rate_of_interest
+                min_account_bal
+                creation_time
+                short_name
+                is_vdc_available
+                is_instant_upi_available
+                Benefits {
+                    items {
+                        id
+                        benefit_id
+                        name
+                        icon
+                        product_id
+                        createdAt
+                        updatedAt
+                        _version
+                        _deleted
+                        _lastChangedAt
+                        __typename
+                    }
+                    nextToken
+                    startedAt
+                    __typename
+                }
+                Goals {
+                    items {
+                        id
+                        goal_id
+                        name
+                        icon
+                        earning
+                        product_id
+                        createdAt
+                        updatedAt
+                        _version
+                        _deleted
+                        _lastChangedAt
+                        __typename
+                    }
+                    nextToken
+                    startedAt
+                    __typename
+                }
+                Audiences {
+                    items {
+                        id
+                        name
+                        product_id
+                        createdAt
+                        updatedAt
+                        _version
+                        _deleted
+                        _lastChangedAt
+                        __typename
+                    }
+                    nextToken
+                    startedAt
+                    __typename
+                }
+                Videos {
+                    items {
+                        id
+                        url
+                        product_id
+                        createdAt
+                        updatedAt
+                        _version
+                        _deleted
+                        _lastChangedAt
+                        __typename
+                    }
+                    nextToken
+                    startedAt
+                    __typename
+                }
+                Images {
+                    items {
+                        id
+                        url
+                        product_id
+                        createdAt
+                        updatedAt
+                        _version
+                        _deleted
+                        _lastChangedAt
+                        __typename
+                    }
+                    nextToken
+                    startedAt
+                    __typename
+                }
+                Terms {
+                    items {
+                        id
+                        name
+                        product_id
+                        createdAt
+                        updatedAt
+                        _version
+                        _deleted
+                        _lastChangedAt
+                        __typename
+                    }
+                    nextToken
+                    startedAt
+                    __typename
+                }
+                Instructions {
+                    items {
+                        id
+                        name
+                        product_id
+                        createdAt
+                        updatedAt
+                        _version
+                        _deleted
+                        _lastChangedAt
+                        __typename
+                    }
+                    nextToken
+                    startedAt
+                    __typename
+                }
+                type
+                link
+                sell_earn_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        type
+        max_earning
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}
+
+query ListSellEarns(
+    $filter: ModelSellEarnFilterInput
+    $limit: Int
+    $nextToken: String
+) {
+    listSellEarns(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+            id
+            name
+            image
+            is_active
+            sell_earn_id
+            Product {
+                items {
+                    id
+                    name
+                    image
+                    product_id
+                    is_active
+                    earning
+                    annual_fee
+                    approval_rate
+                    opening_charge
+                    rate_of_interest
+                    min_account_bal
+                    creation_time
+                    short_name
+                    is_vdc_available
+                    is_instant_upi_available
+                    Benefits {
+                        items {
+                            id
+                            benefit_id
+                            name
+                            icon
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Goals {
+                        items {
+                            id
+                            goal_id
+                            name
+                            icon
+                            earning
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Audiences {
+                        items {
+                            id
+                            name
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Videos {
+                        items {
+                            id
+                            url
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Images {
+                        items {
+                            id
+                            url
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Terms {
+                        items {
+                            id
+                            name
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Instructions {
+                        items {
+                            id
+                            name
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    type
+                    link
+                    sell_earn_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            type
+            max_earning
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}
+
+query SyncSellEarns(
+    $filter: ModelSellEarnFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+) {
+    syncSellEarns(
+        filter: $filter
+        limit: $limit
+        nextToken: $nextToken
+        lastSync: $lastSync
+    ) {
+        items {
+            id
+            name
+            image
+            is_active
+            sell_earn_id
+            Product {
+                items {
+                    id
+                    name
+                    image
+                    product_id
+                    is_active
+                    earning
+                    annual_fee
+                    approval_rate
+                    opening_charge
+                    rate_of_interest
+                    min_account_bal
+                    creation_time
+                    short_name
+                    is_vdc_available
+                    is_instant_upi_available
+                    Benefits {
+                        items {
+                            id
+                            benefit_id
+                            name
+                            icon
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Goals {
+                        items {
+                            id
+                            goal_id
+                            name
+                            icon
+                            earning
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Audiences {
+                        items {
+                            id
+                            name
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Videos {
+                        items {
+                            id
+                            url
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Images {
+                        items {
+                            id
+                            url
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Terms {
+                        items {
+                            id
+                            name
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    Instructions {
+                        items {
+                            id
+                            name
+                            product_id
+                            createdAt
+                            updatedAt
+                            _version
+                            _deleted
+                            _lastChangedAt
+                            __typename
+                        }
+                        nextToken
+                        startedAt
+                        __typename
+                    }
+                    type
+                    link
+                    sell_earn_id
+                    createdAt
+                    updatedAt
+                    _version
+                    _deleted
+                    _lastChangedAt
+                    __typename
+                }
+                nextToken
+                startedAt
+                __typename
+            }
+            type
+            max_earning
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            __typename
+        }
+        nextToken
+        startedAt
+        __typename
+    }
+}

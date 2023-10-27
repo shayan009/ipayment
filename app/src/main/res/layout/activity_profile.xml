@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="profileItemClickListener"
+            type="com.onetechsol.ipayment.databinding.ProfileItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F7FB"
+        tools:context=".ui.screen.dashboard.DashboardActivity">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvBackProfile"
+            android:layout_width="@dimen/_60dp"
+            android:layout_height="@dimen/_60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:elevation="@dimen/_8dp"
+            android:focusable="true"
+            android:onClick="@{() -> profileItemClickListener.goBack()}"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivBackCC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/baseline_arrow_back_white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleCC"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/mcvBackProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mcvBackProfile"
+            app:layout_constraintTop_toTopOf="@+id/mcvBackProfile" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mcvBackProfile">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200dp">
+
+                <FrameLayout
+                    android:id="@+id/flImageUser"
+                    android:layout_width="@dimen/_120dp"
+                    android:layout_height="@dimen/_120dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/drawable_double_circle"
+                    android:elevation="@dimen/_3dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_110dp"
+                        android:layout_height="@dimen/_110dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/drawable_double_circle_white"
+                        android:visibility="visible">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imgUser"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+
+                            android:visibility="visible" />
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProfileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="Lia Castro"
+                    android:textColor="#141414"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/flImageUser" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProfileAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="Narayantala west , Pin 700059"
+                    android:textColor="#95949A"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProfileLeads"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="100 leads"
+                    android:textColor="#95949A"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileAddress" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvProfileHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:cardElevation="@dimen/_3dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileLeads">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_16dp"
+                            android:layout_marginTop="@dimen/_16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:text="Information"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivIconInfoPhone"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_marginTop="@dimen/_10dp"
+                            android:src="@drawable/movile_icon"
+                            app:layout_constraintStart_toStartOf="@+id/appCompatTextView13"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView13" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_7dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:text="Phone"
+                            android:textColor="#707A88"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivIconInfoPhone"
+                            app:layout_constraintStart_toEndOf="@+id/ivIconInfoPhone"
+                            app:layout_constraintTop_toTopOf="@+id/ivIconInfoPhone" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvIconInfoPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:text="8902416510"
+                            android:textColor="#202020"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivIconInfoPhone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.94"
+                            app:layout_constraintStart_toEndOf="@+id/appCompatTextView12"
+                            app:layout_constraintTop_toTopOf="@+id/ivIconInfoPhone" />
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivIconInfoEmail"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_marginTop="@dimen/_10dp"
+                            android:layout_marginBottom="16dp"
+                            android:src="@drawable/movile_icon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/ivIconInfoPhone"
+                            app:layout_constraintTop_toBottomOf="@+id/ivIconInfoPhone" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_7dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:text="Email"
+                            android:textColor="#707A88"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivIconInfoEmail"
+                            app:layout_constraintStart_toEndOf="@+id/ivIconInfoEmail"
+                            app:layout_constraintTop_toTopOf="@+id/ivIconInfoEmail" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvIconInfoEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:text="test@gmail.com"
+                            android:textColor="#202020"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivIconInfoEmail"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.94"
+                            app:layout_constraintStart_toEndOf="@+id/appCompatTextView14"
+                            app:layout_constraintTop_toTopOf="@+id/ivIconInfoEmail" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

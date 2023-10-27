@@ -1,0 +1,145 @@
+query GetProduct($id: ID!) {
+    getProduct(id: $id) {
+        id
+        name
+        image
+        product_id
+        is_active
+        earning
+        annual_fee
+        approval_rate
+        opening_charge
+        rate_of_interest
+        min_account_bal
+        creation_time
+        short_name
+        is_vdc_available
+        is_instant_upi_available
+        Benefits {
+            items {
+                id
+                benefit_id
+                name
+                icon
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Goals {
+            items {
+                id
+                goal_id
+                name
+                icon
+                earning
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Audiences {
+            items {
+                id
+                name
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Videos {
+            items {
+                id
+                url
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Images {
+            items {
+                id
+                url
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Terms {
+            items {
+                id
+                name
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        Instructions {
+            items {
+                id
+                name
+                product_id
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                __typename
+            }
+            nextToken
+            startedAt
+            __typename
+        }
+        type
+        link
+        sell_earn_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+    }
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2C090909">
+
+    <LinearLayout
+        android:id="@+id/loading"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
+        android:layout_gravity="center"
+        android:background="@drawable/dialog_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        wheel:layout_constraintBottom_toBottomOf="parent"
+        wheel:layout_constraintEnd_toEndOf="parent"
+        wheel:layout_constraintStart_toStartOf="parent"
+        wheel:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/progress_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="9dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progressBarSearch"
+                style="@style/Base.Widget.AppCompat.ProgressBar"
+                android:layout_width="@dimen/_40dp"
+                android:layout_height="@dimen/_40dp"
+                android:visibility="visible" />
+        </FrameLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

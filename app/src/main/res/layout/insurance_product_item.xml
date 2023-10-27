@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="insuranceProduct"
+            type="com.onetechsol.ipayment.pojo.InsuranceProduct" />
+
+        <import type="com.onetechsol.ipayment.R" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="productItemClickListener"
+            type="com.onetechsol.ipayment.databinding.ProductItemClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvProductItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="@{insuranceProduct.active()}"
+        android:focusable="@{insuranceProduct.active()}"
+        app:cardBackgroundColor="@{insuranceProduct.active() ? context.getColor(R.color.white) : context.getColor(R.color.bg_grey)}"
+        app:cardCornerRadius="@dimen/_5dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivProductImg"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginStart="42dp"
+                android:layout_marginEnd="42dp"
+                android:src="@{insuranceProduct.imgUrl()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.38" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ivProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:gravity="center"
+                android:text="@{insuranceProduct.name()}"
+                android:textColor="@color/deep_black"
+                android:textSize="@dimen/_14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivProductImg" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

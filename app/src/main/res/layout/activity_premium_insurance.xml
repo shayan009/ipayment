@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="electricityBillPayDto"
+            type="com.onetechsol.ipayment.pojo.ElectricityBillPayDto" />
+
+        <variable
+            name="electricityPayClickListener"
+            type="com.onetechsol.ipayment.databinding.ElectricityPayClickListener" />
+
+        <variable
+            name="recentMobileRechargeAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.RecentMobileRechargeAdapter" />
+
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F7FB">
+
+        <WebView
+            android:id="@+id/custom_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>

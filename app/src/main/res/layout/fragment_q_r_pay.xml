@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fundReqAccount"
+            type="com.onetechsol.ipayment.pojo.FundReqAccount" />
+
+        <variable
+            name="qrCodeClickListener"
+            type="com.onetechsol.ipayment.databinding.QRCodeClickListener" />
+
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F7FB"
+        tools:context=".ui.screen.addFund.QRPayModeFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F6F7FB">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:text="@{fundReqAccount.title()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivQRCode"
+                android:layout_width="@dimen/_250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:text="@{fundReqAccount.name()}"
+                android:textColor="@color/bg_grey"
+                android:textSize="@dimen/_14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivQRCode" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBankname"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:text="@{fundReqAccount.label()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDesc" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUPiText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:onClick="@{() -> qrCodeClickListener.copyQR()}"
+                android:text="@{`UPI ID :`+fundReqAccount.account()}"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBankname"
+                tools:layout_editor_absoluteX="72dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCopyIcon"
+                android:layout_width="@dimen/_20dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:onClick="@{() -> qrCodeClickListener.copyQR()}"
+                android:src="@drawable/icon_copy"
+                app:layout_constraintBottom_toBottomOf="@+id/tvUPiText"
+                app:layout_constraintStart_toEndOf="@+id/tvUPiText"
+                app:layout_constraintTop_toTopOf="@+id/tvUPiText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

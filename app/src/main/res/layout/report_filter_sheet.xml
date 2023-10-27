@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <data>
+
+        <variable
+            name="reportFilterClickListener"
+            type="com.onetechsol.ipayment.databinding.ReportFilterClickListener" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFilterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Filter Reports"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivCancel" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCancel"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> reportFilterClickListener.closeBottomSheet()}"
+                android:src="@drawable/baseline_cancel_24"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.93"
+                app:layout_constraintStart_toEndOf="@+id/tvFilterRangeLabel"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFilterMonthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Month"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_14sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintStart_toStartOf="@+id/tvFilterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvFilterTitle" />
+
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                style="@style/Widget.App.Chip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="@+id/tvFilterMonthLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvFilterMonthLabel"
+                app:singleSelection="false">
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFilterRangeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Filter by Date Range"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_16sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintStart_toStartOf="@+id/tvFilterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvCalendarDate"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="5dp"
+                android:theme="@style/Widget.Material3.CardView.Elevated"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_12dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="@+id/tvFilterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvFilterRangeLabel"
+                app:layout_constraintVertical_bias="0.0"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clFromDate"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{() -> reportFilterClickListener.openCalenderFromDate()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/viewDivider"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivCalenderFrom"
+                            android:layout_width="@dimen/_25dp"
+                            android:layout_height="@dimen/_25dp"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/baseline_calendar_month_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvFromDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_15dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:text="July 1,2023"
+                            android:textColor="@color/light_grey"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintStart_toStartOf="@+id/tvFromLabel"
+                            app:layout_constraintTop_toBottomOf="@+id/tvFromLabel" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvFromLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_15dp"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:text="From"
+                            android:textColor="@color/calender_grey"
+                            android:textSize="@dimen/_12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivCalenderFrom"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.20999998" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clToDate"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:onClick="@{() -> reportFilterClickListener.openCalenderToDate()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/viewDivider"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivCalenderTo"
+                            android:layout_width="@dimen/_25dp"
+                            android:layout_height="@dimen/_25dp"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/baseline_calendar_month_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvToDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_15dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:text="July 1,2023"
+                            android:textColor="@color/light_grey"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintStart_toStartOf="@+id/tvToLabel"
+                            app:layout_constraintTop_toBottomOf="@+id/tvToLabel" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvToLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_15dp"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:text="To"
+                            android:textColor="@color/calender_grey"
+                            android:textSize="@dimen/_12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivCalenderTo"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.19999999" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <View
+                        android:id="@+id/viewDivider"
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/calender_grey"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btApply"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="@dimen/_110dp"
+                android:layout_height="@dimen/_45dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:onClick="@{() -> reportFilterClickListener.apply()}"
+                android:singleLine="true"
+                android:text="Apply"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sp"
+                app:cornerRadius="@dimen/_18dp"
+                app:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btClear"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcvCalendarDate"
+                app:strokeColor="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btClear"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="@dimen/_110dp"
+                android:layout_height="@dimen/_45dp"
+                android:onClick="@{() -> reportFilterClickListener.clear()}"
+                android:singleLine="true"
+                android:text="Clear"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sp"
+                app:cornerRadius="@dimen/_18dp"
+                app:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btApply"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btApply"
+                app:layout_constraintTop_toTopOf="@+id/btApply"
+                app:strokeColor="@color/white" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="academyAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.AcademyAdapter" />
+
+        <variable
+            name="affiliateDepartmentAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.AffiliateDepartmentAdapter" />
+
+        <variable
+            name="walletBalanceAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.WalletBalanceAdapter" />
+
+        <variable
+            name="gromoTutorialAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.GromoTutorialAdapter" />
+
+        <variable
+            name="gromoReviewAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.GromoReviewAdapter" />
+
+        <variable
+            name="homeItemCLick"
+            type="com.onetechsol.ipayment.databinding.HomeItemCLickListener" />
+
+    </data>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/rlHomeContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mcvNewHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/drawable_home_header_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView6"
+                    android:layout_width="@dimen/_30dp"
+                    android:layout_height="@dimen/_30dp"
+                    android:onClick="@{() -> homeItemCLick.openDashboard()}"
+                    android:src="@drawable/ic_nav_bar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.120000005" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textColor="#9FFFFFFF"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/appCompatImageView6"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView6" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivIconLocation"
+                    android:layout_width="@dimen/_15dp"
+                    android:layout_height="@dimen/_15dp"
+                    android:src="@drawable/baseline_place_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvLocation"
+                    app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                    app:layout_constraintTop_toTopOf="@+id/tvLocation" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/ivIconLocation"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivNotify"
+                    android:layout_width="@dimen/_30dp"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.93"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView6"
+                    app:srcCompat="@drawable/ic_notification" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvTransactions"
+                    android:layout_width="@dimen/_100dp"
+                    android:layout_height="@dimen/_25dp"
+                    android:layout_marginTop="32dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{() -> homeItemCLick.openTransactionList()}"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/colorbtnGreen"
+                    app:cardCornerRadius="@dimen/_12dp"
+                    app:cardElevation="@dimen/_8dp"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatImageView6"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatImageView6"
+                    app:strokeWidth="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/appCompatImageView7"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_15dp"
+                            android:src="@drawable/ic_transactions"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvTransactionLabel"
+                            app:layout_constraintEnd_toStartOf="@+id/tvTransactionLabel"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTransactionLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:gravity="center"
+                            android:text="Transaction"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.58"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTotalBalLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:gravity="center"
+                    android:text="Your Total Balance"
+                    android:textColor="#9FFFFFFF"
+                    android:textSize="@dimen/_13sp"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatImageView6"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvTransactions" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRewardLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    android:text="Rewards"
+                    android:textColor="#9FFFFFFF"
+                    android:textSize="@dimen/_13sp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivNotify"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tvCommLabel"
+                    app:layout_constraintTop_toTopOf="@+id/mcvTransactions" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivRewardIcon"
+                    android:layout_width="@dimen/_15dp"
+                    android:layout_height="@dimen/_15dp"
+                    android:src="@drawable/coin"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRewardBal"
+                    app:layout_constraintStart_toStartOf="@+id/tvRewardLabel"
+                    app:layout_constraintTop_toTopOf="@+id/tvRewardBal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRewardBal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:text="200"
+                    android:textColor="#9FFFFFFF"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvRewardLabel"
+                    app:layout_constraintStart_toEndOf="@+id/ivRewardIcon"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRewardLabel" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCommLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    android:text="Commission"
+                    android:textColor="#9FFFFFFF"
+                    android:textSize="@dimen/_13sp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivNotify"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRewardBal" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCommissionIcon"
+                    android:layout_width="@dimen/_15dp"
+                    android:layout_height="@dimen/_15dp"
+                    android:src="@drawable/icon_currency"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCommissionBal"
+                    app:layout_constraintStart_toStartOf="@+id/tvCommLabel"
+                    app:layout_constraintTop_toTopOf="@+id/tvCommissionBal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCommissionBal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:text="200"
+                    android:textColor="#9FFFFFFF"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvRewardLabel"
+                    app:layout_constraintStart_toEndOf="@+id/ivCommissionIcon"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCommLabel" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTotalBalance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCommLabel"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatImageView6"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTotalBalLabel" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcbAddFund"
+                    android:layout_width="@dimen/_140dp"
+                    android:layout_height="@dimen/_65dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:onClick="@{() -> homeItemCLick.startBalanceRequest()}"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/colorbtnGreen"
+                    app:cardCornerRadius="@dimen/_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mcbMoveFund"
+                    app:layout_constraintHorizontal_bias="0.47"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTotalBalance"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivAddFund"
+                            android:layout_width="@dimen/_40dp"
+                            android:layout_height="@dimen/_40dp"
+                            android:src="@drawable/icon_add_fund"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvAddFund"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/sf_pro_display_bold"
+                            android:text="Add Fund"
+                            android:textColor="#9FFFFFFF"
+                            android:textSize="@dimen/_12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivAddFund"
+                            app:layout_constraintTop_toTopOf="@+id/ivAddFund" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvAddFundBal"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text=""
+                            android:textColor="#9FFFFFFF"
+                            android:textSize="@dimen/_11sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivAddFund"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivAddFund"
+                            app:layout_constraintTop_toBottomOf="@+id/tvAddFund" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcbMoveFund"
+                    android:layout_width="@dimen/_140dp"
+                    android:layout_height="@dimen/_65dp"
+                    android:onClick="@{() -> homeItemCLick.startFundTransfer()}"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/mcbAddFund"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mcbAddFund"
+                    app:layout_constraintTop_toTopOf="@+id/mcbAddFund"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivMoveFund"
+                            android:layout_width="@dimen/_40dp"
+                            android:layout_height="@dimen/_40dp"
+                            android:src="@drawable/icon_move_fund"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvMoveFund"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/sf_pro_display_bold"
+                            android:text="Move Fund"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/_12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivMoveFund"
+                            app:layout_constraintTop_toTopOf="@+id/ivMoveFund" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvMoveFundBal"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text=""
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/_11sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivMoveFund"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMoveFund" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsvMainRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fillViewport="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toEndOf="@+id/mcvNewHeader"
+                app:layout_constraintStart_toStartOf="@+id/mcvNewHeader"
+                app:layout_constraintTop_toBottomOf="@+id/mcvNewHeader">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FBFCFE">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clServices"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvServiceLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Services"
+                            android:textColor="@color/light_black"
+                            android:textSize="@dimen/_16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.013"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvMoreServiceLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:onClick="@{() -> homeItemCLick.openServices()}"
+                            android:text="See More"
+                            android:textColor="@color/colorPrimary_Deep"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvServiceLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.95"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvServiceLabel"
+                            app:layout_constraintVertical_bias="0.26999998" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivServiceSeeMoreNext"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="0dp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvMoreServiceLabel"
+                            app:layout_constraintStart_toEndOf="@+id/tvMoreServiceLabel"
+                            app:layout_constraintTop_toTopOf="@+id/tvMoreServiceLabel"
+                            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/Widget.Material3.CardView.Filled"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="@dimen/_5dp"
+                            app:cardElevation="0dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvServiceLabel"
+                            app:strokeWidth="0dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rvServices"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.0"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:listitem="@layout/service_item" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvAffiliateServices"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:adapter="@{affiliateDepartmentAdapter}"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="@+id/clServices"
+                        app:layout_constraintStart_toStartOf="@+id/clServices"
+                        app:layout_constraintTop_toBottomOf="@+id/clServices" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvRentCC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:onClick="@{(view) -> homeItemCLick.openDiary(view)}"
+                        android:theme="@style/Widget.Material3.CardView.Elevated"
+                        app:cardBackgroundColor="@color/bg_blue"
+                        app:cardCornerRadius="@dimen/_8dp"
+                        app:cardElevation="@dimen/_1dp"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="@+id/rvAffiliateServices"
+                        app:layout_constraintTop_toBottomOf="@+id/rvAffiliateServices"
+                        app:strokeWidth="0.4dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout3"
+                            android:layout_width="@dimen/_150dp"
+                            android:layout_height="@dimen/_80dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvChallanTitle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="Rent Payment Via Credit Card"
+                                android:textColor="@color/text_black"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toStartOf="@+id/constraintLayout12"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvChallanSubTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:text="Earn 500 + 5%"
+                                android:textColor="@color/colorPrimary_Deep"
+                                android:textSize="@dimen/_11sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvChallanTitle"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="@+id/tvChallanTitle"
+                                app:layout_constraintTop_toBottomOf="@+id/tvChallanTitle" />
+
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout12"
+                                android:layout_width="@dimen/_45dp"
+                                android:layout_height="@dimen/_50dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/drawable_double_circle"
+                                android:visibility="visible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.97"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/imgUser"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/chalan"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvReferEarn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="85dp"
+                        android:theme="@style/Widget.Material3.CardView.Elevated"
+                        app:cardBackgroundColor="#E3FDF4"
+                        app:cardCornerRadius="@dimen/_8dp"
+                        app:cardElevation="@dimen/_1dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/mcvRentCC"
+                        app:layout_constraintEnd_toEndOf="@+id/rvAffiliateServices"
+                        app:layout_constraintHorizontal_bias="0.82"
+                        app:layout_constraintStart_toEndOf="@+id/mcvRentCC"
+                        app:layout_constraintTop_toTopOf="@+id/mcvRentCC"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout4"
+                            android:layout_width="@dimen/_150dp"
+                            android:layout_height="@dimen/_80dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvReferTitle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="16dp"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="Refer &amp; Earn"
+                                android:textColor="@color/text_black"
+                                android:textSize="@dimen/_14sp"
+                                app:layout_constraintEnd_toStartOf="@+id/constraintLayout13"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvReferSubTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:text="Earn 500 + 5%"
+                                android:textColor="@color/text_black"
+                                android:textSize="@dimen/_13sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvReferTitle"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="@+id/tvReferTitle"
+                                app:layout_constraintTop_toBottomOf="@+id/tvReferTitle" />
+
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout13"
+                                android:layout_width="@dimen/_45dp"
+                                android:layout_height="@dimen/_50dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="16dp"
+                                android:background="@drawable/drawable_double_circle"
+                                android:visibility="visible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.96"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/imgRefer"
+                                    android:layout_width="@dimen/_40dp"
+                                    android:layout_height="@dimen/_40dp"
+                                    android:src="@drawable/offers"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.49"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="#F3F8FE"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="@+id/mcvReferEarn"
+                        app:layout_constraintStart_toStartOf="@+id/mcvRentCC"
+                        app:layout_constraintTop_toBottomOf="@+id/mcvRentCC">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="GroMo Academy"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/sf_pro_display_medium"
+                            android:text="Learn about financial products"
+                            android:textColor="#6A717B"
+                            android:textSize="@dimen/_16sp"
+                            app:layout_constraintStart_toStartOf="@+id/appCompatTextView3"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSeeMoreLabelAcademy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="See More"
+                            android:textColor="@color/colorPrimary_Deep"
+                            android:textSize="@dimen/_13sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView4"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.95"
+                            app:layout_constraintStart_toEndOf="@+id/appCompatTextView4"
+                            app:layout_constraintTop_toTopOf="@+id/appCompatTextView4" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivSeeMoreAcademyNext"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvSeeMoreLabelAcademy"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toEndOf="@+id/tvSeeMoreLabelAcademy"
+                            app:layout_constraintTop_toTopOf="@+id/tvSeeMoreLabelAcademy"
+                            app:layout_constraintVertical_bias="0.32"
+                            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvGroMoAcademy"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:adapter="@{academyAdapter}"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4"
+                            tools:listitem="@layout/gromo_academy_item" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flContentSlider"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_100dp"
+                        android:layout_marginTop="@dimen/_16dp"
+                        app:layout_constraintEnd_toEndOf="@+id/constraintLayout5"
+                        app:layout_constraintStart_toStartOf="@+id/constraintLayout5"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewPager2"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_150dp" />
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            app:tabBackground="@drawable/tab_selector"
+                            app:tabGravity="center"
+                            app:tabIndicatorHeight="0dp" />
+
+                    </FrameLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCSLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:text="Check Credit Score"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_16sp"
+
+                        app:layout_constraintStart_toStartOf="@+id/flContentSlider"
+                        app:layout_constraintTop_toBottomOf="@+id/flContentSlider" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mvcCreditScore"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_5dp"
+                        app:cardElevation="@dimen/_5dp"
+                        app:layout_constraintEnd_toEndOf="@+id/flContentSlider"
+                        app:layout_constraintStart_toStartOf="@+id/tvCSLabel"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCSLabel">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/tvCSBanner"
+                                android:layout_width="@dimen/_80dp"
+                                android:layout_height="@dimen/_50dp"
+                                android:layout_marginTop="12dp"
+                                android:src="@drawable/cibil"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvCSContent"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="12dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/sf_pro_display_medium"
+                                android:lines="3"
+                                android:text="Help your customers to check their credit score for Free and earn R10,000 every week."
+                                android:textColor="@color/deep_black"
+                                android:textSize="@dimen/_16sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tvCSBanner"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/tvCSBanner"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.19" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btCSCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_40dp"
+                                android:text="Check Details"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sp"
+                                app:backgroundTint="@color/colorPrimary_Deep"
+                                app:cornerRadius="@dimen/_4dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="@+id/tvCSContent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvCSContent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvUGLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:text="Understanding"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_16sp"
+                        app:layout_constraintStart_toStartOf="@+id/mvcCreditScore"
+                        app:layout_constraintTop_toBottomOf="@+id/mvcCreditScore" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvGromoTutorial"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_24dp"
+                        android:adapter="@{gromoTutorialAdapter}"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_constraintEnd_toEndOf="@+id/mvcCreditScore"
+                        app:layout_constraintStart_toStartOf="@+id/tvUGLabel"
+                        app:layout_constraintTop_toBottomOf="@+id/tvUGLabel"
+                        tools:listitem="@layout/gromo_tutorial_item" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvGromoReviewLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:text="Hear from our Happy Customers"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/rvGromoTutorial"
+                        app:layout_constraintStart_toStartOf="@+id/rvGromoTutorial"
+                        app:layout_constraintTop_toBottomOf="@+id/rvGromoTutorial"
+                        tools:layout_editor_absoluteX="94dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvGromoReview"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_24dp"
+                        android:adapter="@{gromoReviewAdapter}"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_constraintEnd_toEndOf="@+id/rvGromoTutorial"
+                        app:layout_constraintStart_toStartOf="@+id/rvGromoTutorial"
+                        app:layout_constraintTop_toBottomOf="@+id/tvGromoReviewLabel"
+                        tools:layout_editor_absoluteX="206dp"
+                        tools:listitem="@layout/gromo_review_item" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

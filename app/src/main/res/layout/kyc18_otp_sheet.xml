@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="kyc18OtpClickListener"
+            type="com.onetechsol.ipayment.databinding.Kyc18OtpClickListener" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="kyc18OtpUIData"
+            type="com.onetechsol.ipayment.pojo.Kyc18OtpUIData" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clVerifyOtp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvKycTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="@{kyc18OtpUIData.titleText()}"
+                    android:textColor="@color/text_black"
+                    android:textSize="20sp"
+                    app:fontFamily="@font/balsamiqsansregular"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivCancel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivCancel" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCancel"
+                    android:layout_width="@dimen/_30dp"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="@{() -> kyc18OtpClickListener.closeBottomSheet()}"
+                    android:src="@drawable/baseline_cancel_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.93"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvKycSubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:text="@{kyc18OtpUIData.subTitleText()}"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                    app:layout_constraintStart_toStartOf="@+id/tvKycTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvKycTitle" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clOtp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:visibility="@{!kyc18OtpUIData.isCapture() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                    app:layout_constraintStart_toStartOf="@+id/tvKycTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvKycSubTitle">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvOtp1"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="@dimen/_50dp"
+                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardCornerRadius="@dimen/_5dp"
+                        app:cardElevation="@dimen/_5dp"
+                        app:layout_constraintEnd_toStartOf="@+id/mcvOtp2"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etOtp1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/float_transparent"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="1"
+                                android:text="9"
+
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_24sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvOtp2"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="@dimen/_50dp"
+                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardCornerRadius="@dimen/_5dp"
+                        app:cardElevation="@dimen/_5dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
+                        app:layout_constraintEnd_toStartOf="@+id/mcvOtp3"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/mcvOtp1"
+                        app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etOtp2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/float_transparent"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="1"
+                                android:text="9"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_24sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvOtp3"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="@dimen/_50dp"
+                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardCornerRadius="@dimen/_5dp"
+                        app:cardElevation="@dimen/_5dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
+                        app:layout_constraintEnd_toStartOf="@+id/mcvOtp4"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/mcvOtp2"
+                        app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etOtp3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/float_transparent"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="1"
+                                android:text="9"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_24sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvOtp4"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="@dimen/_50dp"
+                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardCornerRadius="@dimen/_5dp"
+                        app:cardElevation="@dimen/_5dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
+                        app:layout_constraintEnd_toStartOf="@+id/mcvOtp5"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/mcvOtp3"
+                        app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etOtp4"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/float_transparent"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="1"
+                                android:text="9"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_24sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvOtp5"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="@dimen/_50dp"
+                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardCornerRadius="@dimen/_5dp"
+                        app:cardElevation="@dimen/_5dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
+                        app:layout_constraintEnd_toStartOf="@+id/mcvOtp6"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/mcvOtp4"
+                        app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etOtp5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/float_transparent"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="1"
+                                android:text="9"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_24sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvOtp6"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="@dimen/_50dp"
+                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardCornerRadius="@dimen/_5dp"
+                        app:cardElevation="@dimen/_5dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/mcvOtp5"
+                        app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etOtp6"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/float_transparent"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="1"
+                                android:text="9"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_24sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btApply"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="@dimen/_110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:onClick="@{() -> kyc18OtpClickListener.applyOtp(etOtp1.getText().toString().concat(etOtp2.getText().toString()).concat(etOtp3.getText().toString()).concat(etOtp4.getText().toString()).concat(etOtp5.getText().toString()).concat(etOtp6.getText().toString()))}"
+                    android:singleLine="true"
+                    android:text="@{kyc18OtpUIData.buttonText()}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_18sp"
+                    android:visibility="visible"
+                    app:cornerRadius="@dimen/_18dp"
+                    app:elevation="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                    app:layout_constraintStart_toStartOf="@+id/tvKycTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/clOtp"
+                    app:strokeColor="@color/white" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

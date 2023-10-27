@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="walletDetailsClickListener"
+            type="com.onetechsol.ipayment.databinding.WalletDetailsClickListener" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvWalletRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/rlWalletContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvBalanceTransfer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="@dimen/_3dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="#FCBC14"
+                    app:strokeWidth="@dimen/_1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout7"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40dp"
+                            android:background="#FFF2E9"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/appCompatTextView5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:text="Total earnings"
+                                android:textColor="@color/deep_black"
+                                android:textSize="@dimen/_14sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/view"
+                                android:layout_width="@dimen/_1dp"
+                                android:layout_height="match_parent"
+                                android:background="#FFE7D2"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivInfoWallet"
+                                android:layout_width="@dimen/_20dp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="3dp"
+                                android:src="@drawable/ic_info"
+                                app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView5"
+                                app:layout_constraintStart_toEndOf="@+id/appCompatTextView5"
+                                app:layout_constraintTop_toTopOf="@+id/appCompatTextView5" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivwalletIcon"
+                                android:layout_width="@dimen/_20dp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/coin"
+                                app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView5"
+                                app:layout_constraintStart_toEndOf="@+id/ivInfoWallet"
+                                app:layout_constraintTop_toTopOf="@+id/appCompatTextView5" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvWalletBalance"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:gravity="center"
+                                android:text="3323232"
+                                android:textColor="@color/deep_black"
+                                android:textSize="@dimen/_14sp"
+                                app:layout_constraintEnd_toStartOf="@+id/view"
+                                app:layout_constraintStart_toEndOf="@+id/ivwalletIcon"
+                                tools:layout_editor_absoluteY="0dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvSenBankLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:text="Sent to Bank"
+                                android:textColor="@color/deep_black"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/view"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivwalletIcon2"
+                                android:layout_width="@dimen/_20dp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/coin"
+                                app:layout_constraintBottom_toBottomOf="@+id/tvSenBankLabel"
+                                app:layout_constraintStart_toEndOf="@+id/tvSenBankLabel"
+                                app:layout_constraintTop_toTopOf="@+id/tvSenBankLabel" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvBankBalance"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:gravity="center"
+                                android:text="3323232"
+                                android:textColor="@color/deep_black"
+                                android:textSize="@dimen/_14sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/ivwalletIcon2"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvWalletLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Wallet Balance"
+                            android:textColor="#7A828D"
+                            android:textSize="@dimen/_13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/bnBalancetransfer" />
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/bnBalancetransfer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_50dp"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/colorPrimary_Deep"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="Transfer to bank"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14sp"
+                            app:cornerRadius="@dimen/_4dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.88"
+                            app:layout_constraintStart_toEndOf="@+id/tvWalletLabel"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivwalletIcon3"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_marginTop="4dp"
+                            android:src="@drawable/coin"
+                            app:layout_constraintBottom_toBottomOf="@+id/bnBalancetransfer"
+                            app:layout_constraintEnd_toEndOf="@+id/tvWalletLabel"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/tvWalletLabel"
+                            app:layout_constraintTop_toBottomOf="@+id/tvWalletLabel" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRemainingBalance"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:paddingStart="@dimen/_10dp"
+                            android:text="3323232"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivwalletIcon3"
+                            app:layout_constraintEnd_toStartOf="@+id/bnBalancetransfer"
+                            app:layout_constraintStart_toEndOf="@+id/ivwalletIcon3"
+                            app:layout_constraintTop_toTopOf="@+id/ivwalletIcon3"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appCompatTextView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Minimum 100 required for transfer"
+                            android:textAllCaps="false"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/tvWalletLabel"
+                            app:layout_constraintTop_toBottomOf="@+id/bnBalancetransfer" />
+
+                        <View
+                            android:id="@+id/view2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_1dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="#F6E1D4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/appCompatTextView6"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView6"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvLastTransferLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Last transfer date:"
+                            android:textAllCaps="false"
+                            android:textColor="#7A828D"
+                            android:textSize="@dimen/_12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.41"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvLastTransfer"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="N/A"
+                            android:textAllCaps="false"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvLastTransferLabel"
+                            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvBrand"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_60dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:elevation="@dimen/_5dp"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:cardUseCompatPadding="true"
+
+                    app:layout_constraintEnd_toEndOf="@+id/mcvBalanceTransfer"
+                    app:layout_constraintStart_toStartOf="@+id/mcvBalanceTransfer"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvBalanceTransfer">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBrandLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Brands"
+                            android:textAllCaps="false"
+                            android:textColor="#7A828D"
+                            android:textSize="@dimen/_15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.03"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.24000001" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivBrandCoin"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/coin"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvBrandLabel"
+                            app:layout_constraintEnd_toStartOf="@+id/tvBrandBalance"
+                            app:layout_constraintTop_toTopOf="@+id/tvBrandLabel" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/appCompatImageView3"
+                            android:layout_width="@dimen/_25dp"
+                            android:layout_height="@dimen/_25dp"
+                            android:src="@drawable/ic_baseline_navigate_next_24"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvBrandBalance"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvBrandBalance"
+                            app:layout_constraintVertical_bias="0.17000002" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBrandBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:paddingStart="@dimen/_10dp"
+                            android:text="3323232"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivBrandCoin"
+                            app:layout_constraintEnd_toStartOf="@+id/appCompatImageView3"
+                            app:layout_constraintTop_toTopOf="@+id/ivBrandCoin" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvReward"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_60dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:elevation="@dimen/_5dp"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="@+id/mcvBalanceTransfer"
+                    app:layout_constraintStart_toStartOf="@+id/mcvBalanceTransfer"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvBrand">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRewardsLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Rewards"
+                            android:textAllCaps="false"
+                            android:textColor="#7A828D"
+                            android:textSize="@dimen/_15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.03"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.25" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivRewardCoin"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/coin"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvRewardsLabel"
+                            app:layout_constraintEnd_toStartOf="@+id/tvRewardBalance"
+                            app:layout_constraintTop_toTopOf="@+id/tvRewardsLabel" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/appCompatImageView4"
+                            android:layout_width="@dimen/_25dp"
+                            android:layout_height="@dimen/_25dp"
+                            android:src="@drawable/ic_baseline_navigate_next_24"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvRewardBalance"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvRewardBalance"
+                            app:layout_constraintVertical_bias="0.17000002" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRewardBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:paddingStart="@dimen/_10dp"
+                            android:text="3323232"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivRewardCoin"
+                            app:layout_constraintEnd_toStartOf="@+id/appCompatImageView4"
+                            app:layout_constraintTop_toTopOf="@+id/ivRewardCoin" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvInsurance"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_60dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:elevation="@dimen/_5dp"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="@+id/mcvBalanceTransfer"
+                    app:layout_constraintStart_toStartOf="@+id/mcvBalanceTransfer"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvReward">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvInsuranceLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Insurance"
+                            android:textAllCaps="false"
+                            android:textColor="#7A828D"
+                            android:textSize="@dimen/_15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.03"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.25" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivInsuranceCoin"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/coin"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvInsuranceLabel"
+                            app:layout_constraintEnd_toStartOf="@+id/tvInsuranceBalance"
+                            app:layout_constraintTop_toTopOf="@+id/tvInsuranceLabel" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/appCompatImageView5"
+                            android:layout_width="@dimen/_25dp"
+                            android:layout_height="@dimen/_25dp"
+                            android:src="@drawable/ic_baseline_navigate_next_24"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvInsuranceBalance"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvInsuranceBalance"
+                            app:layout_constraintVertical_bias="0.17000002" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvInsuranceBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:paddingStart="@dimen/_10dp"
+                            android:text="3323232"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivInsuranceCoin"
+                            app:layout_constraintEnd_toStartOf="@+id/appCompatImageView5"
+                            app:layout_constraintTop_toTopOf="@+id/ivInsuranceCoin" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/walletTransactLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="@string/my_last_10_transactions"
+                    android:textAllCaps="true"
+                    android:textColor="#7B828D"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mcvBalanceTransfer"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvInsurance" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvWalletTransaction"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/mcvBalanceTransfer"
+                    app:layout_constraintStart_toStartOf="@+id/mcvBalanceTransfer"
+                    app:layout_constraintTop_toBottomOf="@+id/walletTransactLabel" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="8dp"
+
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:text="Have a problem with payment ?"
+                    android:textAllCaps="false"
+                    android:textColor="@color/deep_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.27"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvWalletTransaction" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:text="Raise a dispute."
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary_Deep"
+                    app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView7"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatTextView7"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatTextView7" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+</layout>

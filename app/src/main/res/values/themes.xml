@@ -1,0 +1,258 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges
+        </item>
+
+        <item name="sideSheetDialogTheme">@style/ThemeOverlay.App.SideSheetDialog</item>
+        <!-- Optional: set to transparent if your app is drawing behind the status bar. -->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="chipStyle">@style/Widget.App.Chip</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.App.BodyMedium</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="materialAlertDialogTheme">@style/Example.MaterialDialog</item>
+
+    </style>
+
+
+    <!-- Bottom sheet -->
+
+    <style name="BottomSheet" parent="@style/Widget.Material3.BottomSheet.Modal">
+
+
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponentModal</item>
+        <item name="android:background">@color/card_bg_light</item>
+        <item name="backgroundTint">@color/card_bg_light</item>
+    </style>
+
+    <style name="CardBgStyle" parent="@style/Widget.Material3.CardView.Elevated">
+
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponentModal</item>
+        <item name="android:background">@color/card_bg_light</item>
+        <item name="backgroundTint">@color/card_bg_light</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponentModal" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+    </style>
+
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Material3.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog">
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="BottomCurvedSheetDialogTheme" parent="BaseBottomSheetDialog">
+        <item name="android:layout_marginStart">@dimen/_1dp</item>
+        <item name="android:layout_marginEnd">@dimen/_1dp</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@color/card_bg_light</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:navigationBarColor">@color/card_bg_light</item>
+        <item name="android:background">@color/float_transparent</item>
+
+
+    </style>
+
+    <style name="BottomCurvedGreySheetDialogTheme" parent="BaseBottomSheetDialog">
+        <item name="android:layout_marginStart">@dimen/_1dp</item>
+        <item name="android:layout_marginEnd">@dimen/_1dp</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@color/card_bg</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:navigationBarColor">@color/card_bg</item>
+        <item name="android:background">@color/float_transparent</item>
+
+
+    </style>
+
+    android:background="#F6F7FB"
+
+
+    <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Filter.Elevated">
+        <item name="chipBackgroundColor">@color/bg_chip_state_list</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipStrokeColor">@color/white</item>
+        <item name="chipMinHeight">35dp</item>
+        <item name="android:textColor">@color/text_color_chip_state_list</item>
+        <item name="checkedIcon">@drawable/baseline_check_24</item>
+        <item name="checkedIconVisible">true</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorPrimary_Deep</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent
+        </item>
+        <!-- Customize text field of the text input mode. -->
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.App.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/rubikregular</item>
+        <item name="android:fontFamily">@font/rubikregular</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="ThemeOverlay.App.SideSheetDialog" parent="ThemeOverlay.Material3.SideSheetDialog">
+        <item name="sideSheetModalStyle">@style/Widget.App.SideSheet.Modal</item>
+    </style>
+
+    <style name="Widget.App.SideSheet.Modal" parent="Widget.Material3.SideSheet.Modal">
+        <item name="backgroundTint">@color/white</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+        <item name="android:maxWidth">@dimen/_80dp</item>
+    </style>
+
+
+    <style name="SpecificCornerCut">
+        <item name="cornerSizeTopRight">@dimen/_25dp</item>
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerSizeBottomLeft">@dimen/_25dp</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+    </style>
+
+    <style name="SpecificTopCornerRound">
+        <item name="cornerSizeTopRight">@dimen/_25dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeBottomLeft">@dimen/_25dp</item>
+        <item name="cornerFamilyTopLeft">cut</item>
+    </style>
+
+    <style name="SpecificCornerRound">
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSize">@dimen/_15dp</item>
+    </style>
+
+
+    <style name="ThemeOverlay.Material3.Search" parent="Theme.Material3.DayNight.NoActionBar">
+
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorSurface">@color/colorPrimary</item>
+        <item name="colorOnSurfaceVariant">@color/red_translucent</item>
+    </style>
+
+    <style name="Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="ThemeDialog" parent="Base.Theme.MaterialComponents.Light.Dialog.Alert">
+        <!-- Color palette -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <style name="alert_dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@color/float_transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <style name="Example.MaterialDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/Example.MaterialDialog.Title</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeDialog</item>
+    </style>
+
+    <style name="Example.MaterialDialog.Title" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ShapeDialog">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+    <style name="alert_dialog_choser" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@color/float_transparent</item>
+    </style>
+
+    <style name="full_screen_dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="dialog_fragment" parent="android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@color/float_transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+</resources>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="kitData"
+            type="com.onetechsol.ipayment.pojo.KitData" />
+
+        <import type="android.view.View" />
+
+        <import type="com.onetechsol.ipayment.R" />
+
+        <import type="android.graphics.Color" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="kitItemClickListener"
+            type="com.onetechsol.ipayment.databinding.KitItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clWalletItem"
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="@dimen/_180dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{(view) -> kitItemClickListener.onClickItem(kitData)}">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvItem"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:theme="@style/Widget.Material3.CardView.Elevated"
+            app:cardBackgroundColor="@{kitData.selected() ? @color/kit_cardbg_selected : @color/kit_cardbg_unselected}"
+            app:cardCornerRadius="@dimen/_12dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvInnerIcon"
+
+                    android:layout_width="@dimen/_30dp"
+                    android:layout_height="@dimen/_40dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:theme="@style/Widget.Material3.CardView.Filled"
+                    app:cardBackgroundColor="@{kitData.selected() ? @color/kit_iconbg_selected : @color/kit_iconbg_unselected}"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeWidth="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivKitIcon"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:src="@drawable/baseline_account_balance_wallet_24_purple"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ivKitAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingStart="5dp"
+                    android:text="@{kitData.amt()}"
+                    android:textColor="#060200"
+                    android:textSize="@dimen/_18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvInnerIcon"
+                    app:layout_constraintVertical_bias="0.49" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvBuyKit"
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:layout_marginBottom="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{() -> kitItemClickListener.buyKit(kitData)}"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="@dimen/_12dp"
+                    app:cardElevation="@dimen/_8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivKitPlan"
+                    app:layout_constraintVertical_bias="0.68"
+                    app:strokeWidth="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvButKitlabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:gravity="center"
+                            android:text="@{kitData.kit().equals(`0`) ? `Active Kit`: `Buy Kit`}"
+                            android:textColor="@color/edit_text_bg_light"
+                            android:textSize="@dimen/_11sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ivKitPlan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_8dp"
+                    android:text="@{kitData.label()}"
+                    android:textColor="#C9000000"
+                    android:textSize="@dimen/_10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivKitAmount" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

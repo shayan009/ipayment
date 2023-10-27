@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dashBoardClickListener"
+            type="com.onetechsol.ipayment.databinding.DashboardItemClickListener" />
+
+        <variable
+            name="businessSettingAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.SettingAdapter" />
+
+        <variable
+            name="moreSettingAdapter"
+            type="com.onetechsol.ipayment.ui.adapter.SettingAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F7FB"
+        tools:context=".ui.screen.dashboard.DashboardActivity">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/ivBackDashBoard"
+            android:layout_width="@dimen/_60dp"
+            android:layout_height="@dimen/_60dp"
+            android:layout_marginTop="32dp"
+            android:clickable="true"
+            android:elevation="@dimen/_8dp"
+            android:focusable="true"
+            android:onClick="@{() -> dashBoardClickListener.goBack()}"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".60">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivBackDashboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/baseline_arrow_back_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvDashboardHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            app:cardBackgroundColor="@color/text_shade"
+            app:cardCornerRadius="@dimen/_12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBackDashBoard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.42"
+            app:layout_constraintStart_toEndOf="@+id/ivBackDashBoard"
+            app:layout_constraintTop_toTopOf="@+id/ivBackDashBoard">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mbPersonal"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="@dimen/_110dp"
+                    android:layout_height="@dimen/_40dp"
+                    android:layout_marginStart="4dp"
+                    android:singleLine="true"
+                    android:text="Personal"
+                    android:textAllCaps="false"
+                    android:textColor="@color/deep_black"
+                    android:textSize="@dimen/_14sp"
+                    app:cornerRadius="@dimen/_12dp"
+                    app:elevation="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mbUpgradeBiz"
+                    app:layout_constraintHorizontal_bias="0.58"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/white" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mbUpgradeBiz"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="@dimen/_110dp"
+                    android:layout_height="@dimen/_45dp"
+                    android:layout_marginEnd="4dp"
+                    android:elevation="0dp"
+                    android:enabled="false"
+                    android:onClick="@{() -> dashBoardClickListener.upgrade()}"
+                    android:singleLine="true"
+                    android:text="Business"
+                    android:textAllCaps="false"
+                    android:textColor="@color/deep_black"
+                    android:textSize="@dimen/_14sp"
+                    app:cornerRadius="@dimen/_12dp"
+                    app:elevation="@dimen/_5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mbPersonal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/colorPrimaryDark"
+                    app:strokeWidth="0dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/ivBackDashBoard"
+            app:layout_constraintTop_toBottomOf="@+id/ivBackDashBoard">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvHeaderCard"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_110dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:theme="@style/Widget.Material3.CardView.Filled"
+                    app:cardBackgroundColor="@color/card_light_purple"
+                    app:cardCornerRadius="@dimen/_20dp"
+                    app:cardElevation="@dimen/_2dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeWidth="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clAeps1Item"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/materialCardView"
+                            android:layout_width="@dimen/_70dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:backgroundTint="@color/white"
+                            android:clickable="true"
+                            android:elevation="0dp"
+                            android:focusable="true"
+                            android:theme="@style/Widget.Material3.CardView.Filled"
+                            app:cardCornerRadius="@dimen/_20dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeWidth="0dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:id="@+id/ivDashboardIcon"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_60dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/user" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcbUpgrade"
+                            android:layout_width="@dimen/_60dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:clickable="true"
+                            android:elevation="0dp"
+                            android:focusable="true"
+                            android:theme="@style/Widget.Material3.CardView.Filled"
+                            android:visibility="invisible"
+                            app:cardBackgroundColor="@color/colorPrimary_Deep"
+                            app:cardCornerRadius="@dimen/_20dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+                            app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+                            app:layout_constraintStart_toStartOf="@+id/materialCardView"
+                            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+                            app:strokeColor="@color/white"
+                            app:strokeWidth="1.5dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/balsamiqsansregular"
+                                    android:gravity="center"
+                                    android:text="Upgrade"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_10sp" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvProfileName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_12sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                            app:layout_constraintTop_toTopOf="@+id/materialCardView"
+                            app:layout_constraintVertical_bias="0.20999998" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvProfileNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_12sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                            app:layout_constraintTop_toBottomOf="@+id/tvProfileName"
+                            app:layout_constraintVertical_bias="0.32999998" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvDairy"
+                    android:layout_width="@dimen/_100dp"
+                    android:layout_height="@dimen/_90dp"
+                    android:layout_marginTop="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{(view) -> dashBoardClickListener.openDiary(view)}"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_8dp"
+                    app:cardElevation="@dimen/_2dp"
+                    app:layout_constraintEnd_toStartOf="@+id/mcvReferEarn"
+                    app:layout_constraintHorizontal_bias="0.07"
+                    app:layout_constraintStart_toStartOf="@+id/mcvHeaderCard"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvHeaderCard"
+                    app:strokeWidth="0.2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivDashDairy"
+                            android:layout_width="@dimen/_30dp"
+                            android:layout_height="@dimen/_30dp"
+                            android:src="@drawable/diary_icon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.22000003" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDashDiaryLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Diary"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivDashDairy" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvReferEarn"
+                    android:layout_width="@dimen/_100dp"
+                    android:layout_height="0dp"
+                    android:onClick="@{(view) -> dashBoardClickListener.openReferEarn(view)}"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_8dp"
+                    app:cardElevation="@dimen/_2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/mcvDairy"
+                    app:layout_constraintEnd_toStartOf="@+id/mcvSupport"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mcvDairy"
+                    app:layout_constraintTop_toTopOf="@+id/mcvDairy"
+                    app:strokeWidth="0.2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivDashReferEarn"
+                            android:layout_width="@dimen/_30dp"
+                            android:layout_height="@dimen/_30dp"
+                            android:src="@drawable/icon_refer_earn"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.22000003" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDashReferEarnLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="Refer &amp; Earn"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivDashReferEarn" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvSupport"
+                    android:layout_width="@dimen/_100dp"
+                    android:layout_height="0dp"
+                    android:onClick="@{(view) -> dashBoardClickListener.openSupport(view)}"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_8dp"
+                    app:cardElevation="@dimen/_2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/mcvDairy"
+                    app:layout_constraintEnd_toEndOf="@+id/mcvHeaderCard"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mcvReferEarn"
+                    app:layout_constraintTop_toTopOf="@+id/mcvDairy"
+                    app:strokeWidth="0.2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivDashSupport"
+                            android:layout_width="@dimen/_30dp"
+                            android:layout_height="@dimen/_30dp"
+                            android:src="@drawable/support"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.22000003" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDashSupportLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Support"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivDashSupport" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvLeaderBoard"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70dp"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{(view) -> dashBoardClickListener.openLeaderBoard(view)}"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_8dp"
+                    app:cardElevation="@dimen/_2dp"
+                    app:layout_constraintEnd_toEndOf="@+id/mcvHeaderCard"
+                    app:layout_constraintStart_toStartOf="@+id/mcvHeaderCard"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvDairy"
+                    app:strokeWidth="0.2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivLeaderboardImg"
+                            android:layout_width="@dimen/_25dp"
+                            android:layout_height="@dimen/_25dp"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/ic_bank"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/ivLeaderboardlabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="Leaderboard"
+                            android:textColor="@color/deep_black"
+                            android:textSize="@dimen/_16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardImg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toEndOf="@+id/ivLeaderboardImg"
+                            app:layout_constraintTop_toTopOf="@+id/ivLeaderboardImg" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="@dimen/_70dp"
+                            android:layout_height="@dimen/_25dp"
+                            app:cardBackgroundColor="#E0EFFB"
+                            app:cardCornerRadius="@dimen/_7dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvLeaderBoardCount"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:fontFamily="@font/sf_pro_display_regular"
+                                    android:gravity="center"
+                                    android:text="219715"
+                                    android:textColor="@color/deep_black"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/appCompatImageView"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_marginEnd="8dp"
+                            android:src="@drawable/ic_baseline_navigate_next_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMyBusinessLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:text="My business"
+                    android:textColor="@color/deep_black"
+                    android:textSize="@dimen/_16sp"
+                    app:layout_constraintStart_toStartOf="@+id/mcvHeaderCard"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvLeaderBoard" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvBusiness"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_8dp"
+                    app:cardElevation="@dimen/_2dp"
+                    app:layout_constraintEnd_toEndOf="@+id/mcvLeaderBoard"
+                    app:layout_constraintStart_toStartOf="@+id/mcvLeaderBoard"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMyBusinessLabel"
+                    app:strokeWidth="0.2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvBusiness"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:adapter="@{businessSettingAdapter}"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:listitem="@layout/settings_item" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMoreLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:text="More"
+                    android:textColor="@color/deep_black"
+                    android:textSize="@dimen/_16sp"
+                    app:layout_constraintStart_toStartOf="@+id/mcvBusiness"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvBusiness" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvMore"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:theme="@style/Widget.Material3.CardView.Elevated"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_8dp"
+                    app:cardElevation="@dimen/_2dp"
+                    app:layout_constraintEnd_toEndOf="@+id/mcvBusiness"
+                    app:layout_constraintStart_toStartOf="@+id/mcvBusiness"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMoreLabel"
+                    app:strokeWidth="0.2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvMore"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:adapter="@{moreSettingAdapter}"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:listitem="@layout/settings_item" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvJoinUsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Join us"
+                    android:textColor="@color/deep_black"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/mcvMore"
+                    app:layout_constraintStart_toStartOf="@+id/mcvMore"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvMore" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvYoutube"
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mcvFacebook"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvJoinUsLabel">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivYoutube"
+                            android:layout_width="@dimen/_40dp"
+                            android:layout_height="@dimen/_40dp"
+                            android:src="@drawable/offers"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvFacebook"
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mcvTwitter"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mcvYoutube"
+                    app:layout_constraintTop_toBottomOf="@+id/tvJoinUsLabel">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivFacebook"
+                            android:layout_width="@dimen/_40dp"
+                            android:layout_height="@dimen/_40dp"
+                            android:src="@drawable/offers"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvTwitter"
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mcvInsta"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mcvFacebook"
+                    app:layout_constraintTop_toBottomOf="@+id/tvJoinUsLabel">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivTwitter"
+                            android:layout_width="@dimen/_40dp"
+                            android:layout_height="@dimen/_40dp"
+                            android:src="@drawable/offers"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvInsta"
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mcvTelegram"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mcvTwitter"
+                    app:layout_constraintTop_toBottomOf="@+id/tvJoinUsLabel">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivInsta"
+                            android:layout_width="@dimen/_40dp"
+                            android:layout_height="@dimen/_40dp"
+                            android:src="@drawable/offers"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvTelegram"
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="32dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mcvInsta"
+                    app:layout_constraintTop_toBottomOf="@+id/tvJoinUsLabel">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivTelegram"
+                            android:layout_width="@dimen/_40dp"
+                            android:layout_height="@dimen/_40dp"
+                            android:src="@drawable/offers"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
