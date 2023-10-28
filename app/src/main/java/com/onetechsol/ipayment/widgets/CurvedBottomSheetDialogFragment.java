@@ -106,6 +106,16 @@ public abstract class CurvedBottomSheetDialogFragment<VB extends ViewDataBinding
     }
 
 
+    @Override
+    public ToastAlertDialog showToastAlertDialog(String title, String desc, boolean isCancel) {
+
+        ToastAlertDialog toastAlertDialog = new ToastAlertDialog();
+        toastAlertDialog.setTitle(title);
+        toastAlertDialog.setShowCancel(isCancel);
+        toastAlertDialog.setSubTitle(desc);
+        return toastAlertDialog;
+    }
+
     public PrefManager prefManager() {
         return new PrefManager(getContext());
     }

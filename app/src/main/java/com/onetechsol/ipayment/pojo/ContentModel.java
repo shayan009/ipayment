@@ -3,6 +3,8 @@ package com.onetechsol.ipayment.pojo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.simpleframework.xml.Transient;
+
 public class ContentModel implements Parcelable {
 
     public static final Creator<ContentModel> CREATOR = new Creator<ContentModel>() {
@@ -17,6 +19,8 @@ public class ContentModel implements Parcelable {
         }
     };
     private String id;
+
+    @Transient
     private int type;
     private String url;
 
@@ -54,5 +58,10 @@ public class ContentModel implements Parcelable {
 
     public String url() {
         return url;
+    }
+
+    public ContentModel setType(int type) {
+        this.type = type;
+        return this;
     }
 }

@@ -28,6 +28,7 @@ import com.onetechsol.ipayment.ui.screen.service.aeps.aeps1.AEPS1Activity;
 import com.onetechsol.ipayment.ui.screen.service.aeps.aeps2.AEPS2Activity;
 import com.onetechsol.ipayment.ui.screen.service.dmt.RemitterCheckBottomSheet;
 import com.onetechsol.ipayment.ui.screen.service.insurance.BuyInsuranceActivity;
+import com.onetechsol.ipayment.ui.screen.service.matm.MatmCheckBottomSheet;
 import com.onetechsol.ipayment.ui.screen.service.recharge.MobileRechargeActivity;
 import com.onetechsol.ipayment.ui.screen.service.recharge.electricity.BillInsurancePayActivity;
 import com.onetechsol.ipayment.utils.ApiConstant;
@@ -175,6 +176,15 @@ public class ServiceCategoryFragment extends BaseFragment<ServiceCategoryViewMod
                 remitterCheckBottomSheet.show(getParentFragmentManager(), RemitterCheckBottomSheet.class.getName());
 
             }
+
+            if (ServiceCategoryType.MATM == ServiceCategoryType.get(String.valueOf(serviceCategoryModel.categoryId()))) {
+
+                MatmCheckBottomSheet matmCheckBottomSheet = new MatmCheckBottomSheet();
+                matmCheckBottomSheet.show(getParentFragmentManager(), MatmCheckBottomSheet.class.getName());
+
+            }
+
+
 
         }
 

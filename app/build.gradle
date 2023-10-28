@@ -65,11 +65,12 @@ android {
 dependencies {
 
 
-    implementation fileTree(dir: 'libs', include: ['*.aar'])
+    implementation fileTree(includes: ['*.aar','*.jar'], excludes: [], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0-alpha01'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'net.karneim:pojobuilder:4.3.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

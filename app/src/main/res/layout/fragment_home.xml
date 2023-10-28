@@ -500,22 +500,22 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="@+id/clServices"
                         app:layout_constraintStart_toStartOf="@+id/clServices"
-                        app:layout_constraintTop_toBottomOf="@+id/clServices" />
+                        app:layout_constraintTop_toBottomOf="@+id/mcvRentCC" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/mcvRentCC"
                         android:layout_width="wrap_content"
                         android:layout_height="85dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
                         android:onClick="@{(view) -> homeItemCLick.openDiary(view)}"
                         android:theme="@style/Widget.Material3.CardView.Elevated"
                         app:cardBackgroundColor="@color/bg_blue"
                         app:cardCornerRadius="@dimen/_8dp"
                         app:cardElevation="@dimen/_1dp"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="@+id/rvAffiliateServices"
-                        app:layout_constraintTop_toBottomOf="@+id/rvAffiliateServices"
+                        app:layout_constraintStart_toStartOf="@+id/clServices"
+                        app:layout_constraintTop_toBottomOf="@+id/clServices"
                         app:strokeWidth="0.4dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -582,12 +582,13 @@
                         android:id="@+id/mcvReferEarn"
                         android:layout_width="wrap_content"
                         android:layout_height="85dp"
+                        android:layout_marginEnd="8dp"
                         android:theme="@style/Widget.Material3.CardView.Elevated"
                         app:cardBackgroundColor="#E3FDF4"
                         app:cardCornerRadius="@dimen/_8dp"
                         app:cardElevation="@dimen/_1dp"
                         app:layout_constraintBottom_toBottomOf="@+id/mcvRentCC"
-                        app:layout_constraintEnd_toEndOf="@+id/rvAffiliateServices"
+                        app:layout_constraintEnd_toEndOf="@+id/clServices"
                         app:layout_constraintHorizontal_bias="0.82"
                         app:layout_constraintStart_toEndOf="@+id/mcvRentCC"
                         app:layout_constraintTop_toTopOf="@+id/mcvRentCC"
@@ -661,10 +662,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="#F3F8FE"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="@+id/mcvReferEarn"
                         app:layout_constraintStart_toStartOf="@+id/mcvRentCC"
-                        app:layout_constraintTop_toBottomOf="@+id/mcvRentCC">
+                        app:layout_constraintTop_toBottomOf="@+id/rvAffiliateServices">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/appCompatTextView3"
@@ -737,6 +738,7 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_100dp"
                         android:layout_marginTop="@dimen/_16dp"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="@+id/constraintLayout5"
                         app:layout_constraintStart_toStartOf="@+id/constraintLayout5"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
@@ -767,6 +769,7 @@
                         android:textColor="@color/deep_black"
                         android:textSize="@dimen/_16sp"
 
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="@+id/flContentSlider"
                         app:layout_constraintTop_toBottomOf="@+id/flContentSlider" />
 
@@ -775,6 +778,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:visibility="gone"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_5dp"
                         app:cardElevation="@dimen/_5dp"
@@ -841,6 +845,7 @@
                         android:text="Understanding"
                         android:textColor="@color/deep_black"
                         android:textSize="@dimen/_16sp"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="@+id/mvcCreditScore"
                         app:layout_constraintTop_toBottomOf="@+id/mvcCreditScore" />
 
@@ -851,6 +856,7 @@
                         android:layout_marginTop="@dimen/_24dp"
                         android:adapter="@{gromoTutorialAdapter}"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         app:layout_constraintEnd_toEndOf="@+id/mvcCreditScore"
@@ -867,10 +873,10 @@
                         android:text="Hear from our Happy Customers"
                         android:textColor="@color/deep_black"
                         android:textSize="@dimen/_16sp"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="@+id/rvGromoTutorial"
                         app:layout_constraintStart_toStartOf="@+id/rvGromoTutorial"
-                        app:layout_constraintTop_toBottomOf="@+id/rvGromoTutorial"
-                        tools:layout_editor_absoluteX="94dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/rvGromoTutorial" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvGromoReview"
@@ -879,12 +885,12 @@
                         android:layout_marginTop="@dimen/_24dp"
                         android:adapter="@{gromoReviewAdapter}"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         app:layout_constraintEnd_toEndOf="@+id/rvGromoTutorial"
                         app:layout_constraintStart_toStartOf="@+id/rvGromoTutorial"
                         app:layout_constraintTop_toBottomOf="@+id/tvGromoReviewLabel"
-                        tools:layout_editor_absoluteX="206dp"
                         tools:listitem="@layout/gromo_review_item" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>

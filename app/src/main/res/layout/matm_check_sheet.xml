@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
+
+    <data>
+        
+        <variable
+            name="matmWithdrawClickListener"
+            type="com.onetechsol.ipayment.databinding.MatmWithdrawClickListener" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cl_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRemitterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Matm Withdrawal"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivCancel" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCancel"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> matmWithdrawClickListener.closeBottomSheet()}"
+                android:src="@drawable/baseline_cancel_24"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Withdaw from Matm"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/_14sp"
+                app:fontFamily="@font/balsamiqsansregular"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvRemitterTitle" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvWithDrawlabel"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvSubTitle"
+                app:strokeColor="#D8DDF1"
+                app:strokeWidth="@dimen/_1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clWithDrawlabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvWithDrawlabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="Withdrawal Amount"
+                        android:textColor="@color/light_kyc_text"
+                        android:textSize="@dimen/_13sp"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:backgroundTint="@color/float_transparent"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:hint="20"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:overScrollMode="always"
+                        android:padding="@dimen/_5dp"
+                        android:paddingStart="@dimen/_18dp"
+                        android:scrollbarStyle="insideInset"
+                        android:scrollbars="vertical"
+                        android:selectAllOnFocus="true"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/light_kyc_text"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvWithDrawlabel"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btWithdraw"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="@dimen/_120dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="16dp"
+                android:onClick="@{() -> matmWithdrawClickListener.submit(etAmount.getText().toString())}"
+                android:singleLine="true"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary_Deep"
+                android:textSize="@dimen/_18sp"
+                app:cornerRadius="@dimen/_18dp"
+                app:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mcvWithDrawlabel"
+                app:strokeColor="@color/white" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/view1"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginEnd="12dp"
+                android:background="#FFE7D2"
+                app:layout_constraintBottom_toBottomOf="@+id/tvOr"
+                app:layout_constraintEnd_toStartOf="@+id/tvOr"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/mcvWithDrawlabel"
+                app:layout_constraintTop_toTopOf="@+id/tvOr" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/balsamiqsansregular"
+                android:text="OR"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/btWithdraw"
+                tools:layout_editor_absoluteX="184dp" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="12dp"
+                android:background="#FFE7D2"
+                app:layout_constraintBottom_toBottomOf="@+id/tvOr"
+                app:layout_constraintEnd_toEndOf="@+id/mcvWithDrawlabel"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tvOr"
+                app:layout_constraintTop_toTopOf="@+id/tvOr" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btMatmBalCheck"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="12dp"
+                android:onClick="@{() -> matmWithdrawClickListener.checkBalance()}"
+                android:singleLine="true"
+                android:text="Check balance"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary_Deep"
+                android:textSize="@dimen/_16sp"
+                app:cornerRadius="@dimen/_18dp"
+                app:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ivCancel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/tvRemitterTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvOr"
+                app:strokeColor="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

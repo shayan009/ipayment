@@ -1,8 +1,13 @@
 package com.onetechsol.ipayment.pojo;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.StringJoiner;
 
 public class MyCustomerDetail {
+
+
 
     private String customerName;
     private String serviceCategoryName;

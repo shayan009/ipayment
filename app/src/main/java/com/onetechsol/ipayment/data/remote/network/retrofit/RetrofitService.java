@@ -63,6 +63,10 @@ import com.onetechsol.ipayment.pojo.InitiatePaymentRequest;
 import com.onetechsol.ipayment.pojo.InitiatePaymentResponse;
 import com.onetechsol.ipayment.pojo.LoginRequest;
 import com.onetechsol.ipayment.pojo.LoginResponse;
+import com.onetechsol.ipayment.pojo.MatmMicroAmtFeedBackRequest;
+import com.onetechsol.ipayment.pojo.MatmMicroAmtFeedBackResponse;
+import com.onetechsol.ipayment.pojo.MatmServiceRequest;
+import com.onetechsol.ipayment.pojo.MatmServiceResponse;
 import com.onetechsol.ipayment.pojo.MobilePrepaidPlansRequest;
 import com.onetechsol.ipayment.pojo.MoneyTransferRequest;
 import com.onetechsol.ipayment.pojo.MoneyTransferResponse;
@@ -308,6 +312,16 @@ public interface RetrofitService {
     @POST(ApiConstant.CUSTOMER_UPGRADE_INFO)
     @Headers("Content-Type: application/json")
     Observable<CustomerUpgradeInfoResponse> customerToMerchantUpgradeInfo();
+
+
+    @POST(ApiConstant.MATM_BALANCE_CHECK_WITHDRAW)
+    @Headers("Content-Type: application/json")
+    Observable<MatmServiceResponse> hitMatmApiForBalWithdrawal(@Body MatmServiceRequest matmServiceRequest);
+
+
+    @POST(ApiConstant.MATM_MICRO_ATM_RESPONSE_BE)
+    @Headers("Content-Type: application/json")
+    Observable<MatmMicroAmtFeedBackResponse> passMicroAtmResponseBE(@Body MatmMicroAmtFeedBackRequest matmServiceRequest);
 
 
 }

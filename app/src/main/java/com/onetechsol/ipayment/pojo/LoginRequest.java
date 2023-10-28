@@ -3,12 +3,16 @@ package com.onetechsol.ipayment.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import net.karneim.pojobuilder.GeneratePojoBuilder;
+
+
 
 public class LoginRequest {
 
     @SerializedName("Version")
     @Expose
     private String version;
+
 
     public LoginRequest(String version) {
         this.version = version;

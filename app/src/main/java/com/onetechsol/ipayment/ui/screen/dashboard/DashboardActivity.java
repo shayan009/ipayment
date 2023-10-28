@@ -26,6 +26,7 @@ import com.onetechsol.ipayment.pojo.SettingItem;
 import com.onetechsol.ipayment.session.UserLoginSession;
 import com.onetechsol.ipayment.ui.adapter.SettingAdapter;
 import com.onetechsol.ipayment.ui.basefiles.BaseActivity;
+import com.onetechsol.ipayment.ui.screen.home.HomeActivity;
 import com.onetechsol.ipayment.ui.screen.login_singup.LoginSignupActivity;
 import com.onetechsol.ipayment.ui.screen.mydiary.GromoDiaryActivity;
 import com.onetechsol.ipayment.ui.screen.packagekit.PackageKitActivity;
@@ -99,37 +100,7 @@ public class DashboardActivity extends BaseActivity<DashboardViewModel, Activity
                                 String txnId = parse.get("txnid").getAsString();
                                 String amount = parse.get("amount").getAsString();
 
-                                onShowLoading();
-
-                                compositeDisposable().add(viewModel().customerToMerchantUpgrade(amount, txnId)
-                                        .subscribe(customerUpgradeResponse -> {
-                                            onHideLoading();
-
-                                            if (customerUpgradeResponse.txnStatus().equalsIgnoreCase("1")) {
-
-                                                prefManager.setRoleId(customerUpgradeResponse.roleId());
-                                                setCustomerUpgrade();
-                                                showAlertDialog(payment_result, "You have been upgraded to Business", true)
-                                                        .setPositiveButton("OK", (dialogInterface, i) -> {
-                                                            dialogInterface.dismiss();
-                                                        }).show();
-
-
-                                            } else {
-                                                showAlertDialog("Payment Error", "Failed to upgrade to Business. Please contact Admin.", true)
-                                                        .setPositiveButton("OK", (dialogInterface, i) -> {
-                                                            dialogInterface.dismiss();
-                                                        }).show();
-                                            }
-
-                                        }, throwable -> {
-                                            onHideLoading();
-                                            showAlertDialog("Payment Error", "Failed to upgrade to Business. Please contact Admin.", true)
-                                                    .setPositiveButton("OK", (dialogInterface, i) -> {
-                                                        dialogInterface.dismiss();
-                                                    }).show();
-
-                                        }));
+                                hitUpgradeApi(payment_result, txnId, amount);
 
                             } else {
 
@@ -142,7 +113,6 @@ public class DashboardActivity extends BaseActivity<DashboardViewModel, Activity
                                         }).show();
                             }
 
-
                         } catch (Exception e) {
                             showAlertDialog("Payment Error", "Failed to upgrade to Business. Please contact Admin.", true)
                                     .setPositiveButton("OK", (dialogInterface, i) -> {
@@ -152,10 +122,46 @@ public class DashboardActivity extends BaseActivity<DashboardViewModel, Activity
                     }
                 }
             });
-
         }
 
+    }
 
+    private void hitUpgradeApi(String payment_result, String txnId, String amount) {
+        onShowLoading();
+        compositeDisposable().add(viewModel().customerToMerchantUpgrade(amount, txnId)
+                .subscribe(customerUpgradeResponse -> {
+                    onHideLoading();
+
+                    if (customerUpgradeResponse.txnStatus().equalsIgnoreCase("1")) {
+
+                        prefManager.setRoleId(customerUpgradeResponse.roleId());
+                        showAlertDialog(payment_result, "You have been upgraded to Business", true)
+                                .setPositiveButton("OK", (dialogInterface, i) -> {
+                                    dialogInterface.dismiss();
+                                    Intent intent = new Intent(DashboardActivity.this, HomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+
+                                }).show();
+
+
+                    } else {
+                        showAlertDialog("Payment Error", "Failed to upgrade to Business. Please contact Admin.", true)
+                                .setPositiveButton("OK", (dialogInterface, i) -> {
+                                    dialogInterface.dismiss();
+                                }).show();
+                    }
+
+                }, throwable -> {
+                    onHideLoading();
+                    showAlertDialog("Payment Error", "Failed to upgrade to Business. Please contact Admin.", true)
+                            .setPositiveButton("OK", (dialogInterface, i) -> {
+                                dialogInterface.dismiss();
+                            }).show();
+
+                }));
     }
 
     private void setCustomerUpgrade() {
@@ -234,11 +240,11 @@ public class DashboardActivity extends BaseActivity<DashboardViewModel, Activity
     @Override
     public void upgrade() {
 
-        // onShowLoading();
+        onShowLoading();
         compositeDisposable().add(
                 viewModel().customerToMerchantUpgradeInfo()
                         .subscribe(customerUpgradeInfoResponse -> {
-                            //onHideLoading();
+                            onHideLoading();
 
                             upgradePackageAlertDialog = new UpgradePackageAlertDialog();
                             upgradePackageAlertDialog.setData(customerUpgradeInfoResponse.data());
@@ -312,6 +318,7 @@ public class DashboardActivity extends BaseActivity<DashboardViewModel, Activity
                         intentProceed.putExtra("access_key", initiatePaymentResponse.data());
                         intentProceed.putExtra("pay_mode", "production");
                         pweActivityResultLauncher.launch(intentProceed);
+                        //hitUpgradeApi("payment_successfull", "16984215340949451", amount);
                     }
 
 

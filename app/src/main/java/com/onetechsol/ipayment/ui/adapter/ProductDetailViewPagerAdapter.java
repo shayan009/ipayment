@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.onetechsol.ipayment.pojo.BenefitModel;
 import com.onetechsol.ipayment.pojo.ContentModel;
+import com.onetechsol.ipayment.pojo.GetAffiliateProductDetailData;
 import com.onetechsol.ipayment.pojo.InstructionModel;
 import com.onetechsol.ipayment.pojo.TermsConditionsModel;
 import com.onetechsol.ipayment.pojo.WhomToSellModel;
@@ -24,11 +25,11 @@ public class ProductDetailViewPagerAdapter extends FragmentStateAdapter {
     private ShareContentFragment shareContentFragment = null;
     private EarningFragment earningFragment = null;
 
-    public ProductDetailViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, ArrayList<BenefitModel> benefitModels, ArrayList<WhomToSellModel> whomToSellModels, ArrayList<InstructionModel> instructionModels, ArrayList<TermsConditionsModel> termsConditionsModels, ArrayList<ContentModel> contentImages, ArrayList<ContentModel> contentVideos) {
+    public ProductDetailViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, ArrayList<BenefitModel> benefitModels, ArrayList<WhomToSellModel> whomToSellModels, ArrayList<InstructionModel> instructionModels, ArrayList<TermsConditionsModel> termsConditionsModels, ArrayList<ContentModel> contentImages, ArrayList<ContentModel> contentVideos, GetAffiliateProductDetailData product) {
         super(fragmentManager, lifecycle);
 
         detailsFragment = DetailsFragment.newInstance(benefitModels, whomToSellModels, instructionModels, termsConditionsModels);
-        shareContentFragment = ShareContentFragment.newInstance(contentImages, contentVideos);
+        shareContentFragment = ShareContentFragment.newInstance(contentImages, contentVideos,product.benefitModels(),product);
         earningFragment = EarningFragment.newInstance();
     }
 

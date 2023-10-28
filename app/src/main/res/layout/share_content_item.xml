@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="contentModel"
+            type="com.onetechsol.ipayment.pojo.ContentModel" />
+
+        <variable
+            name="shareContentOnClickListener"
+            type="com.onetechsol.ipayment.databinding.ShareContentOnClickListener" />
+    </data>
+
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/mcbContent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    android:theme="@style/Widget.Material3.CardView.Elevated"
+    app:cardCornerRadius="@dimen/_8dp"
+    app:cardElevation="@dimen/_3dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    android:layout_marginStart="@dimen/_5dp"
+    app:strokeWidth="0.2dp"
+    app:strokeColor="@color/text_black"
+
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clContent"
+        android:layout_width="@dimen/_180dp"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivContent"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <VideoView
+            android:id="@+id/videoContent"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_200dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivContent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivWhatsappShare"
+                android:layout_width="@dimen/_20dp"
+                android:layout_height="@dimen/_20dp"
+                android:layout_marginStart="8dp"
+                android:onClick="@{() -> shareContentOnClickListener.shareWhatsApp(contentModel)}"
+                android:src="@drawable/whatsapp_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/view5"
+                app:layout_constraintEnd_toStartOf="@+id/view5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view5" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/view5"
+                android:layout_width="@dimen/_1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="#DBDBDB"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLinkShare"
+                android:layout_width="@dimen/_20dp"
+                android:layout_height="@dimen/_20dp"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{() -> shareContentOnClickListener.shareDirectLink(contentModel)}"
+                android:src="@drawable/icon_share"
+                app:layout_constraintBottom_toBottomOf="@+id/view5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view5"
+                app:layout_constraintTop_toTopOf="@+id/view5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
+</layout>

@@ -20,8 +20,6 @@ public class LoginViewModel extends BaseViewModel {
         this.mobile = mobile;
 
         LoginRequest loginRequest = new LoginRequest(ApiConstant.BASIC_VERSION);
-
-
         return iModelRepository().sendMobileOtp(loginRequest, mobile)
                 .observeOn(AndroidSchedulers.mainThread());
     }

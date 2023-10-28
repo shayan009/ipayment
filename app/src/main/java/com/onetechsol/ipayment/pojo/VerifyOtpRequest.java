@@ -3,7 +3,10 @@ package com.onetechsol.ipayment.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 
+
+@GeneratePojoBuilder
 public class VerifyOtpRequest {
 
     @SerializedName("Otp")

@@ -19,12 +19,14 @@ import com.onetechsol.ipayment.R;
 import com.onetechsol.ipayment.databinding.ActivityShareBinding;
 import com.onetechsol.ipayment.databinding.ShareClickListener;
 import com.onetechsol.ipayment.pojo.BenefitModel;
+import com.onetechsol.ipayment.pojo.ContentModel;
 import com.onetechsol.ipayment.pojo.GetAffiliateProductDetailData;
 import com.onetechsol.ipayment.ui.adapter.BenefitAdapter;
 import com.onetechsol.ipayment.ui.basefiles.BaseActivity;
 import com.onetechsol.ipayment.utils.ApiConstant;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,10 +60,15 @@ public class ShareActivity extends BaseActivity<ShareViewModel, ActivityShareBin
                     viewBinding().tvTitleShare.setText(product.name());
 
 
-                    if (product.images().size() > 0)
-                        Glide.with(viewBinding().getRoot()).load(ApiConstant.BASE_URL_IMAGE_SERVICE + product.images().get(0).url()).apply(RequestOptions.fitCenterTransform().error(R.drawable.hdfc_content)).into(viewBinding().ivShareImg);
-                    else
-                        Glide.with(viewBinding().getRoot()).load("https://fastly.picsum.photos/id/1/5000/3333.jpg?hmac=Asv2DU3rA_5D1xSe22xZK47WEAN0wjWeFOhzd13ujW4").apply(RequestOptions.fitCenterTransform().error(R.drawable.hdfc_content)).into(viewBinding().ivShareImg);
+                    if (product.images().isEmpty()) {
+                        ArrayList<ContentModel> imageContent = new ArrayList<>();
+                        imageContent.add(new ContentModel("1",1,ApiConstant.BASE_URL_IMAGE_SERVICE+"logo/icon/1012-img-1693033017.jpg"));
+                        imageContent.add(new ContentModel("2",1,ApiConstant.BASE_URL_IMAGE_SERVICE+"logo/icon/1012-img-1693033017.jpg"));
+                        imageContent.add(new ContentModel("3",1,ApiConstant.BASE_URL_IMAGE_SERVICE+"logo/icon/1012-img-1693033017.jpg"));
+                        product.setImages(imageContent);
+                    }
+
+                    Glide.with(viewBinding().getRoot()).load(ApiConstant.BASE_URL_IMAGE_SERVICE+product.images().get(0).url()).apply(RequestOptions.fitCenterTransform().error(R.drawable.hdfc_content)).into(viewBinding().ivShareImg);
 
 
                     List<BenefitModel> benefitModelList = product.benefitModels();
@@ -70,6 +77,7 @@ public class ShareActivity extends BaseActivity<ShareViewModel, ActivityShareBin
                         benefitAdapter.setBenefitList(benefitModelList);
                     viewBinding().setProduct(product);
                     onHideLoading();
+
                     onShareLink(product);
 
                 }, throwable -> {
@@ -123,18 +131,7 @@ public class ShareActivity extends BaseActivity<ShareViewModel, ActivityShareBin
         try {
 
 
-
-            /*if(product.images() == null || product.images().size() == 0) {
-                showAlertDialog("Share Alert","Share is not available as there is no image to share",true)
-                        .setPositiveButton("OK",(dialogInterface, i) -> {
-                            dialogInterface.dismiss();
-                            getOnBackPressedDispatcher().onBackPressed();
-                        }).show();
-            } else {*/
-            String contentImage = product.iconUrl();
-            if (product.images() != null && product.images().size() > 0) {
-                contentImage = ApiConstant.BASE_URL_IMAGE_SERVICE + getAffiliateProductDetailData.images().get(0).url();
-            }
+            String contentImage = getAffiliateProductDetailData.images().get(0).url();
 
             StringBuilder out = new StringBuilder();
 
@@ -149,7 +146,6 @@ public class ShareActivity extends BaseActivity<ShareViewModel, ActivityShareBin
 
             }
 
-
             String input = "https://partner.ipayments.in/share-link?service=" + product.id() + "&company=" + prefManager.getUserSession().companyVersion() + "&referral=" + prefManager.getUserSession().userName();
             //String cipherText = new AESUtil().encrypt(input, "AESC123");
 
@@ -161,10 +157,7 @@ public class ShareActivity extends BaseActivity<ShareViewModel, ActivityShareBin
             out.append(input);
             out.append("\n");
 
-
-            if (product.images() != null && product.images().size() > 0) {
-
-                io.reactivex.disposables.Disposable subscribe1 = Observable.just(contentImage)
+            io.reactivex.disposables.Disposable subscribe1 = Observable.just(contentImage)
                         .subscribeOn(Schedulers.io())
                         .map(s -> Glide
                                 .with(getContext())
@@ -191,16 +184,6 @@ public class ShareActivity extends BaseActivity<ShareViewModel, ActivityShareBin
 
                         });
 
-
-            } else {
-                Intent share = new Intent(Intent.ACTION_SEND);
-
-                share.putExtra(Intent.EXTRA_TEXT, out.toString());
-                share.setType("text/*");
-                share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                startActivity(Intent.createChooser(share, "Share"));
-            }
 
 
         } catch (Exception e) {

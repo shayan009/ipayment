@@ -66,6 +66,10 @@ import com.onetechsol.ipayment.pojo.InitiatePaymentRequest;
 import com.onetechsol.ipayment.pojo.InitiatePaymentResponse;
 import com.onetechsol.ipayment.pojo.LoginRequest;
 import com.onetechsol.ipayment.pojo.LoginResponse;
+import com.onetechsol.ipayment.pojo.MatmMicroAmtFeedBackRequest;
+import com.onetechsol.ipayment.pojo.MatmMicroAmtFeedBackResponse;
+import com.onetechsol.ipayment.pojo.MatmServiceRequest;
+import com.onetechsol.ipayment.pojo.MatmServiceResponse;
 import com.onetechsol.ipayment.pojo.MobilePrepaidPlansRequest;
 import com.onetechsol.ipayment.pojo.MoneyTransferRequest;
 import com.onetechsol.ipayment.pojo.MoneyTransferResponse;
@@ -540,7 +544,7 @@ public class ModelRepositoryImpl extends BaseRepository
                 .doOnError(this)
                 .subscribeOn(Schedulers.io())
                 .toObservable()
-                .flatMap(customerUpgradeRequest2 -> retrofitService.customerToMerchantUpgrade(customerUpgradeRequest));
+                .flatMap(customerUpgradeRequest2 -> retrofitService.customerToMerchantUpgrade(customerUpgradeRequest2));
     }
 
     @Override
@@ -592,5 +596,28 @@ public class ModelRepositoryImpl extends BaseRepository
                 .toObservable()
                 .flatMap(buyInsuranceDetailRequest2 -> retrofitService.buyInsuranceDetail(buyInsuranceDetailRequest2));
     }
+
+
+    @Override
+    public Observable<MatmServiceResponse> hitMatmApiForBalWithdrawal(MatmServiceRequest matmServiceRequest) {
+
+        return Single.fromCallable(() -> matmServiceRequest)
+                .doOnError(this)
+                .subscribeOn(Schedulers.io())
+                .toObservable()
+                .flatMap(matmServiceRequest2 -> retrofitService.hitMatmApiForBalWithdrawal(matmServiceRequest2));
+    }
+
+
+    @Override
+    public Observable<MatmMicroAmtFeedBackResponse> passMicroAtmResponseBE(MatmMicroAmtFeedBackRequest matmMicroAmtFeedBackRequest) {
+
+        return Single.fromCallable(() -> matmMicroAmtFeedBackRequest)
+                .doOnError(this)
+                .subscribeOn(Schedulers.io())
+                .toObservable()
+                .flatMap(matmMicroAmtFeedBackRequest2 -> retrofitService.passMicroAtmResponseBE(matmMicroAmtFeedBackRequest));
+    }
+
 
 }

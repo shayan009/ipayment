@@ -1,11 +1,14 @@
 package com.onetechsol.ipayment.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class GetAffiliateProductDetailData extends Response {
+public class GetAffiliateProductDetailData extends Response implements Parcelable {
 
 
     @SerializedName("id")
@@ -102,6 +105,83 @@ public class GetAffiliateProductDetailData extends Response {
 
     private String link;
 
+
+    public GetAffiliateProductDetailData setImages(ArrayList<ContentModel> images) {
+        this.images = images;
+        return this;
+    }
+
+    protected GetAffiliateProductDetailData(Parcel in) {
+        id = in.readString();
+        sellEarnId = in.readString();
+        name = in.readString();
+        isActive = in.readByte() != 0;
+        benefitModels = in.createTypedArrayList(BenefitModel.CREATOR);
+        whomToSellModels = in.createTypedArrayList(WhomToSellModel.CREATOR);
+        instructionModels = in.createTypedArrayList(InstructionModel.CREATOR);
+        termsConditionsModels = in.createTypedArrayList(TermsConditionsModel.CREATOR);
+        goalModels = in.createTypedArrayList(GoalModel.CREATOR);
+        images = in.createTypedArrayList(ContentModel.CREATOR);
+        videoList = in.createTypedArrayList(ContentModel.CREATOR);
+        joinFee = in.readDouble();
+        annualFee = in.readDouble();
+        approvalRate = in.readString();
+        maxEarn = in.readDouble();
+        interest = in.readString();
+        iconUrl = in.readString();
+        shortName = in.readString();
+        isInstantUpiAvailable = in.readString();
+        isVdcAvailable = in.readString();
+        minAccountBalance = in.readString();
+        accountCreationTime = in.readString();
+        type = in.readString();
+        link = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(sellEarnId);
+        dest.writeString(name);
+        dest.writeByte((byte) (isActive ? 1 : 0));
+        dest.writeTypedList(benefitModels);
+        dest.writeTypedList(whomToSellModels);
+        dest.writeTypedList(instructionModels);
+        dest.writeTypedList(termsConditionsModels);
+        dest.writeTypedList(goalModels);
+        dest.writeTypedList(images);
+        dest.writeTypedList(videoList);
+        dest.writeDouble(joinFee);
+        dest.writeDouble(annualFee);
+        dest.writeString(approvalRate);
+        dest.writeDouble(maxEarn);
+        dest.writeString(interest);
+        dest.writeString(iconUrl);
+        dest.writeString(shortName);
+        dest.writeString(isInstantUpiAvailable);
+        dest.writeString(isVdcAvailable);
+        dest.writeString(minAccountBalance);
+        dest.writeString(accountCreationTime);
+        dest.writeString(type);
+        dest.writeString(link);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<GetAffiliateProductDetailData> CREATOR = new Creator<GetAffiliateProductDetailData>() {
+        @Override
+        public GetAffiliateProductDetailData createFromParcel(Parcel in) {
+            return new GetAffiliateProductDetailData(in);
+        }
+
+        @Override
+        public GetAffiliateProductDetailData[] newArray(int size) {
+            return new GetAffiliateProductDetailData[size];
+        }
+    };
 
     public String link() {
         return link;

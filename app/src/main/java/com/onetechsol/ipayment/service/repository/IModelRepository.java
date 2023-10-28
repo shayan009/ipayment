@@ -62,6 +62,10 @@ import com.onetechsol.ipayment.pojo.InitiatePaymentRequest;
 import com.onetechsol.ipayment.pojo.InitiatePaymentResponse;
 import com.onetechsol.ipayment.pojo.LoginRequest;
 import com.onetechsol.ipayment.pojo.LoginResponse;
+import com.onetechsol.ipayment.pojo.MatmMicroAmtFeedBackRequest;
+import com.onetechsol.ipayment.pojo.MatmMicroAmtFeedBackResponse;
+import com.onetechsol.ipayment.pojo.MatmServiceRequest;
+import com.onetechsol.ipayment.pojo.MatmServiceResponse;
 import com.onetechsol.ipayment.pojo.MobilePrepaidPlansRequest;
 import com.onetechsol.ipayment.pojo.MoneyTransferRequest;
 import com.onetechsol.ipayment.pojo.MoneyTransferResponse;
@@ -189,4 +193,7 @@ public interface IModelRepository {
 
     Observable<BuyInsuranceDetailResponse> getInsuranceDetail(BuyInsuranceDetailRequest buyInsuranceDetailRequest);
 
+    Observable<MatmServiceResponse> hitMatmApiForBalWithdrawal(MatmServiceRequest matmServiceRequest);
+
+    Observable<MatmMicroAmtFeedBackResponse> passMicroAtmResponseBE(MatmMicroAmtFeedBackRequest matmMicroAmtFeedBackRequest);
 }
