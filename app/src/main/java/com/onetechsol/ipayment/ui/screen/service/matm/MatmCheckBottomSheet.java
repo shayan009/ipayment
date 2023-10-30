@@ -1,7 +1,9 @@
 package com.onetechsol.ipayment.ui.screen.service.matm;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +31,7 @@ import com.onetechsol.ipayment.pojo.RecentRemitterItem;
 import com.onetechsol.ipayment.ui.adapter.RecentRemitterAdapter;
 import com.onetechsol.ipayment.ui.screen.service.dmt.DMTActivity;
 import com.onetechsol.ipayment.ui.screen.service.dmt.DMTViewModel;
+import com.onetechsol.ipayment.utils.ApiConstant;
 import com.onetechsol.ipayment.widgets.CurvedBottomSheetDialogFragment;
 
 import org.apache.commons.lang3.StringUtils;
@@ -38,11 +41,12 @@ import java.util.Random;
 
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCheckSheetBinding, MatmViewModel> implements MatmWithdrawClickListener {
+public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCheckSheetBinding, MatmViewModel> implements MatmWithdrawClickListener, DialogMatmReport.DialogCallback {
 
 
     private ActivityResultLauncher<Intent> someActivityResultLauncher;
     private String referenceNumber;
+    private ActivityResultLauncher<Intent> receiptDownload, receiptPrint;
 
     @Override
     public int getLayoutRes() {
@@ -66,6 +70,24 @@ public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCh
         super.onViewCreated(view, savedInstanceState);
 
         viewBinding().setMatmWithdrawClickListener(this);
+
+        receiptDownload = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+
+                    }
+
+                });
+
+        receiptPrint = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+
+                    }
+
+                });
 
         someActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -95,8 +117,12 @@ public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCh
                             compositeDisposable().add(viewModel().passMicroAtmResponseBE(status, response, response, transAmount, balAmount, bankRrn, transType, type, cardNum, rrn, tType, bankName, cardType, terminalId, fpId, transId, referenceNumber)
                                     .subscribe(matmMicroAmtFeedBackResponse -> {
 
-                                        if(matmMicroAmtFeedBackResponse.status().equals("1") &
+                                        if (matmMicroAmtFeedBackResponse.status().equals("1") &
                                                 matmMicroAmtFeedBackResponse.txn_status().equals("1")) {
+
+                                            DialogMatmReport dialogMatmReport = new DialogMatmReport();
+                                            dialogMatmReport.setDialogCallback(this);
+                                            dialogMatmReport.show(getParentFragmentManager(), DialogMatmReport.class.getName());
 
 
                                         }
@@ -114,6 +140,22 @@ public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCh
 
     }
 
+
+    private void printReceiptDownload(String type, String printTxn) {
+
+        String url = ApiConstant.BASE_PRINT_REPORT + "?type=" + type + "&user=" + prefManager().getUsername() + "&id=" + printTxn;
+        Uri myAction = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setData(myAction);
+        intent.setPackage("com.android.chrome");
+        if (StringUtils.equals("0", type)) {
+            receiptDownload.launch(intent);
+        } else if (StringUtils.equals("1", type)) {
+            receiptPrint.launch(intent);
+        }
+
+    }
 
     @Override
     public void hideKeyboard(View view) {
@@ -210,5 +252,15 @@ public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCh
     @Override
     public boolean isConnectedToNetwork() {
         return false;
+    }
+
+    @Override
+    public void printReceipt() {
+
+    }
+
+    @Override
+    public void downloadReceipt() {
+
     }
 }

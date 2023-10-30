@@ -10,7 +10,6 @@
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges
         </item>
-
         <item name="sideSheetDialogTheme">@style/ThemeOverlay.App.SideSheetDialog</item>
         <!-- Optional: set to transparent if your app is drawing behind the status bar. -->
         <item name="android:windowActionBarOverlay">true</item>
@@ -25,7 +24,9 @@
 
     </style>
 
-
+    <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+    </style>
     <!-- Bottom sheet -->
 
     <style name="BottomSheet" parent="@style/Widget.Material3.BottomSheet.Modal">
@@ -109,7 +110,9 @@
     </style>
 
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
-        <item name="cornerSize">16dp</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+        <item name="cornerFamilyBottomRight">cut</item>
+        <item name="cornerSize">20dp</item>
     </style>
 
     <style name="TextAppearance.App.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
@@ -150,6 +153,14 @@
         <item name="cornerFamilyTopRight">rounded</item>
         <item name="cornerSizeBottomLeft">@dimen/_25dp</item>
         <item name="cornerFamilyTopLeft">cut</item>
+    </style>
+
+
+    <style name="SpecificBottomCornerCut">
+        <item name="cornerSizeTopRight">@dimen/_25dp</item>
+        <item name="cornerSizeTopLeft">@dimen/_25dp</item>
+        <item name="cornerFamilyBottomRight">cut</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
     </style>
 
     <style name="SpecificCornerRound">

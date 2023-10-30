@@ -82,18 +82,250 @@
                 app:layout_constraintStart_toEndOf="@+id/mcvBack"
                 app:layout_constraintTop_toTopOf="@+id/mcvBack" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvAeps1task"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvAepsEnquiry"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_120dp"
                 android:layout_marginTop="24dp"
-                android:adapter="@{aeps1TaskAdapter}"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="@+id/tvTitleAEPS1"
+                android:clickable="true"
+                android:focusable="true"
+                android:theme="@style/Widget.Material3.CardView.Elevated"
+                app:cardBackgroundColor="@color/card_light_purple"
+                app:cardCornerRadius="@dimen/_20dp"
+                app:cardElevation="@dimen/_5dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/mcvAepsWithdraw"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/mcvBack"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitleAEPS1"
-                tools:listitem="@layout/aeps1_item" />
+                app:layout_constraintTop_toBottomOf="@+id/mcvBack"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clAeps1EnquiryItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/materialCardViewEn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="@color/white"
+                        android:clickable="true"
+                        android:elevation="0dp"
+                        android:focusable="true"
+                        android:theme="@style/Widget.App.CardView"
+                        app:cardCornerRadius="@dimen/_20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivAepstaskIconEn"
+                                android:layout_width="@dimen/_25dp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginEnd="24dp"
+                                android:src="@drawable/balenquiry"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/ivAepsEnquiryLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="@string/balance_inquiry"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialCardViewEn"
+                        app:layout_constraintVertical_bias="0.32999998" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvAepsWithdraw"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_120dp"
+                android:layout_marginTop="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:theme="@style/Widget.Material3.CardView.Elevated"
+                app:cardBackgroundColor="@color/card_light_purple"
+                app:cardCornerRadius="@dimen/_20dp"
+                app:cardElevation="@dimen/_5dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toStartOf="@+id/mcvAepsMiniStatement"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mcvAepsEnquiry"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBack"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clAeps1Withdraw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/materialCardViewWithdraw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="@color/white"
+                        android:clickable="true"
+                        android:elevation="0dp"
+                        android:focusable="true"
+                        android:theme="@style/Widget.App.CardView"
+                        app:cardCornerRadius="@dimen/_20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivAepstaskIconWithdraw"
+                                android:layout_width="@dimen/_25dp"
+                                android:layout_height="@dimen/_25dp"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginEnd="24dp"
+                                android:src="@drawable/withdrawal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/ivAepstaskTextWithdrawal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="Balance Withdraw"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialCardViewWithdraw"
+                        app:layout_constraintVertical_bias="0.32999998" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvAepsMiniStatement"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_120dp"
+                android:layout_marginTop="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:theme="@style/Widget.Material3.CardView.Elevated"
+                app:cardBackgroundColor="@color/card_light_purple"
+                app:cardCornerRadius="@dimen/_20dp"
+                app:cardElevation="@dimen/_5dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitleAEPS1"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mcvAepsWithdraw"
+                app:layout_constraintTop_toBottomOf="@+id/mcvBack"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clAeps1MiniStatement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/materialCardViewMini"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="@color/white"
+                        android:clickable="true"
+                        android:elevation="0dp"
+                        android:focusable="true"
+                        android:theme="@style/Widget.App.CardView"
+                        app:cardCornerRadius="@dimen/_20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:strokeWidth="0dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivAepstaskIconMini"
+                                android:layout_width="@dimen/_25dp"
+                                android:layout_height="@dimen/_25dp"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginEnd="24dp"
+                                android:src="@drawable/ministatemant"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/ivAepstaskTextMini"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:gravity="center"
+                        android:text="Mini Statement"
+                        android:textColor="@color/deep_black"
+                        android:textSize="@dimen/_12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialCardViewMini"
+                        app:layout_constraintVertical_bias="0.32999998" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <FrameLayout
                 android:id="@+id/flReport"
@@ -104,7 +336,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tvTitleAEPS1"
                 app:layout_constraintStart_toStartOf="@+id/mcvBack"
-                app:layout_constraintTop_toBottomOf="@+id/rvAeps1task" />
+                app:layout_constraintTop_toBottomOf="@+id/mcvAepsWithdraw" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

@@ -62,7 +62,7 @@ public class AEPSViewModel extends BaseViewModel {
 
     public Observable<StartKyc18Response> startKyc18(String step, String otp) {
 
-        StartKyc18Request startKyc18Request = new StartKyc18Request(ApiConstant.BASIC_VERSION, step, otp);
+        StartKyc18Request startKyc18Request = new StartKyc18Request(ApiConstant.BASIC_VERSION, step, otp,"","","");
 
 
         return iModelRepository().startKyc18(startKyc18Request)

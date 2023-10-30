@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="matmReportOnClickListener"
+            type="com.onetechsol.ipayment.databinding.MatmReportOnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/full_screen_dialog_background">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_50dp"
+            app:cardBackgroundColor="@color/colorPrimary_Deep"
+            app:cardCornerRadius="@dimen/_30dp"
+            app:cardElevation="0.1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/mcvReceipt"
+            app:layout_constraintEnd_toStartOf="@+id/mcvReceipt"
+            app:layout_constraintStart_toStartOf="@+id/mcvReceipt"
+            app:layout_constraintTop_toTopOf="@+id/mcvReceipt"
+            app:layout_constraintVertical_bias="0.66999996"
+            app:strokeWidth="0dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvReceipt"
+            style="@style/Widget.App.CardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="200dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivSuccessFailed"
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/ic_success"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSubTitleUpgrade"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="Matm Withdrawal Successfull"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/balsamiqsansbolditalic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivSuccessFailed" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/dividerReceipt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_1dp"
+                    android:background="#DDDDDD"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvAmountLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="Total amount"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/_13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/dividerReceipt"
+                    app:layout_constraintTop_toBottomOf="@+id/dividerReceipt" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/balsamiqsansbold"
+                    android:text="$40.00"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAmountLabel" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivPrintReceipt"
+                    android:layout_width="@dimen/_25dp"
+                    android:layout_height="@dimen/_25dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/icon_share"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAmount" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvPrint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    android:gravity="center"
+                    android:onClick="@{() -> matmReportOnClickListener.printReport()}"
+                    android:text="Print Receipt"
+                    android:textColor="@color/colorPrimary_Deep"
+                    android:textSize="@dimen/_16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivPrintReceipt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.07"
+                    app:layout_constraintStart_toEndOf="@+id/ivPrintReceipt"
+                    app:layout_constraintTop_toTopOf="@+id/ivPrintReceipt" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivDownloadReceipt"
+                    android:layout_width="@dimen/_25dp"
+                    android:layout_height="@dimen/_25dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/icon_share"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivPrintReceipt" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvDownload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    android:gravity="center"
+                    android:text="Download Receipt"
+                    android:onClick="@{() -> matmReportOnClickListener.downloadReport()}"
+                    android:textColor="@color/colorPrimary_Deep"
+                    android:textSize="@dimen/_16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivDownloadReceipt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.07"
+                    app:layout_constraintStart_toEndOf="@+id/ivDownloadReceipt"
+                    app:layout_constraintTop_toTopOf="@+id/ivDownloadReceipt" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_50dp"
+            app:cardBackgroundColor="@color/colorPrimary_Deep"
+            app:cardCornerRadius="@dimen/_30dp"
+            app:cardElevation="0.1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/mcvReceipt"
+            app:layout_constraintEnd_toEndOf="@+id/mcvReceipt"
+            app:layout_constraintStart_toEndOf="@+id/mcvReceipt"
+            app:layout_constraintTop_toTopOf="@+id/mcvReceipt"
+            app:layout_constraintVertical_bias="0.65999997"
+            app:strokeWidth="0dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleUpgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Matm Withdrawal"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:fontFamily="@font/balsamiqsansbold"
+            app:layout_constraintBottom_toTopOf="@+id/mcvReceipt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbOk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> matmReportOnClickListener.onClickOk()}"
+            android:text="@string/ok"
+            android:textAllCaps="true"
+            android:textColor="@color/text_black"
+            android:textSize="12sp"
+            android:theme="@style/Widget.Material3.Button.ElevatedButton"
+            android:visibility="visible"
+            app:cornerRadius="@dimen/_10dp"
+            app:fontFamily="@font/sfprotext_semibold"
+            app:layout_constraintEnd_toEndOf="@+id/mcvReceipt"
+            app:layout_constraintStart_toStartOf="@+id/mcvReceipt"
+            app:layout_constraintTop_toBottomOf="@+id/mcvReceipt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -10,49 +10,72 @@ public class StartKyc18Request {
     @Expose
     private String version;
 
-    @SerializedName("step")
-    @Expose
     private String step;
-
-    @SerializedName("otp")
-    @Expose
     private String otp;
+    private String urlenco;
 
-    public StartKyc18Request(String version, String step) {
-        this.version = version;
-        this.step = step;
-    }
+    @SerializedName("lat")
+    @Expose
+    private String latitude;
 
-    public StartKyc18Request(String version, String step, String otp) {
+    @SerializedName("long")
+    @Expose
+    private String longitude;
+
+    public StartKyc18Request(String version, String step, String otp, String urlenco, String latitude, String longitude) {
         this.version = version;
         this.step = step;
         this.otp = otp;
+        this.urlenco = urlenco;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public String version() {
+    public String getVersion() {
         return version;
     }
 
-    public StartKyc18Request setVersion(String version) {
+    public void setVersion(String version) {
         this.version = version;
-        return this;
     }
 
-    public String step() {
+    public String getStep() {
         return step;
     }
 
-    public StartKyc18Request setStep(String step) {
+    public void setStep(String step) {
         this.step = step;
-        return this;
     }
 
-    public String otp() {
+    public String getOtp() {
         return otp;
     }
 
-    public StartKyc18Request setOtp(String otp) {
+    public void setOtp(String otp) {
         this.otp = otp;
-        return this;
+    }
+
+    public String getUrlenco() {
+        return urlenco;
+    }
+
+    public void setUrlenco(String urlenco) {
+        this.urlenco = urlenco;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }
