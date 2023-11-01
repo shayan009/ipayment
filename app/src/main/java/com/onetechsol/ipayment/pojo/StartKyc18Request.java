@@ -12,6 +12,9 @@ public class StartKyc18Request {
 
     private String step;
     private String otp;
+
+    @SerializedName("capture")
+    @Expose
     private String urlenco;
 
     @SerializedName("lat")

@@ -28,7 +28,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class RegisterActivity extends BaseActivity<RegisterViewModel, ActivityRegisterBinding> implements RegisterClickListener, SideSheetDataOnClickListener {
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private SideSheetDialog sideSheetDialog;
+    private CustomSideSheetSpinner sideSheetDialog;
     private String label = "";
 
     @Override
@@ -58,7 +58,8 @@ public class RegisterActivity extends BaseActivity<RegisterViewModel, ActivityRe
 
     private void intSideSheet(List<SideSheetItem> sideSheetItems) {
 
-        sideSheetDialog = new CustomSideSheetSpinner(this, sideSheetItems);
+        sideSheetDialog = new CustomSideSheetSpinner(this);
+        sideSheetDialog.setSideSheetItems(sideSheetItems);
         ((CustomSideSheetSpinner) sideSheetDialog).setSideSheetDataOnClickListener(this);
     }
 

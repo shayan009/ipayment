@@ -54,9 +54,8 @@ public class AddBeneficaryFragment extends BaseFragment<DMTViewModel, FragmentAd
     }
 
 
-    private void initSideSheet(List<SideSheetItem> sideSheetItems) {
-        Log.d("sideSheetItems - > ", sideSheetItems.toString());
-        sideSheetDialog = new CustomSideSheetSpinner(requireActivity(), sideSheetItems);
+    private void initSideSheet() {
+        sideSheetDialog = new CustomSideSheetSpinner(requireActivity());
         ((CustomSideSheetSpinner) sideSheetDialog).setSideSheetDataOnClickListener(this);
         sideSheetDialog.setSideSpinnerCallback(this);
     }
@@ -86,21 +85,8 @@ public class AddBeneficaryFragment extends BaseFragment<DMTViewModel, FragmentAd
         super.onViewCreated(view, savedInstanceState);
         viewBinding().setAddBeneficiaryClickListener(this);
 
-        compositeDisposable().add(viewModel().getBeneficiaryBankList("s")
-                .subscribe(beneficiaryBankModels -> {
-
-                    List<SideSheetItem> sideSheetItems = new ArrayList<>();
-
-                    for (int i = 1; i < beneficiaryBankModels.size(); i++) {
-                        BeneficiaryBankModel beneficiaryBankModel = beneficiaryBankModels.get(i);
-                        sideSheetItems.add(new SideSheetItem(beneficiaryBankModel.label(), beneficiaryBankModel.value(), true, (i - 1), false));
-                    }
-
-                    initSideSheet(sideSheetItems);
-
-                }, throwable -> {
-
-                }));
+        initSideSheet();
+        search("s");
 
     }
 
@@ -149,6 +135,12 @@ public class AddBeneficaryFragment extends BaseFragment<DMTViewModel, FragmentAd
 
     @Override
     public void onItemSearched(String search) {
+
+        search(search);
+
+    }
+
+    private void search(String search) {
         compositeDisposable().add(viewModel().getBeneficiaryBankList(search)
                 .subscribe(beneficiaryBankModels -> {
 
@@ -159,11 +151,12 @@ public class AddBeneficaryFragment extends BaseFragment<DMTViewModel, FragmentAd
                         sideSheetItems.add(new SideSheetItem(beneficiaryBankModel.label(), beneficiaryBankModel.value(), true, (i - 1), false));
                     }
 
-                    sideSheetDialog.setSideSheetItems(sideSheetItems);
+                    if (sideSheetDialog != null)
+                        sideSheetDialog.setSideSheetItems(sideSheetItems);
+
 
                 }, throwable -> {
 
                 }));
-
     }
 }

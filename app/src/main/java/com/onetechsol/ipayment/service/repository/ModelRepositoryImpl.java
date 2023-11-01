@@ -10,8 +10,11 @@ import com.onetechsol.ipayment.pojo.AddBeneficiaryRequest;
 import com.onetechsol.ipayment.pojo.AddBeneficiaryResponse;
 import com.onetechsol.ipayment.pojo.AddCustomerRequest;
 import com.onetechsol.ipayment.pojo.AddCustomerResponse;
+import com.onetechsol.ipayment.pojo.AepsBankModel;
 import com.onetechsol.ipayment.pojo.AppSetupRequest;
 import com.onetechsol.ipayment.pojo.AppSetupResponse;
+import com.onetechsol.ipayment.pojo.AuthAepsOpRequest;
+import com.onetechsol.ipayment.pojo.AuthAepsOpResponse;
 import com.onetechsol.ipayment.pojo.BeneficiaryBankModel;
 import com.onetechsol.ipayment.pojo.BuyInsuranceDetailRequest;
 import com.onetechsol.ipayment.pojo.BuyInsuranceDetailResponse;
@@ -619,5 +622,24 @@ public class ModelRepositoryImpl extends BaseRepository
                 .flatMap(matmMicroAmtFeedBackRequest2 -> retrofitService.passMicroAtmResponseBE(matmMicroAmtFeedBackRequest));
     }
 
+
+    @Override
+    public Observable<List<AepsBankModel>> getAepsBankList(String query) {
+        return Single.fromCallable(() -> query)
+                .doOnError(this)
+                .subscribeOn(Schedulers.io())
+                .toObservable()
+                .flatMap(query2 -> retrofitService.getBankList(query2));
+    }
+
+    @Override
+    public Observable<AuthAepsOpResponse> authenticateAepsOperation(AuthAepsOpRequest authAepsOpRequest) {
+
+        return Single.fromCallable(() -> authAepsOpRequest)
+                .doOnError(this)
+                .subscribeOn(Schedulers.io())
+                .toObservable()
+                .flatMap(authAepsOpRequest2 -> retrofitService.authenticateAepsOperation(authAepsOpRequest2));
+    }
 
 }

@@ -126,6 +126,11 @@ public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Bind
         getOnBackPressedDispatcher().onBackPressed();
     }
 
+    @Override
+    public void openBalEnquiry(int type) {
+
+    }
+
 
     @Override
     public void onRefresh() {

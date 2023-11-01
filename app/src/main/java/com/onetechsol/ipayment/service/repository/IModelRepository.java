@@ -6,8 +6,11 @@ import com.onetechsol.ipayment.pojo.AddBeneficiaryRequest;
 import com.onetechsol.ipayment.pojo.AddBeneficiaryResponse;
 import com.onetechsol.ipayment.pojo.AddCustomerRequest;
 import com.onetechsol.ipayment.pojo.AddCustomerResponse;
+import com.onetechsol.ipayment.pojo.AepsBankModel;
 import com.onetechsol.ipayment.pojo.AppSetupRequest;
 import com.onetechsol.ipayment.pojo.AppSetupResponse;
+import com.onetechsol.ipayment.pojo.AuthAepsOpRequest;
+import com.onetechsol.ipayment.pojo.AuthAepsOpResponse;
 import com.onetechsol.ipayment.pojo.BeneficiaryBankModel;
 import com.onetechsol.ipayment.pojo.BuyInsuranceDetailRequest;
 import com.onetechsol.ipayment.pojo.BuyInsuranceDetailResponse;
@@ -196,4 +199,8 @@ public interface IModelRepository {
     Observable<MatmServiceResponse> hitMatmApiForBalWithdrawal(MatmServiceRequest matmServiceRequest);
 
     Observable<MatmMicroAmtFeedBackResponse> passMicroAtmResponseBE(MatmMicroAmtFeedBackRequest matmMicroAmtFeedBackRequest);
+
+    Observable<List<AepsBankModel>> getAepsBankList(String query);
+
+    Observable<AuthAepsOpResponse> authenticateAepsOperation(AuthAepsOpRequest authAepsOpRequest);
 }

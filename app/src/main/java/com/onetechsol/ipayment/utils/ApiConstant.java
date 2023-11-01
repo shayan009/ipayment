@@ -82,6 +82,8 @@ public interface ApiConstant {
     String CUSTOMER_UPGRADE_INFO = "larner_upgrade_package_info";
     String MATM_BALANCE_CHECK_WITHDRAW = "service_73";
     String MATM_MICRO_ATM_RESPONSE_BE = "service_73_response";
+
+    String SERVICE_33_MAIN= "service_33";
     String TRANSFER_WALLET = "wallet_management";
 
     String FUND_REQUEST_CHECK = "fund_request_check";

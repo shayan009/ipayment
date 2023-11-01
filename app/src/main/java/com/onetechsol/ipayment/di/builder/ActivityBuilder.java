@@ -15,6 +15,7 @@ import com.onetechsol.ipayment.ui.screen.profile.ProfileActivity;
 import com.onetechsol.ipayment.ui.screen.report.ReportActivity;
 import com.onetechsol.ipayment.ui.screen.service.ServiceActivity;
 import com.onetechsol.ipayment.ui.screen.service.aeps.aeps1.AEPS1Activity;
+import com.onetechsol.ipayment.ui.screen.service.aeps.aeps1.Aeps1OperationActivity;
 import com.onetechsol.ipayment.ui.screen.service.aeps.aeps2.AEPS2Activity;
 import com.onetechsol.ipayment.ui.screen.service.aeps.uploadKyc.UploadKycActivity;
 import com.onetechsol.ipayment.ui.screen.service.dmt.DMTActivity;
@@ -109,7 +110,8 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = {FragmentBuildersModule.class})
     abstract AddCustomerActivity bindAddCustomerActivity();
 
-
+    @ContributesAndroidInjector(modules = {FragmentBuildersModule.class})
+    abstract Aeps1OperationActivity bindAeps1OperationActivity();
 }
 
 

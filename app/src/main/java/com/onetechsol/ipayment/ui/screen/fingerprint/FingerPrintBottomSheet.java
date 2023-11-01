@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -20,9 +21,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.onetechsol.ipayment.R;
 import com.onetechsol.ipayment.databinding.FingerPrintClickListener;
 import com.onetechsol.ipayment.databinding.FingerPrintSheetBinding;
+import com.onetechsol.ipayment.pojo.AepsRequestDto;
 import com.onetechsol.ipayment.pojo.Kyc18OtpUIData;
 import com.onetechsol.ipayment.pojo.Opts;
 import com.onetechsol.ipayment.pojo.PidOptions;
+import com.onetechsol.ipayment.ui.screen.service.matm.DialogMatmReport;
 import com.onetechsol.ipayment.widgets.CurvedBottomSheetDialogFragment;
 
 import org.simpleframework.xml.Serializer;
@@ -34,9 +37,8 @@ import java.net.URLEncoder;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<FingerPrintSheetBinding, FingerPrintVideModel> implements FingerPrintClickListener {
+public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<FingerPrintSheetBinding, FingerPrintVideModel> implements FingerPrintClickListener, DialogMatmReport.DialogCallback {
 
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
     private ActivityResultLauncher<Intent> firgerCaptureResult;
     private OnClickListener onClickListener;
     private ActivityResultLauncher<Intent> twoFactorAuth;
@@ -49,13 +51,23 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
         this.onClickListener = onClickListener;
     }
 
+
+    private AepsRequestDto aepsRequestDto;
     private String step;
+
+
+    public AepsRequestDto getAepsRequestDto() {
+        return aepsRequestDto;
+    }
+
+    public void setAepsRequestDto(AepsRequestDto aepsRequestDto) {
+        this.aepsRequestDto = aepsRequestDto;
+    }
 
     @Override
     public int getLayoutRes() {
         return R.layout.finger_print_sheet;
     }
-
 
 
     @Override
@@ -89,8 +101,14 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
 
                     if (data != null) {
                         String pidData = data.getStringExtra("PID_DATA");
+
                         if (pidData != null) {
-                            setCaptcha(pidData);
+                            if (step.equals("5")) {
+                                setAepsOpCaptcha(pidData);
+                            } else {
+                                setCaptcha(pidData);
+                            }
+
                         }
 
                     }
@@ -103,33 +121,87 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
 
     }
 
-    private void setCaptcha(String pidData) {
-        //Toast.makeText(getContext(), "pidData :" + pidData, //Toast.LENGTH_SHORT).show();
+    private void setAepsOpCaptcha(String pidData) {
+
         try {
+
+            Toast.makeText(getContext(), "setAepsOpCaptcha.pidData :" + pidData, Toast.LENGTH_SHORT).show();
+
             String urlenco = URLEncoder.encode(pidData, "utf-8");
 
-            onShowLoading();
-            compositeDisposable().add(viewModel().startKyc18(step, urlenco).subscribe(startKyc18Response -> {
+            showToastAlertDialog("Capture Successfull", urlenco, false).setOnClickListener(() -> {
+                onShowLoading();
 
-                onHideLoading();
+                compositeDisposable().add(viewModel().authenticateAepsOperation(urlenco, aepsRequestDto.getAmount(), aepsRequestDto.getMobileNo(), aepsRequestDto.getAdhar(), aepsRequestDto.getBankName(), aepsRequestDto.getType())
+                        .subscribe(authAepsOpResponse -> {
 
-                if (startKyc18Response.status().equals("1") &&  startKyc18Response.txnStatus().equals("1")) {
+                            onHideLoading();
 
-                    showToastAlertDialog("Capture Success", startKyc18Response.message(), false)
-                            .setOnClickListener(() -> {
-                                dismiss();
-                                onClickListener.hitOnBoardingCk();
-                            })
-                            .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+                            if (authAepsOpResponse.status().equals("1") && authAepsOpResponse.getTxnStatus().equals("1")) {
 
-                } else {
-                    showToastAlertDialog("Capture failed", startKyc18Response.message(), false)
-                            .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
-                }
+                                showToastAlertDialog("Capture Success", authAepsOpResponse.message(), false)
+                                        .setOnClickListener(() -> {
 
-            }, throwable -> {
+                                            this.dismiss();
 
-            }));
+                                            DialogMatmReport dialogMatmReport = new DialogMatmReport();
+                                            dialogMatmReport.setDialogCallback(this);
+                                            dialogMatmReport.show(getParentFragmentManager(), DialogMatmReport.class.getName());
+
+                                        })
+                                        .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+
+                            } else {
+                                showToastAlertDialog("Capture failed", authAepsOpResponse.message(), false)
+                                        .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+                            }
+
+                        }, throwable -> {
+                            onHideLoading();
+                            showToastAlertDialog("Capture Error", throwable.getMessage(), false)
+                                    .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+                        }));
+            }).show(getParentFragmentManager(), "setCaptcha");
+
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private void setCaptcha(String pidData) {
+        try {
+
+            Toast.makeText(getContext(), "pidData :" + pidData, Toast.LENGTH_SHORT).show();
+
+            String urlenco = URLEncoder.encode(pidData, "utf-8");
+
+            showToastAlertDialog("Capture Successfull", urlenco, false).setOnClickListener(() -> {
+                onShowLoading();
+
+                compositeDisposable().add(viewModel().startKyc18(step, urlenco).subscribe(startKyc18Response -> {
+
+                    onHideLoading();
+
+                    if (startKyc18Response.status().equals("1") && startKyc18Response.txnStatus().equals("1")) {
+
+                        showToastAlertDialog("Capture Success", startKyc18Response.message(), false)
+                                .setOnClickListener(() -> {
+                                    dismiss();
+                                    onClickListener.hitOnBoardingCk();
+                                })
+                                .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+
+                    } else {
+                        showToastAlertDialog("Capture failed", startKyc18Response.message(), false)
+                                .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+                    }
+
+                }, throwable -> {
+                    onHideLoading();
+                }));
+            }).show(getParentFragmentManager(), "setCaptcha");
+
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
@@ -151,10 +223,12 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
     @Override
     public void captureFingerPrint() {
         try {
-            String pidOption = getPIDOptions("2.0","1000","E0jzJ/P8UopUHAieZn8CKqS4WPMi5ZSYXgfnlfkWjrc=");
-            if(step.equals("4")) {
-                 pidOption = getPIDOptions("2.0","1000","");
+            String pidOption = getPIDOptions("2.0", "1000", "E0jzJ/P8UopUHAieZn8CKqS4WPMi5ZSYXgfnlfkWjrc=");
+
+            if (step.equals("4") || step.equals("5")) {
+                pidOption = getPIDOptions("2.0", "1000", "");
             }
+
             if (pidOption != null) {
                 Log.e("PidOptions", pidOption);
                 Intent intent1 = new Intent();
@@ -168,14 +242,25 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
 
     }
 
+    @Override
+    public void printReceipt() {
+
+    }
+
+    @Override
+    public void downloadReceipt() {
+
+    }
+
     public interface OnClickListener {
 
         void hitOnBoardingCk();
+
         void dismiss();
+
     }
 
-
-    private String getPIDOptions(String pidVer,String timeOut,String wadh) {
+    private String getPIDOptions(String pidVer, String timeOut, String wadh) {
         try {
             int fingerCount = 2;
 
@@ -193,13 +278,14 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
             opts.format = "0"; //0,1
             opts.pidVer = pidVer;
             opts.timeout = timeOut;
-            opts.wadh = wadh;
+            if (step.equals("4") || step.equals("2")) {
+                opts.wadh = wadh;
+            }
             opts.posh = posh;
             opts.env = "P";
             PidOptions pidOptions = new PidOptions();
             pidOptions.ver = "1.0";
             pidOptions.Opts = opts;
-            // opts.wadh = "E0jzJ/P8UopUHAieZn8CKqS4WPMi5ZSYXgfnlfkWjrc=";
             Serializer serializer = new Persister();
             StringWriter writer = new StringWriter();
             serializer.write(pidOptions, writer);
@@ -209,7 +295,6 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
         }
         return null;
     }
-
 
 
     @Override

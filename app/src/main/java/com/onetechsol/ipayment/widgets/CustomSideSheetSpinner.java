@@ -27,19 +27,13 @@ public class CustomSideSheetSpinner extends SideSheetDialog implements SideSheet
 
     private Context context;
 
-    private List<SideSheetItem> sideSheetItems;
     private SideSpinnerCallback sideSpinnerCallback;
     private SideSheetDataOnClickListener sideSheetDataOnClickListener;
     private SideSheetItemListAdapter sideSheetItemListAdapter;
 
-    public CustomSideSheetSpinner(@NonNull Context context, List<SideSheetItem> sideSheetItems) {
+    public CustomSideSheetSpinner(@NonNull Context context) {
         super(context);
         this.context = context;
-        this.sideSheetItems = sideSheetItems;
-    }
-
-    public CustomSideSheetSpinner(@NonNull Context context, int theme) {
-        super(context, theme);
     }
 
     public CustomSideSheetSpinner setSideSheetDataOnClickListener(SideSheetDataOnClickListener sideSheetDataOnClickListener) {
@@ -48,8 +42,7 @@ public class CustomSideSheetSpinner extends SideSheetDialog implements SideSheet
     }
 
     public CustomSideSheetSpinner setSideSheetItems(List<SideSheetItem> sideSheetItems) {
-        this.sideSheetItems = sideSheetItems;
-        sideSheetItemListAdapter.setSideSheetItemList(sideSheetItems);
+        sideSheetItemListAdapter.setItems(sideSheetItems);
         return this;
     }
 
@@ -105,8 +98,7 @@ public class CustomSideSheetSpinner extends SideSheetDialog implements SideSheet
             }
         });
         rvSpinnerList.setLayoutManager(new LinearLayoutManager(context));
-        sideSheetItemListAdapter = new SideSheetItemListAdapter(sideSheetItems);
-
+        sideSheetItemListAdapter = new SideSheetItemListAdapter();
 
         sideSheetItemListAdapter.setStateOnClickListener(this);
         rvSpinnerList.setAdapter(sideSheetItemListAdapter);
@@ -117,11 +109,12 @@ public class CustomSideSheetSpinner extends SideSheetDialog implements SideSheet
     @Override
     public void selectSideSheetItem(SideSheetItem stateList) {
 
-        for (SideSheetItem sideSheetItem1 : sideSheetItems) {
+        List<SideSheetItem> items = sideSheetItemListAdapter.getItems();
+        for (SideSheetItem sideSheetItem1 : items) {
             sideSheetItem1.setSelected(sideSheetItem1.id() == stateList.id());
         }
 
-        sideSheetItemListAdapter.setSideSheetItemList(sideSheetItems);
+        sideSheetItemListAdapter.setItems(items);
         sideSheetDataOnClickListener.selectSideSheetItem(stateList);
     }
 

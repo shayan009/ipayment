@@ -61,7 +61,7 @@
                         android:scrollbarStyle="insideInset"
                         android:scrollbars="vertical"
                         android:selectAllOnFocus="true"
-                        android:text="@{beneficiaryModel.beneficiaryName()}"
+                        android:text=""
                         android:textAllCaps="true"
                         android:textColor="@color/text_black"
                         android:textColorHint="@color/light_kyc_text"

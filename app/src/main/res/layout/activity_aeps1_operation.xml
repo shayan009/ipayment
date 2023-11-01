@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="aeps1OperationClickListener"
+            type="com.onetechsol.ipayment.databinding.Aeps1OperationClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F7FB"
+        tools:context=".ui.screen.dashboard.DashboardActivity">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvBackDashBoard"
+            android:layout_width="@dimen/_60dp"
+            android:layout_height="@dimen/_60dp"
+            android:layout_marginTop="32dp"
+            android:clickable="true"
+            android:elevation="@dimen/_8dp"
+            android:focusable="true"
+            android:onClick="@{() -> aeps1OperationClickListener.goBack()}"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivBackPD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/baseline_arrow_back_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ivTitlePlan"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:gravity="center"
+            android:text="Aeps 1 "
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/mcvBackDashBoard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mcvBackDashBoard"
+            app:layout_constraintTop_toTopOf="@+id/mcvBackDashBoard" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ivTitlePlan"
+            app:layout_constraintStart_toStartOf="@+id/mcvBackDashBoard"
+            app:layout_constraintTop_toBottomOf="@+id/mcvBackDashBoard"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvBankName"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{() -> aeps1OperationClickListener.openBankList()}"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_13dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="#D8DDF1"
+                    app:strokeWidth="@dimen/_1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clBankName"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvBankNameLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/balsamiqsansregular"
+                                android:gravity="center"
+                                android:text="Bank Name"
+                                android:textColor="@color/light_kyc_text"
+                                android:textSize="@dimen/_13sp"
+                                android:visibility="visible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvBankNameText"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:backgroundTint="@color/float_transparent"
+                                android:fontFamily="@font/balsamiqsansregular"
+                                android:hint="State Bank Of India"
+                                android:overScrollMode="always"
+                                android:gravity="center_vertical"
+                                android:padding="@dimen/_5dp"
+                                android:paddingStart="@dimen/_18dp"
+                                android:selectAllOnFocus="true"
+                                android:textColor="@color/text_black"
+                                android:textColorHint="@color/light_kyc_text"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/tvBankNameLabel"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvMobileNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_13dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mcvBankName"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvBankName"
+                    app:strokeColor="#D8DDF1"
+                    app:strokeWidth="@dimen/_1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clMobileNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvMobileNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="Mobile"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etMobileNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:hint="8902416510"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvMobileNumber"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvAdharAeps"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_13dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mcvMobileNumber"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvMobileNumber"
+                    app:strokeColor="#D8DDF1"
+                    app:strokeWidth="@dimen/_1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clAdharAeps"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvAdharAepsLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/balsamiqsansregular"
+                                android:gravity="center"
+                                android:text="Adhar Card"
+                                android:textColor="@color/light_kyc_text"
+                                android:textSize="@dimen/_13sp"
+                                android:visibility="visible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etAdharNoAeps"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:backgroundTint="@color/float_transparent"
+                                android:fontFamily="@font/balsamiqsansregular"
+                                android:hint="3212-4575-6985"
+                                android:imeOptions="actionNext"
+                                android:inputType="phone"
+                                android:maxLength="14"
+                                android:overScrollMode="always"
+                                android:padding="@dimen/_5dp"
+                                android:paddingStart="@dimen/_18dp"
+                                android:scrollbarStyle="insideInset"
+                                android:scrollbars="vertical"
+                                android:selectAllOnFocus="true"
+                                android:textColor="@color/text_black"
+                                android:textColorHint="@color/light_kyc_text"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/tvAdharAepsLabel"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvDevices"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{() -> aeps1OperationClickListener.openDevice()}"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_13dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mcvAdharAeps"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvAdharAeps"
+                    app:strokeColor="#D8DDF1"
+                    app:strokeWidth="@dimen/_1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clDevices"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvDevicesLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/balsamiqsansregular"
+                                android:gravity="center"
+                                android:text="Device"
+                                android:textColor="@color/light_kyc_text"
+                                android:textSize="@dimen/_13sp"
+                                android:visibility="visible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvDevicesText"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:backgroundTint="@color/float_transparent"
+                                android:fontFamily="@font/balsamiqsansregular"
+                                android:gravity="center_vertical"
+                                android:hint="Mantra"
+                                android:padding="@dimen/_5dp"
+                                android:paddingStart="@dimen/_18dp"
+                                android:scrollbarStyle="insideInset"
+                                android:scrollbars="vertical"
+                                android:selectAllOnFocus="true"
+                                android:textColor="@color/text_black"
+                                android:textColorHint="@color/light_kyc_text"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/ivDeviceDrop"
+                                app:layout_constraintStart_toEndOf="@+id/tvDevicesLabel"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivDeviceDrop"
+                                android:layout_width="@dimen/_30dp"
+                                android:layout_height="@dimen/_30dp"
+                                android:src="@drawable/baseline_arrow_drop_down_purple"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+
+                <com.ramotion.foldingcell.FoldingCell
+                    android:id="@+id/foldingCell"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{() -> aeps1OperationClickListener.openMode()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mcvAdharAeps"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvDevices">
+
+                    <FrameLayout
+                        android:id="@+id/cell_content_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:visibility="gone">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_margin="@dimen/_5dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvDevices"
+                            app:singleSelection="true">
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipBalInfo"
+                                android:tag="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Balance Inquiry" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipWithdraw"
+                                android:tag="2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/balance_withdraw" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipMiniStatemnet"
+                                android:tag="3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/mini_statement" />
+                        </com.google.android.material.chip.ChipGroup>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/cell_title_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mcvOperations"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_50dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_13dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/mcvAdharAeps"
+                            app:layout_constraintTop_toBottomOf="@+id/mcvAdharAeps"
+                            app:strokeColor="#D8DDF1"
+                            app:strokeWidth="@dimen/_1dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/clOperations"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tvOperationsLabel"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="0dp"
+                                        android:layout_marginStart="16dp"
+                                        android:fontFamily="@font/balsamiqsansregular"
+                                        android:gravity="center"
+                                        android:text="Mode"
+                                        android:textColor="@color/light_kyc_text"
+                                        android:textSize="@dimen/_13sp"
+                                        android:visibility="visible"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintHorizontal_bias="0.0"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tvOperationsText"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:backgroundTint="@color/float_transparent"
+                                        android:fontFamily="@font/balsamiqsansregular"
+                                        android:gravity="center_vertical"
+                                        android:hint="Balance Withdrawal"
+                                        android:padding="@dimen/_5dp"
+                                        android:paddingStart="@dimen/_18dp"
+                                        android:scrollbarStyle="insideInset"
+                                        android:scrollbars="vertical"
+                                        android:selectAllOnFocus="true"
+                                        android:textColor="@color/text_black"
+                                        android:textColorHint="@color/light_kyc_text"
+                                        android:textSize="16sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/ivOperationsDrop"
+                                        app:layout_constraintStart_toEndOf="@+id/tvOperationsLabel"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/ivOperationsDrop"
+                                        android:layout_width="@dimen/_30dp"
+                                        android:layout_height="@dimen/_30dp"
+                                        android:src="@drawable/baseline_arrow_drop_down_purple"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </FrameLayout>
+                </com.ramotion.foldingcell.FoldingCell>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvWithdrawAmt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50dp"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_13dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mcvAdharAeps"
+                    app:layout_constraintTop_toBottomOf="@+id/foldingCell"
+                    app:strokeColor="#D8DDF1"
+                    app:strokeWidth="@dimen/_1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clWithdrawAmt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvWithdrawAmt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:gravity="center"
+                            android:text="Amount"
+                            android:textColor="@color/light_kyc_text"
+                            android:textSize="@dimen/_13sp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etWithdrawAmt"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/float_transparent"
+                            android:fontFamily="@font/balsamiqsansregular"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:overScrollMode="always"
+                            android:padding="@dimen/_5dp"
+                            android:text="0"
+                            android:paddingStart="@dimen/_18dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:selectAllOnFocus="true"
+                            android:textColor="@color/text_black"
+                            android:textColorHint="@color/light_kyc_text"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvWithdrawAmt"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btSubmit"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="@dimen/_110dp"
+                    android:layout_height="@dimen/_45dp"
+                    android:layout_marginTop="24dp"
+                    android:singleLine="true"
+                    android:text="Submit"
+                    android:onClick="@{() -> aeps1OperationClickListener.submitAepsOperation(tvBankNameText.getText().toString(),etMobileNumber.getText().toString(),etAdharNoAeps.getText().toString(),etWithdrawAmt.getText().toString())}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sp"
+                    app:backgroundTint="@color/colorPrimary_Deep"
+                    app:cornerRadius="@dimen/_18dp"
+                    app:elevation="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mcvAdharAeps"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvWithdrawAmt"
+                    app:strokeColor="@color/white" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

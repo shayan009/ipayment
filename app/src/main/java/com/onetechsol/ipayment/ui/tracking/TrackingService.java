@@ -14,6 +14,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -29,6 +30,7 @@ import com.google.android.gms.location.Priority;
 import com.onetechsol.ipayment.R;
 import com.onetechsol.ipayment.app.MainApp;
 import com.onetechsol.ipayment.data.locale.pref.PrefManager;
+import com.onetechsol.ipayment.pojo.ToastItem;
 import com.onetechsol.ipayment.ui.screen.home.HomeActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -137,6 +139,7 @@ public class TrackingService extends Service {
 
             mFusedLocationProviderClient.requestLocationUpdates(locationRequest.build(), location -> {
 
+                Toast.makeText(getApplicationContext(),"Current gps location: "+String.valueOf(location.getLatitude())+"-----"+String.valueOf(location.getLongitude()),Toast.LENGTH_SHORT).show();
                 prefManager.setCurrentLocation(location.getLatitude(), location.getLongitude());
 
 

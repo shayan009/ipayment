@@ -42,6 +42,7 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.SENDTO" />
+
             <data android:scheme="smsto" />
         </intent>
     </queries>
@@ -86,8 +87,15 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:overrideLibrary="com.amplifyframework.api.aws"
         tools:replace="android:theme">
-
-
+        <activity
+            android:name=".ui.screen.service.aeps.aeps1.Aeps1OperationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.screen.service.aeps.aeps1.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/AppTheme.Fullscreen" />
         <activity
             android:name=".ui.screen.customer.AddCustomerActivity"
             android:exported="false" />
@@ -142,15 +150,16 @@
             </intent-filter>
         </service>
 
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/logo" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />

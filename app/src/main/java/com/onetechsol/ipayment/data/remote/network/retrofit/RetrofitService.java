@@ -9,6 +9,8 @@ import com.onetechsol.ipayment.pojo.AddCustomerResponse;
 import com.onetechsol.ipayment.pojo.AepsBankModel;
 import com.onetechsol.ipayment.pojo.AppSetupRequest;
 import com.onetechsol.ipayment.pojo.AppSetupResponse;
+import com.onetechsol.ipayment.pojo.AuthAepsOpRequest;
+import com.onetechsol.ipayment.pojo.AuthAepsOpResponse;
 import com.onetechsol.ipayment.pojo.BeneficiaryBankModel;
 import com.onetechsol.ipayment.pojo.BuyInsuranceDetailRequest;
 import com.onetechsol.ipayment.pojo.BuyInsuranceDetailResponse;
@@ -322,6 +324,12 @@ public interface RetrofitService {
     @POST(ApiConstant.MATM_MICRO_ATM_RESPONSE_BE)
     @Headers("Content-Type: application/json")
     Observable<MatmMicroAmtFeedBackResponse> passMicroAtmResponseBE(@Body MatmMicroAmtFeedBackRequest matmServiceRequest);
+
+
+    @POST(ApiConstant.SERVICE_33_MAIN)
+    @Headers("Content-Type: application/json")
+    Observable<AuthAepsOpResponse> authenticateAepsOperation(@Body AuthAepsOpRequest authAepsOpRequest);
+
 
 
 }

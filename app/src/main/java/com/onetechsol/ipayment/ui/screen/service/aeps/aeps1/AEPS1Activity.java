@@ -35,7 +35,6 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
-
     private UsbManager mUsbManager;
     private UserLocation userLocation;
     private ServiceCategoryModel serviceCategoryModel;
@@ -60,7 +59,8 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
 
             mUsbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
 
-            startService33Onboarding();
+            viewBinding().setAeps1ClickListener(this);
+            //startService33Onboarding();
 
         }
 
@@ -188,6 +188,15 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
     public void goBack() {
 
         getOnBackPressedDispatcher().onBackPressed();
+
+    }
+
+    @Override
+    public void openBalEnquiry(int type) {
+
+        Intent intent = new Intent(this, Aeps1OperationActivity.class);
+        intent.putExtra("type",type);
+        startActivity(intent);
 
     }
 

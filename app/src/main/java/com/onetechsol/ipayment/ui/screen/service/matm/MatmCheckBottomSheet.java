@@ -114,9 +114,10 @@ public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCh
                             String fpId = data.getStringExtra(Constants.FP_TRANS_ID);
                             String transId = data.getStringExtra(Constants.TXN_ID);
 
+                            onShowLoading();
                             compositeDisposable().add(viewModel().passMicroAtmResponseBE(status, response, response, transAmount, balAmount, bankRrn, transType, type, cardNum, rrn, tType, bankName, cardType, terminalId, fpId, transId, referenceNumber)
                                     .subscribe(matmMicroAmtFeedBackResponse -> {
-
+onHideLoading();
                                         if (matmMicroAmtFeedBackResponse.status().equals("1") &
                                                 matmMicroAmtFeedBackResponse.txn_status().equals("1")) {
 
@@ -181,15 +182,16 @@ public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCh
 
     private void fetchMatmDetails(String amount, String mode) {
 
+        onShowLoading();
         compositeDisposable().add(viewModel().getMatmDetails(amount, mode)
                 .subscribe(matmServiceResponse -> {
 
+                    onHideLoading();
                     if (matmServiceResponse.status().equals("1")) {
 
                         referenceNumber = matmServiceResponse.data().referenceNumber();
 
                         callMicroAtm(matmServiceResponse.data());
-
 
                     } else {
                         showToastAlertDialog("Matm Balance info", matmServiceResponse.message(), false)
@@ -232,8 +234,10 @@ public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCh
         // this SUPER_MERCHANT_ID be given by FingPay to you, only that value need to sent from App to SDK
 
         intent.putExtra(Constants.IMEI, "1234");
-        Double lat = Double.valueOf(data.latitude());
-        Double lng = Double.valueOf(data.longitude());
+        String latitude = viewModel().prefManager().getCurrentLocation().latitude();
+        String longitude = viewModel().prefManager().getCurrentLocation().longitude();
+        Double lat = Double.valueOf(latitude);
+        Double lng = Double.valueOf(longitude);
         //double lat = 17.4442015, lng = 78.4808421;  // get current location and send these values
         intent.putExtra(Constants.LATITUDE, lat);
         intent.putExtra(Constants.LONGITUDE, lng);

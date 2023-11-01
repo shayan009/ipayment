@@ -10,7 +10,7 @@ public class AepsBankModel {
     @Expose
     private String value;
 
-    @SerializedName("name")
+    @SerializedName("label")
     @Expose
     private String name;
 

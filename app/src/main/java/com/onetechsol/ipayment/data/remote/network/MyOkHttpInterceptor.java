@@ -130,7 +130,8 @@ public class MyOkHttpInterceptor implements Interceptor {
                         TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.CUSTOMER_TO_MERCHANT, path) ||
                         TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.CUSTOMER_UPGRADE_INFO, path) ||
                         TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.MATM_BALANCE_CHECK_WITHDRAW, path) ||
-                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.MATM_MICRO_ATM_RESPONSE_BE, path)
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.MATM_MICRO_ATM_RESPONSE_BE, path) ||
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.SERVICE_33_MAIN, path)
 
         ) {
 
