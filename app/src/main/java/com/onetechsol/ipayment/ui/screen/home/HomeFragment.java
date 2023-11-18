@@ -2,6 +2,7 @@ package com.onetechsol.ipayment.ui.screen.home;
 
 import static com.onetechsol.ipayment.utils.ApiConstant.BASE_URL_IMAGE_SERVICE;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.net.Uri;
@@ -16,6 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
@@ -76,6 +80,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel, FragmentHo
     private Disposable subscribe1;
     private FundTransferBottomSheet fundTransferBottomSheet;
     private BalanceRequestBottomSheet balanceRequestBottomSheet;
+    private ServiceAdapter serviceAdapter;
     //private ActivityResultLauncher<Intent> pweActivityResultLauncher;
 
 
@@ -83,10 +88,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel, FragmentHo
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance(ArrayList<ServiceModel> serviceListResponse) {
+    public static HomeFragment newInstance() {
 
         Bundle args = new Bundle();
-        args.putParcelableArrayList(Constant.SERVICE_LIST, serviceListResponse);
         HomeFragment fragment = new HomeFragment();
         fragment.setArguments(args);
         return fragment;
@@ -119,7 +123,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel, FragmentHo
 
         if (userSession != null) {
 
-            ServiceAdapter serviceAdapter = new ServiceAdapter();
+            serviceAdapter = new ServiceAdapter();
 
             String bearerAuth = "Bearer " + viewModel().prefManager().getLoginToken();
             String userName = viewModel().prefManager().getUsername();
@@ -127,64 +131,31 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel, FragmentHo
             viewBinding().tvTitle.setText(viewModel().prefManager().getUserSession().loginName());
             viewBinding().tvLocation.setText(viewModel().prefManager().getUserSession().address());
 
-           /* pweActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    Intent data = result.getData();
-                    if (data != null) {
-                        String payment_result = data.getStringExtra("result");
-                        String payment_response = data.getStringExtra("payment_response");
-                        try {
-                            // Handle response here
-                            Log.d("result",payment_result);
-                            Log.d("payment_response",payment_response);
-
-                        }catch (Exception e){
-                            // Handle exception here
-                        }
-                    }
-                }
-            });*/
-
-
-            ArrayList<ServiceModel> serviceModelList = requireArguments().getParcelableArrayList(Constant.SERVICE_LIST);
-
-            Log.d("serviceModelList", String.valueOf(serviceModelList.size()));
-
-
-            serviceAdapter.setItems(serviceModelList);
-
-            serviceAdapter.setCallback(serviceModel -> {
-
-                Log.d("serviceModel.HomeClick", serviceModel.toString());
-
-                ServiceFragment serviceFragment = ServiceFragment.newInstance(serviceModelList, serviceModel.id());
-                onAttachFragment(R.id.frameLayout, serviceFragment, ServiceFragment.class.getName(), true);
-            });
+            getServiceList();
 
             setWalletDetails(bearerAuth, userName);
 
             viewBinding().rvServices.setAdapter(serviceAdapter);
 
 
-            List<AcademyItem> academyItems = new ArrayList<>();
+           /* List<AcademyItem> academyItems = new ArrayList<>();
             academyItems.add(new AcademyItem(1, "First step to sell Insurance", "Insurance", "09 Feb, 09:00AM"));
             academyItems.add(new AcademyItem(2, "Learn how to earn 1 Lakh/Month", "Onboarding", "09 Feb, 09:00AM"));
 
             AcademyAdapter academyAdapter = new AcademyAdapter();
             academyAdapter.setAcademyItemList(academyItems);
-            viewBinding().setAcademyAdapter(academyAdapter);
+            viewBinding().setAcademyAdapter(academyAdapter);*/
 
 
-            List<ImageSliderItem> imageSliderItems = new ArrayList<>();
+           /* List<ImageSliderItem> imageSliderItems = new ArrayList<>();
             imageSliderItems.add(new ImageSliderItem(1, "https://fastly.picsum.photos/id/273/200/200.jpg?hmac=q1g4PnYVQHWkGBWnLmy3VaiQHuPGrZXnpZK986TwkFg"));
             imageSliderItems.add(new ImageSliderItem(2, "https://fastly.picsum.photos/id/273/200/200.jpg?hmac=q1g4PnYVQHWkGBWnLmy3VaiQHuPGrZXnpZK986TwkFg"));
 
             ScreenSlidePagerAdapter screenSlidePagerAdapter = new ScreenSlidePagerAdapter(requireActivity());
-            screenSlidePagerAdapter.setImageSliderItems(imageSliderItems);
+            screenSlidePagerAdapter.setImageSliderItems(imageSliderItems);*/
 
 
-            viewBinding().viewPager2.setAdapter(screenSlidePagerAdapter);
+            /*viewBinding().viewPager2.setAdapter(screenSlidePagerAdapter);
             TabLayout tabLayout = viewBinding().tabLayout;
             ViewPager2 viewPager2 = viewBinding().viewPager2;
 
@@ -209,7 +180,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel, FragmentHo
             GromoReviewAdapter gromoReviewAdapter = new GromoReviewAdapter();
             gromoReviewAdapter.setReviewItemList(reviewItemList);
             viewBinding().setGromoReviewAdapter(gromoReviewAdapter);
-
+*/
 
             // viewBinding().rvSellEarn.setLayoutManager(new GridLayoutManager(getContext(), 4, LinearLayoutManager.VERTICAL, false));
 
@@ -222,73 +193,75 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel, FragmentHo
 
         }
 
-
     }
 
-    private void getAffiliateAPi() {
-        onShowLoading();
-        compositeDisposable().add(viewModel().getDepartmentList()
-                .subscribe(getDepartmentListResponse -> {
+    private void getServiceList() {
+
+        compositeDisposable().add(viewModel().getServiceList()
+                .subscribe(serviceListResponse -> {
                     onHideLoading();
 
-                    List<DepartmentModel> departmentModels = getDepartmentListResponse.data().departmentList();
+                    ArrayList<ServiceModel> serviceModelList = serviceListResponse.serviceModelList();
 
-                    departmentModels.forEach(departmentModel -> {
+                    if (serviceListResponse.status().equals("1")) {
 
-                        List<AffiliateModel> affiliateServiceList = departmentModel.affiliateModels();
-                        List<SellEarnModel> sellEarnModelList = new ArrayList<>();
 
-                        affiliateServiceList.forEach(sellEarn -> {
-                            sellEarnModelList.add(new SellEarnModel(sellEarn.id(), sellEarn.label(), 0, BASE_URL_IMAGE_SERVICE + sellEarn.img(), 12, SellEarnType.get(sellEarn.id())));
+                        Log.d("serviceModelList", String.valueOf(serviceModelList.size()));
+
+
+                        serviceAdapter.setItems(serviceModelList);
+
+                        serviceAdapter.setCallback(serviceModel -> {
+
+                            Log.d("serviceModel.HomeClick", serviceModel.toString());
+
+                            ServiceFragment serviceFragment = ServiceFragment.newInstance(serviceModelList, serviceModel.id());
+                            onAttachFragment(R.id.frameLayout, serviceFragment, ServiceFragment.class.getName(), true);
                         });
 
-                        sellEarnModelList.sort(Comparator.comparing(SellEarnModel::id));
+                    } else if (serviceListResponse.status().equals("0")) {
+                        showAlertDialog("Service alert!", serviceListResponse.message(), true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                        departmentModel.setSellEarnModels(sellEarnModelList);
+                                dialogInterface.dismiss();
 
-                        AffiliateDepartmentAdapter affiliateDepartmentAdapter = new AffiliateDepartmentAdapter();
-                        affiliateDepartmentAdapter.setItems(departmentModels);
-                        viewBinding().setAffiliateDepartmentAdapter(affiliateDepartmentAdapter);
-
-
-                    });
+                            }
+                        }).show();
+                    }
 
 
                 }, throwable -> {
                     onHideLoading();
+                    showAlertDialog("Error alert!", throwable.getMessage(), true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                            dialogInterface.dismiss();
+
+                        }
+                    }).show();
+                }));
+    }
+
+    private void getAffiliateAPi() {
+
+        viewBinding().shimmerAffiliateServices.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
+        AffiliateDepartmentAdapter affiliateDepartmentAdapter = new AffiliateDepartmentAdapter();
+        viewBinding().shimmerAffiliateServices.setAdapter(affiliateDepartmentAdapter);
+        viewBinding().shimmerAffiliateServices.showShimmerAdapter();
+
+        compositeDisposable().add(viewModel().getDepartmentList()
+                .subscribe(getDepartmentListResponse -> {
+
+                    affiliateDepartmentAdapter.setItems(getDepartmentListResponse.data.departmentList());
+                    viewBinding().shimmerAffiliateServices.hideShimmerAdapter();
+                }, throwable -> {
+                    viewBinding().shimmerAffiliateServices.hideShimmerAdapter();
                 })
         );
 
-       /* compositeDisposable().add(viewModel().getAffiliateServiceList()
-                .subscribe(response -> {
-
-
-                            List<AffiliateService> affiliateServiceList = response.data().affiliateServiceList();
-                            homeItemList = new ArrayList<>();
-                            affiliateServiceList.forEach(sellEarn -> {
-                                homeItemList.add(new SellEarnModel(sellEarn.id(), sellEarn.label(), 0, BASE_URL_IMAGE_SERVICE + sellEarn.img(), 12, SellEarnType.get(sellEarn.id())));
-                            });
-                            homeItemList.sort(Comparator.comparing(SellEarnModel::id));
-
-                            Log.d("homeItemList", homeItemList.toString());
-
-                            List<SellEarnModel> sellEarnModels = new ArrayList<>();
-                            homeItemList.forEach(sellEarnModel -> {
-
-                                if (sellEarnModel.sellEarnType() == SellEarnType.CREDIT_CARD || sellEarnModel.sellEarnType() == SellEarnType.DEMAT_ACC || sellEarnModel.sellEarnType() == SellEarnType.INVESTMENT || sellEarnModel.sellEarnType() == SellEarnType.SAVINGS_ACC)
-                                    sellEarnModels.add(sellEarnModel);
-                            });
-
-                            HomeSellEarnAdapter homeSellEarnAdapter = new HomeSellEarnAdapter();
-                            homeSellEarnAdapter.setItems(sellEarnModels);
-                            viewBinding().setHomeSellEarnAdapter(homeSellEarnAdapter);
-
-                            onHideLoading();
-                        },
-                        error -> {
-                            onHideLoading();
-                            Log.e("MyAmplifyApp", "Query failure", error);
-                        }));*/
     }
 
     private void setWalletDetails(String bearerAuth, String userName) {
@@ -315,6 +288,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel, FragmentHo
                 viewBinding().tvTotalBalance.setText(walletListResponse.data().totalWalet());
                 fundTransferBottomSheet = new FundTransferBottomSheet();
                 fundTransferBottomSheet.setRetailerStatus(walletListResponse.data().retailerStatus());
+
                 balanceRequestBottomSheet = new BalanceRequestBottomSheet();
 
                 prefManager.setUpgradeAmount(walletListResponse.data().learnerAmt());
@@ -373,7 +347,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel, FragmentHo
 
     @Override
     public void openDiary(View view) {
-        startActivity(new Intent(getActivity(), GromoDiaryActivity.class));
+        //startActivity(new Intent(getActivity(), GromoDiaryActivity.class));
     }
 
     @Override
@@ -393,10 +367,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel, FragmentHo
 
     @Override
     public void openServices() {
-        Intent intent = new Intent(getActivity(), HomeActivity.class);
-        intent.putExtra("pos", 2);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        Intent intent = new Intent("seeMoreService");
+        LocalBroadcastManager.getInstance(requireActivity()).sendBroadcast(intent);
 
     }
 

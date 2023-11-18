@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -33,6 +35,11 @@ public abstract class CurvedBottomSheetDialogFragment<VB extends ViewDataBinding
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private VB viewBinding = null;
     private VM viewModel = null;
+    private BottomSheetDialog bottomSheetDialog;
+
+    public BottomSheetDialog getBottomSheetDialog() {
+        return bottomSheetDialog;
+    }
 
     @Override
     public int getTheme() {
@@ -55,7 +62,19 @@ public abstract class CurvedBottomSheetDialogFragment<VB extends ViewDataBinding
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return new BottomSheetDialog(requireContext(), getTheme());
+        bottomSheetDialog = new BottomSheetDialog(requireContext(), getTheme());
+        bottomSheetDialog.getBehavior().addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                Toast.makeText(getContext(), "new state" + newState, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+        return bottomSheetDialog;
     }
 
     @Nullable
@@ -65,7 +84,6 @@ public abstract class CurvedBottomSheetDialogFragment<VB extends ViewDataBinding
         viewModel = setUpViewModel(new ViewModelProvider(this));
         viewBinding = setupViewBinding(inflater, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        setProgressDialog(viewBinding.getRoot().getContext());
         return viewBinding.getRoot();
 
     }

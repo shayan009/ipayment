@@ -3,6 +3,7 @@ package com.onetechsol.ipayment.ui.screen.customer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -145,44 +146,44 @@ public class AddCustomerActivity extends BaseActivity<AddCustomerViewModel, Acti
     public void addCustomer(String name, String email, String mobile, String age, String pinCode) {
 
         if (StringUtils.isEmpty(name)) {
-            //Toast.makeText(this, "Please enter customer's name", //Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter customer's name", Toast.LENGTH_SHORT).show();
             return;
         }
 
 
         if (StringUtils.isEmpty(email)) {
-            //Toast.makeText(this, "Please enter customer's email", //Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter customer's email", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (StringUtils.isEmpty(mobile)) {
-            //Toast.makeText(this, "Please enter customer's mobile", //Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter customer's mobile", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (StringUtils.isEmpty(age)) {
-            //Toast.makeText(this, "Please enter customer's age", //Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter customer's age", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (StringUtils.isEmpty(pinCode)) {
-            //Toast.makeText(this, "Please enter customer's pinCode", //Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter customer's pinCode", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (StringUtils.isEmpty(employmentType)) {
-            //Toast.makeText(this, "Please enter customer's employment type", //Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter customer's employment type", Toast.LENGTH_SHORT).show();
             return;
         }
 
 
         if (StringUtils.isEmpty(incomeRange)) {
-            //Toast.makeText(this, "Please enter customer's income range", //Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter customer's income range", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (StringUtils.isEmpty(hasCC)) {
-            //Toast.makeText(this, "Please verify if customer has existing credit card or not", //Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please verify if customer has existing credit card or not", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -202,6 +203,7 @@ public class AddCustomerActivity extends BaseActivity<AddCustomerViewModel, Acti
                                     shareWithCustomerBottomSheet.setMobileNumber(mobile);
                                     shareWithCustomerBottomSheet.setUrl(addCustomerResponse.reloadUrl());
                                     shareWithCustomerBottomSheet.show(getSupportFragmentManager(), ShareWithCustomerBottomSheet.class.getName());
+
                                 }).show();
                     } else {
                         showAlertDialog("Add Customer", addCustomerResponse.message(), true)

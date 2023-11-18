@@ -28,7 +28,7 @@
             app:layout_constraintEnd_toStartOf="@+id/mcvReceipt"
             app:layout_constraintStart_toStartOf="@+id/mcvReceipt"
             app:layout_constraintTop_toTopOf="@+id/mcvReceipt"
-            app:layout_constraintVertical_bias="0.66999996"
+            app:layout_constraintVertical_bias="0.57"
             app:strokeWidth="0dp" />
 
         <com.google.android.material.card.MaterialCardView
@@ -53,10 +53,9 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivSuccessFailed"
-                    android:layout_width="@dimen/_50dp"
-                    android:layout_height="@dimen/_50dp"
-                    android:layout_marginTop="24dp"
-                    android:src="@drawable/ic_success"
+                    android:layout_width="@dimen/_40dp"
+                    android:layout_height="@dimen/_40dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -71,31 +70,112 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="Matm Withdrawal Successfull"
+                    android:text=""
                     android:textColor="@color/text_black"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:fontFamily="@font/balsamiqsansbolditalic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ivSuccessFailed" />
 
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvBankInfoLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="Bank Name "
+                    android:textColor="#AFC0C7"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvSubTitleUpgrade"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSubTitleUpgrade" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvBankInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text=""
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvBankInfoLabel"
+                    app:layout_constraintEnd_toEndOf="@+id/tvSubTitleUpgrade"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/tvBankInfoLabel"
+                    app:layout_constraintTop_toTopOf="@+id/tvBankInfoLabel" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAmountLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="Amount  "
+                    android:textColor="#AFC0C7"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvSubTitleUpgrade"
+                    app:layout_constraintTop_toBottomOf="@+id/tvBankInfoLabel" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text=""
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvAmountLabel"
+                    app:layout_constraintEnd_toEndOf="@+id/tvSubTitleUpgrade"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/tvAmountLabel"
+                    app:layout_constraintTop_toTopOf="@+id/tvAmountLabel" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTxnInfoLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text="Transaction No  "
+                    android:textColor="#AFC0C7"
+                    android:textSize="@dimen/_14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvSubTitleUpgrade"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAmountLabel" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTxnInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/balsamiqsansregular"
+                    android:text=""
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/_15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvTxnInfoLabel"
+                    app:layout_constraintEnd_toEndOf="@+id/tvSubTitleUpgrade"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/tvTxnInfoLabel"
+                    app:layout_constraintTop_toTopOf="@+id/tvTxnInfoLabel" />
+
+
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/dividerReceipt"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_1dp"
+                    android:layout_marginTop="24dp"
                     android:background="#DDDDDD"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvTxnInfoLabel" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvAmountLabel"
+                    android:id="@+id/tvBalanceLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/balsamiqsansregular"
-                    android:text="Total amount"
+                    android:text="Balance"
                     android:textColor="@color/dark_grey"
                     android:textSize="@dimen/_13sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -103,17 +183,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/dividerReceipt" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvAmount"
+                    android:id="@+id/tvBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/balsamiqsansbold"
-                    android:text="$40.00"
+                    android:text=""
                     android:textColor="@color/text_black"
                     android:textSize="@dimen/_16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvAmountLabel" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvBalanceLabel" />
 
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -125,7 +205,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.3"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvAmount" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvBalance" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvPrint"
@@ -184,7 +264,7 @@
             app:layout_constraintEnd_toEndOf="@+id/mcvReceipt"
             app:layout_constraintStart_toEndOf="@+id/mcvReceipt"
             app:layout_constraintTop_toTopOf="@+id/mcvReceipt"
-            app:layout_constraintVertical_bias="0.65999997"
+            app:layout_constraintVertical_bias="0.57"
             app:strokeWidth="0dp" />
 
         <androidx.appcompat.widget.AppCompatTextView

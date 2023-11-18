@@ -25,6 +25,8 @@ import com.onetechsol.ipayment.pojo.AepsRequestDto;
 import com.onetechsol.ipayment.pojo.Kyc18OtpUIData;
 import com.onetechsol.ipayment.pojo.Opts;
 import com.onetechsol.ipayment.pojo.PidOptions;
+import com.onetechsol.ipayment.pojo.ServiceCategoryType;
+import com.onetechsol.ipayment.ui.screen.service.aeps.aeps1.DialogAepsReport;
 import com.onetechsol.ipayment.ui.screen.service.matm.DialogMatmReport;
 import com.onetechsol.ipayment.widgets.CurvedBottomSheetDialogFragment;
 
@@ -37,11 +39,13 @@ import java.net.URLEncoder;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<FingerPrintSheetBinding, FingerPrintVideModel> implements FingerPrintClickListener, DialogMatmReport.DialogCallback {
+public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<FingerPrintSheetBinding, FingerPrintVideModel> implements FingerPrintClickListener, DialogMatmReport.DialogCallback, DialogAepsReport.DialogCallback {
 
     private ActivityResultLauncher<Intent> firgerCaptureResult;
     private OnClickListener onClickListener;
     private ActivityResultLauncher<Intent> twoFactorAuth;
+
+    private String categoryId = "";
 
     public OnClickListener getOnClickListener() {
         return onClickListener;
@@ -51,6 +55,13 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
         this.onClickListener = onClickListener;
     }
 
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
     private AepsRequestDto aepsRequestDto;
     private String step;
@@ -81,7 +92,6 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -123,50 +133,39 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
 
     private void setAepsOpCaptcha(String pidData) {
 
+
+        Toast.makeText(getContext(), "setAepsOpCaptcha.pidData :" + pidData, Toast.LENGTH_SHORT).show();
+        String urlenco = null;
         try {
-
-            Toast.makeText(getContext(), "setAepsOpCaptcha.pidData :" + pidData, Toast.LENGTH_SHORT).show();
-
-            String urlenco = URLEncoder.encode(pidData, "utf-8");
-
-            showToastAlertDialog("Capture Successfull", urlenco, false).setOnClickListener(() -> {
-                onShowLoading();
-
-                compositeDisposable().add(viewModel().authenticateAepsOperation(urlenco, aepsRequestDto.getAmount(), aepsRequestDto.getMobileNo(), aepsRequestDto.getAdhar(), aepsRequestDto.getBankName(), aepsRequestDto.getType())
-                        .subscribe(authAepsOpResponse -> {
-
-                            onHideLoading();
-
-                            if (authAepsOpResponse.status().equals("1") && authAepsOpResponse.getTxnStatus().equals("1")) {
-
-                                showToastAlertDialog("Capture Success", authAepsOpResponse.message(), false)
-                                        .setOnClickListener(() -> {
-
-                                            this.dismiss();
-
-                                            DialogMatmReport dialogMatmReport = new DialogMatmReport();
-                                            dialogMatmReport.setDialogCallback(this);
-                                            dialogMatmReport.show(getParentFragmentManager(), DialogMatmReport.class.getName());
-
-                                        })
-                                        .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
-
-                            } else {
-                                showToastAlertDialog("Capture failed", authAepsOpResponse.message(), false)
-                                        .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
-                            }
-
-                        }, throwable -> {
-                            onHideLoading();
-                            showToastAlertDialog("Capture Error", throwable.getMessage(), false)
-                                    .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
-                        }));
-            }).show(getParentFragmentManager(), "setCaptcha");
-
+            urlenco = URLEncoder.encode(pidData, "utf-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
 
+        onShowLoading();
+        compositeDisposable().add(viewModel().authenticateAepsOperation(urlenco, aepsRequestDto.getAmount(), aepsRequestDto.getMobileNo(), aepsRequestDto.getAdhar(), aepsRequestDto.getBankName(), aepsRequestDto.getType())
+                .subscribe(authAepsOpResponse -> {
+
+                    onHideLoading();
+
+                    if (authAepsOpResponse.status().equals("1") && authAepsOpResponse.getTxnStatus().equals("1")) {
+
+                        DialogAepsReport dialogAepsReport = new DialogAepsReport();
+                        dialogAepsReport.setAuthAepsOpResponse(authAepsOpResponse);
+                        dialogAepsReport.setAepsRequestDto(aepsRequestDto);
+                        dialogAepsReport.setDialogCallback(this);
+                        dialogAepsReport.show(getParentFragmentManager(), DialogMatmReport.class.getName());
+
+                    } else {
+                        showToastAlertDialog("Capture failed", authAepsOpResponse.message(), false)
+                                .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+                    }
+
+                }, throwable -> {
+                    onHideLoading();
+                    showToastAlertDialog("Capture Error", throwable.getMessage(), false)
+                            .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+                }));
     }
 
     private void setCaptcha(String pidData) {
@@ -176,35 +175,73 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
 
             String urlenco = URLEncoder.encode(pidData, "utf-8");
 
-            showToastAlertDialog("Capture Successfull", urlenco, false).setOnClickListener(() -> {
-                onShowLoading();
 
-                compositeDisposable().add(viewModel().startKyc18(step, urlenco).subscribe(startKyc18Response -> {
+            //  if (ServiceCategoryType.valueOf(categoryId) == ServiceCategoryType.AEPS_1) {
+            callAeps1kyc18APi(urlenco);
+           /* } else if (ServiceCategoryType.valueOf(categoryId) == ServiceCategoryType.AEPS_2) {
+                callAeps2kyc12APi(urlenco);
+            }*/
 
-                    onHideLoading();
-
-                    if (startKyc18Response.status().equals("1") && startKyc18Response.txnStatus().equals("1")) {
-
-                        showToastAlertDialog("Capture Success", startKyc18Response.message(), false)
-                                .setOnClickListener(() -> {
-                                    dismiss();
-                                    onClickListener.hitOnBoardingCk();
-                                })
-                                .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
-
-                    } else {
-                        showToastAlertDialog("Capture failed", startKyc18Response.message(), false)
-                                .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
-                    }
-
-                }, throwable -> {
-                    onHideLoading();
-                }));
-            }).show(getParentFragmentManager(), "setCaptcha");
 
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    private void callAeps2kyc12APi(String urlenco) {
+
+
+        onShowLoading();
+        compositeDisposable().add(viewModel().startKyc12(step, urlenco).subscribe(startKyc12Response -> {
+
+            onHideLoading();
+
+            if (startKyc12Response.status().equals("1") && startKyc12Response.getTxnStatus().equals("1")) {
+
+                showToastAlertDialog("Capture Success", startKyc12Response.message(), false)
+                        .setOnClickListener(() -> {
+                            dismiss();
+                            onClickListener.hitOnBoardingCk();
+                        })
+                        .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+
+            } else {
+                showToastAlertDialog("Capture failed", startKyc12Response.message(), false)
+                        .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+            }
+
+        }, throwable -> {
+            onHideLoading();
+        }));
+
+    }
+
+    private void callAeps1kyc18APi(String urlenco) {
+
+        onShowLoading();
+        compositeDisposable().add(viewModel().startKyc18(step, urlenco).subscribe(startKyc18Response -> {
+            onHideLoading();
+
+            if (startKyc18Response.status().equals("1") && startKyc18Response.txnStatus().equals("1")) {
+
+                showToastAlertDialog("Two factor Authentication", startKyc18Response.message(), false)
+                        .setOnClickListener(() -> {
+                            dismiss();
+                            onClickListener.hitOnBoardingCk();
+                        })
+                        .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+
+            } else {
+                showToastAlertDialog("Two factor Authentication failed", startKyc18Response.message(), false)
+                        .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+            }
+
+        }, throwable -> {
+            onHideLoading();
+            showToastAlertDialog("Two factor Authentication Error", throwable.getMessage(), false)
+                    .show(requireActivity().getSupportFragmentManager(), "ShowToastAlert");
+        }));
 
     }
 
@@ -216,18 +253,27 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
     @Override
     public void closeBottomSheet() {
         dismiss();
-        onClickListener.dismiss();
-
     }
 
     @Override
     public void captureFingerPrint() {
         try {
-            String pidOption = getPIDOptions("2.0", "1000", "E0jzJ/P8UopUHAieZn8CKqS4WPMi5ZSYXgfnlfkWjrc=");
 
-            if (step.equals("4") || step.equals("5")) {
-                pidOption = getPIDOptions("2.0", "1000", "");
+            String pidOption = "";
+
+            //if (ServiceCategoryType.valueOf(categoryId) == ServiceCategoryType.AEPS_1) {
+
+                pidOption = getPIDOptions("2.0", "1000", "E0jzJ/P8UopUHAieZn8CKqS4WPMi5ZSYXgfnlfkWjrc=");
+
+                if (step.equals("4") || step.equals("5")) {
+                    pidOption = getPIDOptions("2.0", "1000", "");
+                }
+/*
+
+            } else if (ServiceCategoryType.valueOf(categoryId) == ServiceCategoryType.AEPS_2) {
+                pidOption = "<PidOptions ver=\"1.0\"> <Opts fCount=\"1\" fType=\"2\" iCount=\"0\" pCount=\"0\" format=\"0\" pidVer=\"2.0\" timeout=\"20000\" posh=\"UNKNOWN\" env=\"P\" wadh=\"\"/> <CustOpts><Param name=\"UNKNOWN\" value=\"\" /></CustOpts> </PidOptions>";
             }
+*/
 
             if (pidOption != null) {
                 Log.e("PidOptions", pidOption);
@@ -249,6 +295,12 @@ public class FingerPrintBottomSheet extends CurvedBottomSheetDialogFragment<Fing
 
     @Override
     public void downloadReceipt() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 

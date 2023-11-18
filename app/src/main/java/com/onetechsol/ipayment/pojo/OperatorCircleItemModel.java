@@ -42,6 +42,10 @@ public class OperatorCircleItemModel {
         return searchHint;
     }
 
+    public void setOpCircleItemDtoList(List<OpCircleItemDto> opCircleItemDtoList) {
+        this.opCircleItemDtoList = opCircleItemDtoList;
+    }
+
     public List<OpCircleItemDto> opCircleItemDtoList() {
         return opCircleItemDtoList;
     }

@@ -2,6 +2,8 @@ package com.onetechsol.ipayment.ui.screen.fingerprint;
 
 import com.onetechsol.ipayment.pojo.AuthAepsOpRequest;
 import com.onetechsol.ipayment.pojo.AuthAepsOpResponse;
+import com.onetechsol.ipayment.pojo.StartKyc12Request;
+import com.onetechsol.ipayment.pojo.StartKyc12Response;
 import com.onetechsol.ipayment.pojo.StartKyc18Request;
 import com.onetechsol.ipayment.pojo.StartKyc18Response;
 import com.onetechsol.ipayment.ui.basefiles.BaseViewModel;
@@ -22,6 +24,19 @@ public class FingerPrintVideModel extends BaseViewModel {
         return iModelRepository().startKyc18(startKyc18Request)
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    public Observable<StartKyc12Response> startKyc12(String step, String urlenco) {
+
+        String latitude = prefManager().getCurrentLocation().latitude();
+        String longitude = prefManager().getCurrentLocation().longitude();
+
+        StartKyc12Request startKyc12Request = new StartKyc12Request(urlenco,latitude,longitude,step);
+
+
+        return iModelRepository().startKyc12(startKyc12Request)
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
 
 
     public Observable<AuthAepsOpResponse> authenticateAepsOperation(String capture, String amt, String mobile, String aadhar, String bank, int mode) {

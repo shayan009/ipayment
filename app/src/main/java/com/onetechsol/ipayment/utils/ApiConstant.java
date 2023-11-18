@@ -55,6 +55,7 @@ public interface ApiConstant {
     String SERVICE_23_4 = "service_23_4";
 
     String SERVICE_23_CHARGE = "service_23_charge";
+    String SERVICE_24_CHARGE = "service_24_charge";
     String SERVICE_23_BENEFETCH = "service_23_benefetch";
 
     String SERVICE_23_BALK_LIST = "dmt_12_bank_autocomplete";
@@ -84,9 +85,14 @@ public interface ApiConstant {
     String MATM_MICRO_ATM_RESPONSE_BE = "service_73_response";
 
     String SERVICE_33_MAIN= "service_33";
+    String PAYOUT_VIEW_BANK_DETAIL= "view-settlement-bank-details-view";
+    String PAYOUT_SERVICE_CHECK= "service_24_check";
+    String PAYOUT_SUBMIT= "service_24";
     String TRANSFER_WALLET = "wallet_management";
 
     String FUND_REQUEST_CHECK = "fund_request_check";
+    String PAYOUT_BANK_LIST = "payout_6_bank_autocomplete";
+    String PAYOUT_BANK_CREATE = "service_24_bank_create";
 
     String FUND_REQUEST_CHECK_DETAILS = "fund_request_check_details";
     String FUND_REQUEST = "fund_request";
@@ -100,6 +106,9 @@ public interface ApiConstant {
     String SERVICE_CUS_CAT_LIST = "service_customer_category_list";
     String SERVICE_CUS_EXT_LIST = "service_customer_external_list";
     String SERVICE_CUS_EXT_SINGLE = "service_customer_external_single";
+    String CHANGE_TPIN = "change_tpin";
+    String CHANGE_PASS = "change_password";
+    String SERVICE_EXTERNAL = "service_external_single";
 
 
 }

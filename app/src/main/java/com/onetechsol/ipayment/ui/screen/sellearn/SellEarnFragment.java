@@ -1,5 +1,7 @@
 package com.onetechsol.ipayment.ui.screen.sellearn;
 
+import static com.onetechsol.ipayment.utils.ApiConstant.BASE_URL_IMAGE_SERVICE;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,23 +21,50 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.onetechsol.ipayment.R;
 import com.onetechsol.ipayment.databinding.FragmentSellEarnBinding;
 import com.onetechsol.ipayment.databinding.SellEarnClickListener;
+import com.onetechsol.ipayment.databinding.ServiceFragClickListener;
+import com.onetechsol.ipayment.pojo.AffiliateModel;
+import com.onetechsol.ipayment.pojo.DepartmentModel;
+import com.onetechsol.ipayment.pojo.RecommendedProductItem;
+import com.onetechsol.ipayment.pojo.SellEarnModel;
+import com.onetechsol.ipayment.pojo.SellEarnType;
+import com.onetechsol.ipayment.pojo.ServiceModel;
+import com.onetechsol.ipayment.ui.adapter.AffiliateDepartmentAdapter;
+import com.onetechsol.ipayment.ui.adapter.RecommendedProductAdapter;
 import com.onetechsol.ipayment.ui.adapter.SellEarnViewPagerAdapter;
+import com.onetechsol.ipayment.ui.adapter.SideMenuListAdapter;
 import com.onetechsol.ipayment.ui.basefiles.BaseFragment;
 import com.onetechsol.ipayment.ui.screen.dashboard.DashboardActivity;
+import com.onetechsol.ipayment.utils.Constant;
+import com.onetechsol.ipayment.utils.Utilities;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
+
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class SellEarnFragment extends BaseFragment<SellEarnViewModel, FragmentSellEarnBinding> implements SellEarnClickListener {
+public class SellEarnFragment extends BaseFragment<SellEarnViewModel, FragmentSellEarnBinding> implements SellEarnClickListener, ServiceFragClickListener {
 
 
     private Disposable subscribe;
-
+    private int position;
+    String colorSelected = "#292929";
+    String colorUnSelected = "#BAC0C6";
 
     public SellEarnFragment() {
     }
 
+    public static SellEarnFragment newInstance(int position) {
+
+        Bundle args = new Bundle();
+        args.putInt("pos",position);
+        SellEarnFragment fragment = new SellEarnFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public int getLayoutRes() {
@@ -49,50 +78,35 @@ public class SellEarnFragment extends BaseFragment<SellEarnViewModel, FragmentSe
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(requireArguments() != null) {
+            position = requireArguments().getInt("pos", 0);
+        }
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
         viewBinding().setSellEarnClickListener(this);
 
-        //RecommendedProductAdapter recommendedProductAdapter = new RecommendedProductAdapter();
-        //viewBinding().setRecommendedProductAdapter(recommendedProductAdapter);
+        RecommendedProductAdapter recommendedProductAdapter = new RecommendedProductAdapter();
+        viewBinding().setRecommendedProductAdapter(recommendedProductAdapter);
 
+        getAffiliateAPi(position);
 
-        String colorSelected = "#6C6F74";
-        String colorUnSelected = "#BAC0C6";
-
-
-        /*subscribe = viewModel().getAffiliateList()
-                .subscribe(response -> {
-
-                            PaginatedResult<SellEarn> data = response.getData();
-                            sideMenuItemList = new ArrayList<>();
-                            data.forEach(sellEarn -> {
-                                sideMenuItemList.add(new SideMenuItem(sellEarn.getId(),sellEarn.getName(), SellEarnType.get(sellEarn.getType()) == SellEarnType.INSURANCE,SellEarnType.get(sellEarn.getType()) == SellEarnType.INSURANCE ? colorSelected : colorUnSelected));
-                            });
-                            SideMenuListAdapter sideMenuListAdapter = new SideMenuListAdapter();
-                            sideMenuListAdapter.setSideMenuItemList(sideMenuItemList);
-                            viewBinding().rvProducts.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-                            viewBinding().rvProducts.setAdapter(sideMenuListAdapter);
-
-                        },
-                        error -> Log.e("MyAmplifyApp", "Query failure", error));
-*/
-/*
         List<RecommendedProductItem> recommendedProductItems = new ArrayList<>();
-        recommendedProductItems.add(new RecommendedProductItem(SellEarnType.SAVINGS_ACC.sellEarnType(), 500, Utilities.getDrawableUrl(R.drawable.idfc), SellEarnType.SAVINGS_ACC,"#F0F6FA","#62899D"));
-        recommendedProductItems.add(new RecommendedProductItem(SellEarnType.DEMAT_ACC.sellEarnType(), 300, Utilities.getDrawableUrl(R.drawable.idfc), SellEarnType.DEMAT_ACC,"#F7BE7D","#9C784F"));
-        recommendedProductItems.add(new RecommendedProductItem(SellEarnType.CREDIT_CARD.sellEarnType(), 2000, Utilities.getDrawableUrl(R.drawable.idfc), SellEarnType.CREDIT_CARD,"#EADDFF","#D0BCFF"));
-        recommendedProductItems.add(new RecommendedProductItem(SellEarnType.PERSONAL_LOAN.sellEarnType(), 1250, Utilities.getDrawableUrl(R.drawable.idfc), SellEarnType.PERSONAL_LOAN,"#EFB8C8","#492532"));
+        recommendedProductItems.add(new RecommendedProductItem("Saving Account", 500, Utilities.getDrawableUrl(R.drawable.idfc), SellEarnType.SAVINGS_ACC, "#F0F6FA", "#62899D", 200));
+        recommendedProductItems.add(new RecommendedProductItem("Demat Account", 300, Utilities.getDrawableUrl(R.drawable.idfc), SellEarnType.DEMAT_ACC, "#F7BE7D", "#9C784F", 100));
+        recommendedProductItems.add(new RecommendedProductItem("Credit Card", 2000, Utilities.getDrawableUrl(R.drawable.idfc), SellEarnType.CREDIT_CARD, "#EADDFF", "#D0BCFF", 150));
+        recommendedProductItems.add(new RecommendedProductItem("Personal Loan", 1250, Utilities.getDrawableUrl(R.drawable.idfc), SellEarnType.PERSONAL_LOAN, "#EFB8C8", "#492532", 120));
 
-        recommendedProductAdapter.setRecommendedProductItems(recommendedProductItems);*/
+        recommendedProductAdapter.setItems(recommendedProductItems);
 
 
-        SellEarnViewPagerAdapter sellEarnViewPagerAdapter = new SellEarnViewPagerAdapter(getActivity().getSupportFragmentManager(), getLifecycle());
         viewBinding().vpProductItems.setUserInputEnabled(false);
-        viewBinding().vpProductItems.setAdapter(sellEarnViewPagerAdapter);
-        viewBinding().vpProductItems.setCurrentItem(0);
         viewBinding().vpProductItems.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
         viewBinding().vpProductItems.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -116,19 +130,35 @@ public class SellEarnFragment extends BaseFragment<SellEarnViewModel, FragmentSe
             }
         });
 
-
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                String sideMenuId = intent.getStringExtra("sideMenuId");
-                if (StringUtils.isNoneEmpty(sideMenuId))
-                    viewBinding().vpProductItems.setCurrentItem(Integer.parseInt(sideMenuId));
-            }
-        }, new IntentFilter("selected_menu"));
-
     }
 
+
+    private void getAffiliateAPi(int position) {
+        onShowLoading();
+        compositeDisposable().add(viewModel().getDepartmentList(position)
+                .subscribe(getDepartmentListResponse -> {
+                    onHideLoading();
+
+
+                    SideMenuListAdapter sideMenuListAdapter = new SideMenuListAdapter();
+                    sideMenuListAdapter.setServiceFragClickListener(this);
+                    sideMenuListAdapter.setItems(getDepartmentListResponse.getDepartmentList());
+                    viewBinding().rvProducts.setAdapter(sideMenuListAdapter);
+
+
+                    SellEarnViewPagerAdapter sellEarnViewPagerAdapter = new SellEarnViewPagerAdapter(requireActivity().getSupportFragmentManager(), getLifecycle());
+                    sellEarnViewPagerAdapter.setServiceModelList(getDepartmentListResponse.getDepartmentList());
+                    viewBinding().vpProductItems.setAdapter(sellEarnViewPagerAdapter);
+
+                    viewBinding().vpProductItems.setCurrentItem(position);
+
+
+                }, throwable -> {
+                    onHideLoading();
+                })
+        );
+
+    }
 
     @Override
     public SellEarnViewModel setUpViewModel(ViewModelProvider viewModelProvider) {
@@ -149,6 +179,13 @@ public class SellEarnFragment extends BaseFragment<SellEarnViewModel, FragmentSe
     @Override
     public void openDashboard() {
         startActivity(new Intent(getActivity(), DashboardActivity.class));
+    }
+
+    @Override
+    public void openCategory(int position) {
+
+        viewBinding().vpProductItems.setCurrentItem(position);
+
     }
 
     @Override

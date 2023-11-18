@@ -88,13 +88,14 @@
                         android:id="@+id/mcvOtp1"
                         android:layout_width="@dimen/_50dp"
                         android:layout_height="@dimen/_50dp"
-                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_5dp"
+                        android:theme="@style/Widget.Material3.CardView.Outlined"
                         app:cardElevation="@dimen/_5dp"
                         app:layout_constraintEnd_toStartOf="@+id/mcvOtp2"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:strokeWidth="0dp">
+                       >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -125,15 +126,16 @@
                         android:id="@+id/mcvOtp2"
                         android:layout_width="@dimen/_50dp"
                         android:layout_height="@dimen/_50dp"
-                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_5dp"
+                        android:theme="@style/Widget.Material3.CardView.Outlined"
                         app:cardElevation="@dimen/_5dp"
                         app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
                         app:layout_constraintEnd_toStartOf="@+id/mcvOtp3"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/mcvOtp1"
                         app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
-                        app:strokeWidth="0dp">
+                        >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -163,15 +165,16 @@
                         android:id="@+id/mcvOtp3"
                         android:layout_width="@dimen/_50dp"
                         android:layout_height="@dimen/_50dp"
-                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_5dp"
+                        android:theme="@style/Widget.Material3.CardView.Outlined"
                         app:cardElevation="@dimen/_5dp"
                         app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
                         app:layout_constraintEnd_toStartOf="@+id/mcvOtp4"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/mcvOtp2"
                         app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
-                        app:strokeWidth="0dp">
+                      >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -201,15 +204,16 @@
                         android:id="@+id/mcvOtp4"
                         android:layout_width="@dimen/_50dp"
                         android:layout_height="@dimen/_50dp"
-                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_5dp"
+                        android:theme="@style/Widget.Material3.CardView.Outlined"
                         app:cardElevation="@dimen/_5dp"
                         app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
                         app:layout_constraintEnd_toStartOf="@+id/mcvOtp5"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/mcvOtp3"
                         app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
-                        app:strokeWidth="0dp">
+                        >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -239,15 +243,16 @@
                         android:id="@+id/mcvOtp5"
                         android:layout_width="@dimen/_50dp"
                         android:layout_height="@dimen/_50dp"
-                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_5dp"
+                        android:theme="@style/Widget.Material3.CardView.Outlined"
                         app:cardElevation="@dimen/_5dp"
                         app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
                         app:layout_constraintEnd_toStartOf="@+id/mcvOtp6"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/mcvOtp4"
                         app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
-                        app:strokeWidth="0dp">
+                       >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -277,15 +282,16 @@
                         android:id="@+id/mcvOtp6"
                         android:layout_width="@dimen/_50dp"
                         android:layout_height="@dimen/_50dp"
-                        app:cardBackgroundColor="#F6EDFF"
+                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_5dp"
+                        android:theme="@style/Widget.Material3.CardView.Outlined"
                         app:cardElevation="@dimen/_5dp"
                         app:layout_constraintBottom_toBottomOf="@+id/mcvOtp1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/mcvOtp5"
                         app:layout_constraintTop_toTopOf="@+id/mcvOtp1"
-                        app:strokeWidth="0dp">
+                       >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -320,7 +326,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:backgroundTint="@color/palete"
                     android:onClick="@{() -> kyc18OtpClickListener.applyOtp(etOtp1.getText().toString().concat(etOtp2.getText().toString()).concat(etOtp3.getText().toString()).concat(etOtp4.getText().toString()).concat(etOtp5.getText().toString()).concat(etOtp6.getText().toString()))}"
                     android:singleLine="true"
                     android:text="@{kyc18OtpUIData.buttonText()}"

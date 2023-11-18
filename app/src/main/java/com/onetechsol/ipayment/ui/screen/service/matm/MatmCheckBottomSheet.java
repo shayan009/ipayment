@@ -1,17 +1,13 @@
 package com.onetechsol.ipayment.ui.screen.service.matm;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -24,29 +20,18 @@ import com.fingpay.microatmsdk.utils.Constants;
 import com.onetechsol.ipayment.R;
 import com.onetechsol.ipayment.databinding.MatmCheckSheetBinding;
 import com.onetechsol.ipayment.databinding.MatmWithdrawClickListener;
-import com.onetechsol.ipayment.databinding.RemitterCheckClickListener;
-import com.onetechsol.ipayment.databinding.RemitterCheckSheetBinding;
 import com.onetechsol.ipayment.pojo.MatmServiceResponseData;
-import com.onetechsol.ipayment.pojo.RecentRemitterItem;
-import com.onetechsol.ipayment.ui.adapter.RecentRemitterAdapter;
-import com.onetechsol.ipayment.ui.screen.service.dmt.DMTActivity;
-import com.onetechsol.ipayment.ui.screen.service.dmt.DMTViewModel;
 import com.onetechsol.ipayment.utils.ApiConstant;
 import com.onetechsol.ipayment.widgets.CurvedBottomSheetDialogFragment;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.List;
-import java.util.Random;
-
-import io.reactivex.rxjava3.disposables.Disposable;
-
 public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCheckSheetBinding, MatmViewModel> implements MatmWithdrawClickListener, DialogMatmReport.DialogCallback {
-
 
     private ActivityResultLauncher<Intent> someActivityResultLauncher;
     private String referenceNumber;
     private ActivityResultLauncher<Intent> receiptDownload, receiptPrint;
+    private String transId;
 
     @Override
     public int getLayoutRes() {
@@ -63,7 +48,6 @@ public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCh
     public MatmCheckSheetBinding setupViewBinding(LayoutInflater inflater, ViewGroup container) {
         return DataBindingUtil.inflate(inflater, getLayoutRes(), container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -112,25 +96,34 @@ public class MatmCheckBottomSheet extends CurvedBottomSheetDialogFragment<MatmCh
                             String cardType = data.getStringExtra(Constants.CARD_TYPE);
                             String terminalId = data.getStringExtra(Constants.TERMINAL_ID);
                             String fpId = data.getStringExtra(Constants.FP_TRANS_ID);
-                            String transId = data.getStringExtra(Constants.TXN_ID);
+                            transId = data.getStringExtra(Constants.TXN_ID);
 
-                            onShowLoading();
-                            compositeDisposable().add(viewModel().passMicroAtmResponseBE(status, response, response, transAmount, balAmount, bankRrn, transType, type, cardNum, rrn, tType, bankName, cardType, terminalId, fpId, transId, referenceNumber)
-                                    .subscribe(matmMicroAmtFeedBackResponse -> {
-onHideLoading();
-                                        if (matmMicroAmtFeedBackResponse.status().equals("1") &
-                                                matmMicroAmtFeedBackResponse.txn_status().equals("1")) {
+                            if (isValidString(response)) {
 
-                                            DialogMatmReport dialogMatmReport = new DialogMatmReport();
-                                            dialogMatmReport.setDialogCallback(this);
-                                            dialogMatmReport.show(getParentFragmentManager(), DialogMatmReport.class.getName());
+                                onShowLoading();
+                                compositeDisposable().add(viewModel().passMicroAtmResponseBE(status, response, response, transAmount, balAmount, bankRrn, transType, type, cardNum, rrn, tType, bankName, cardType, terminalId, fpId, transId, referenceNumber)
+                                        .subscribe(matmMicroAmtFeedBackResponse -> {
+                                            onHideLoading();
+
+                                            if (matmMicroAmtFeedBackResponse.status().equals("1")) {
+
+                                                DialogMatmReport dialogMatmReport = new DialogMatmReport(transAmount, balAmount, type, transId, matmMicroAmtFeedBackResponse.message(), bankName, matmMicroAmtFeedBackResponse.txn_status());
+                                                dialogMatmReport.setDialogCallback(this);
+                                                dialogMatmReport.show(getParentFragmentManager(), DialogMatmReport.class.getName());
 
 
-                                        }
+                                            } else {
+                                                showAlertDialog("Failed", matmMicroAmtFeedBackResponse.message(), true).show();
+                                            }
 
-                                    }, throwable -> {
+                                        }, throwable -> {
+                                            onHideLoading();
+                                            showAlertDialog("Error", throwable.getMessage(), true).show();
+                                        }));
+                            } else {
+                                showAlertDialog("Error", "Not valid response from matm", true).show();
+                            }
 
-                                    }));
 
                         }
 
@@ -191,22 +184,27 @@ onHideLoading();
 
                         referenceNumber = matmServiceResponse.data().referenceNumber();
 
-                        callMicroAtm(matmServiceResponse.data());
+                        callMicroAtm(matmServiceResponse.data(), amount);
 
                     } else {
                         showToastAlertDialog("Matm Balance info", matmServiceResponse.message(), false)
-                                .setOnClickListener(() -> {
-
-                                }).show(getParentFragmentManager(), MatmCheckBottomSheet.class.getName());
+                                .show(getParentFragmentManager(), MatmCheckBottomSheet.class.getName());
                     }
 
-                }, throwable -> showToastAlertDialog("Error", throwable.getMessage(), false)
-                        .setOnClickListener(() -> {
-
-                        }).show(getParentFragmentManager(), MatmCheckBottomSheet.class.getName())));
+                }, throwable ->
+                        showToastAlertDialog("Error", throwable.getMessage(), false).show(getParentFragmentManager(), MatmCheckBottomSheet.class.getName())));
     }
 
-    private void callMicroAtm(MatmServiceResponseData data) {
+    public static boolean isValidString(String str) {
+        if (str != null) {
+            str = str.trim();
+            if (str.length() > 0)
+                return true;
+        }
+        return false;
+    }
+
+    private void callMicroAtm(MatmServiceResponseData data, String amount) {
 
         Intent intent = new Intent(getActivity(), MicroAtmLoginScreen.class); //OFFPPM
         intent.putExtra(Constants.MERCHANT_USERID, data.subMerchantId());
@@ -215,7 +213,7 @@ onHideLoading();
         intent.putExtra(Constants.MERCHANT_PASSWORD, data.subMerchantPass());
         // this MERCHANT_PASSWORD be given by FingPay depending on the merchant, only that value need to sent from App to SDK
 
-        intent.putExtra(Constants.AMOUNT, data.amount());
+        intent.putExtra(Constants.AMOUNT, amount);
         intent.putExtra(Constants.REMARKS, data.remarks());
 
 
@@ -248,7 +246,7 @@ onHideLoading();
             intent.putExtra(Constants.TYPE, Constants.CASH_WITHDRAWAL);
         }
         intent.putExtra("transactionType", data.transactionType());
-        intent.putExtra("amount", data.amount());
+        intent.putExtra("amount", amount);
         someActivityResultLauncher.launch(intent);
     }
 
@@ -260,11 +258,13 @@ onHideLoading();
 
     @Override
     public void printReceipt() {
-
+        if (StringUtils.isNotEmpty(transId))
+            printReceiptDownload("1", transId);
     }
 
     @Override
     public void downloadReceipt() {
-
+        if (StringUtils.isNotEmpty(transId))
+            printReceiptDownload("2", transId);
     }
 }

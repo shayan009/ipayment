@@ -24,15 +24,19 @@ import com.onetechsol.ipayment.pojo.ServiceModel;
 import com.onetechsol.ipayment.session.UserLoginSession;
 import com.onetechsol.ipayment.ui.adapter.CategoryServiceAdapter;
 import com.onetechsol.ipayment.ui.basefiles.BaseFragment;
+import com.onetechsol.ipayment.ui.screen.addFund.BalanceRequestBottomSheet;
 import com.onetechsol.ipayment.ui.screen.service.aeps.aeps1.AEPS1Activity;
-import com.onetechsol.ipayment.ui.screen.service.aeps.aeps2.AEPS2Activity;
 import com.onetechsol.ipayment.ui.screen.service.dmt.RemitterCheckBottomSheet;
 import com.onetechsol.ipayment.ui.screen.service.insurance.BuyInsuranceActivity;
 import com.onetechsol.ipayment.ui.screen.service.matm.MatmCheckBottomSheet;
+import com.onetechsol.ipayment.ui.screen.service.payout.PayoutCheckBottomSheet;
 import com.onetechsol.ipayment.ui.screen.service.recharge.MobileRechargeActivity;
 import com.onetechsol.ipayment.ui.screen.service.recharge.electricity.BillInsurancePayActivity;
+import com.onetechsol.ipayment.ui.screen.service.external_service.UpiPayNowActivity;
 import com.onetechsol.ipayment.utils.ApiConstant;
 import com.onetechsol.ipayment.utils.Constant;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,11 +166,17 @@ public class ServiceCategoryFragment extends BaseFragment<ServiceCategoryViewMod
                 requireActivity().startActivity(intent);
             }
             if (ServiceCategoryType.AEPS_2 == ServiceCategoryType.get(String.valueOf(serviceCategoryModel.categoryId()))) {
-                Intent intent = new Intent(getActivity(), AEPS2Activity.class);
+
+                showAlertDialog("Alert", "This service is not yet available", true)
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            dialog.dismiss();
+                        })
+                        .show();
+                /*Intent intent = new Intent(getActivity(), AEPS2Activity.class);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(ServiceCategoryModel.class.getName(), serviceCategoryModel);
                 intent.putExtra(ServiceCategoryModel.class.getName(), bundle);
-                requireActivity().startActivity(intent);
+                requireActivity().startActivity(intent);*/
             }
 
 
@@ -183,7 +193,12 @@ public class ServiceCategoryFragment extends BaseFragment<ServiceCategoryViewMod
                 matmCheckBottomSheet.show(getParentFragmentManager(), MatmCheckBottomSheet.class.getName());
 
             }
+            if (ServiceCategoryType.PAYOUT == ServiceCategoryType.get(String.valueOf(serviceCategoryModel.categoryId()))) {
 
+                PayoutCheckBottomSheet payoutCheckBottomSheet = new PayoutCheckBottomSheet();
+                payoutCheckBottomSheet.show(getParentFragmentManager(), PayoutCheckBottomSheet.class.getName());
+
+            }
 
 
         }
@@ -211,7 +226,29 @@ public class ServiceCategoryFragment extends BaseFragment<ServiceCategoryViewMod
 
         if (serviceModel.categoryId().equals("4")) {
 
-            //TODO More
+            if (ServiceCategoryType.FUND_REQUEST == ServiceCategoryType.get(serviceCategoryModel.categoryId())) {
+                BalanceRequestBottomSheet balanceRequestBottomSheet = new BalanceRequestBottomSheet();
+                balanceRequestBottomSheet.show(getParentFragmentManager(), BalanceRequestBottomSheet.class.getName());
+            } else {
+
+                onShowLoading();
+                compositeDisposable().add(viewModel().externalService(serviceCategoryModel.categoryId())
+                        .subscribe(getExternalServiceResponse -> {
+                            onHideLoading();
+
+                            if(!StringUtils.isEmpty(getExternalServiceResponse.getData().getExternalLink())) {
+                                Intent goTOLogin = new Intent(getActivity(), UpiPayNowActivity.class);
+                                goTOLogin.putExtra("serviceUrl", getExternalServiceResponse.getData().getExternalLink());
+                                startActivity(goTOLogin);
+                            }
+
+
+                        }, throwable -> {
+                            onHideLoading();
+                        }));
+
+            }
+
         }
 
     }

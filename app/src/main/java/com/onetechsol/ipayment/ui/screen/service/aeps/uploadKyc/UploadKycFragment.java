@@ -20,7 +20,7 @@ import com.onetechsol.ipayment.databinding.UploadKycClickListener;
 import com.onetechsol.ipayment.databinding.UploadKycFragmentBinding;
 import com.onetechsol.ipayment.pojo.CheckLoginRequest;
 import com.onetechsol.ipayment.ui.basefiles.BaseFragment;
-import com.onetechsol.ipayment.ui.screen.service.upi.UpiPayNowActivity;
+import com.onetechsol.ipayment.ui.screen.service.external_service.UpiPayNowActivity;
 import com.onetechsol.ipayment.utils.ApiConstant;
 
 public class UploadKycFragment extends BaseFragment<UploadKycViewModel, UploadKycFragmentBinding> implements UploadKycClickListener {

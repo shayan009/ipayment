@@ -9,6 +9,16 @@ public class StartKyc12Response extends Response {
     @Expose
     private StartKyc12ResponseData data;
 
+    @SerializedName("txn_status")
+    @Expose
+    private String txnStatus;
+
+
+
+    public String getTxnStatus() {
+        return txnStatus;
+    }
+
     public StartKyc12ResponseData data() {
         return data;
     }

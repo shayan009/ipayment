@@ -14,6 +14,8 @@ import com.onetechsol.ipayment.pojo.Bill;
 import com.onetechsol.ipayment.ui.basefiles.baseadapter.BaseRecyclerViewAdapter;
 import com.onetechsol.ipayment.ui.basefiles.baseadapter.BaseViewHolder;
 
+import org.apache.commons.lang3.StringUtils;
+
 
 public class BillDetailsAdapter extends BaseRecyclerViewAdapter<BillItemBinding, Bill, BillDetailsAdapter.BillViewHolder> {
 
@@ -51,6 +53,9 @@ public class BillDetailsAdapter extends BaseRecyclerViewAdapter<BillItemBinding,
 
         @Override
         public void onBind(Bill bill) {
+
+            double billAmount = StringUtils.isNotEmpty(bill.amount()) ? Double.parseDouble(bill.amount()) / 100 : 0.0;
+            bill.setAmount(String.valueOf(billAmount));
             binding().setBill(bill);
             binding().setBillItemClickListener(this);
             binding().executePendingBindings();

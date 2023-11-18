@@ -1,6 +1,10 @@
 package com.onetechsol.ipayment.ui.screen.home;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +13,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.onetechsol.ipayment.R;
@@ -17,7 +22,10 @@ import com.onetechsol.ipayment.databinding.CommonEventHandler;
 import com.onetechsol.ipayment.pojo.ServiceModel;
 import com.onetechsol.ipayment.ui.basefiles.BaseActivity;
 import com.onetechsol.ipayment.ui.screen.customer.MyCustomerFragment;
+import com.onetechsol.ipayment.ui.screen.sellearn.SellEarnFragment;
 import com.onetechsol.ipayment.ui.screen.service.ServiceFragment;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 
@@ -25,51 +33,13 @@ public class HomeActivity extends BaseActivity<HomeActivityViewModel, ActivityHo
 
 
     private ArrayList<ServiceModel> serviceModelArrayList;
+    private int position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        onShowLoading();
-        compositeDisposable().add(viewModel().getServiceList(getIntent().getIntExtra("pos", 0))
-                .subscribe(serviceListResponse -> {
-                    onHideLoading();
-                    serviceModelArrayList = serviceListResponse.serviceModelList();
-
-
-                    if (serviceListResponse.status().equals("1")) {
-
-                        if (getIntent().getIntExtra("pos", 0) == 2)
-                            openServiceFragment(serviceListResponse.serviceModelList());
-                        else {
-                            openHomeFragment();
-                        }
-                    } else if (serviceListResponse.status().equals("0")) {
-                        showAlertDialog("Service alert!", serviceListResponse.message(), true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                dialogInterface.dismiss();
-
-                            }
-                        }).show();
-                    }
-
-
-                }, throwable -> {
-                    onHideLoading();
-                    showAlertDialog("Error alert!", throwable.getMessage(), true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-
-                            dialogInterface.dismiss();
-
-                        }
-                    }).show();
-                }));
-
+        openHomeFragment();
 
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
@@ -121,15 +91,14 @@ public class HomeActivity extends BaseActivity<HomeActivityViewModel, ActivityHo
             setUINavColors(viewBinding().ivNavServiceBg, viewBinding().cbNavServiceIcon, viewBinding().tvNavServiceText, View.INVISIBLE, R.color.light_grey);
             setUINavColors(viewBinding().ivNavContentBg, viewBinding().cbNavContentIcon, viewBinding().tvNavContentText, View.INVISIBLE, R.color.light_grey);
 
-            // onAttachFragment(viewBinding().frameLayout.getId(), new SellEarnFragment(), SellEarnFragment.class.getName());
-
+            openSellEarnFragment(0);
 
         });
 
         viewBinding().clNavService.setOnClickListener(view -> {
 
             if (prefManager.getUserSession().roleId().equals("6")) {
-                openServiceFragment(serviceModelArrayList);
+               getServices();
             } else {
                 showAlertDialog("Invalid Selection", "Not available for you. Please upgrade to Merchant business to access it", true)
                         .setPositiveButton("OK", (dialogInterface, i) -> {
@@ -152,10 +121,78 @@ public class HomeActivity extends BaseActivity<HomeActivityViewModel, ActivityHo
 
         });
 
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                int pos = intent.getIntExtra("position",0);
+
+
+                if (pos >=0 ) {
+                    position = pos;
+                    openSellEarnFragment(pos);
+                }
+
+            }
+        }, new IntentFilter("seeMoreAffiliate"));
+
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+
+                getServices();
+
+            }
+        }, new IntentFilter("seeMoreService"));
+
+    }
+
+    private void getServices() {
+
+        compositeDisposable().add(viewModel().getServiceList()
+                .subscribe(serviceListResponse -> {
+
+                    serviceModelArrayList = serviceListResponse.serviceModelList();
+
+                    if (serviceListResponse.status().equals("1")) {
+                         openServiceFragment(serviceListResponse.serviceModelList());
+
+                    } else if (serviceListResponse.status().equals("0")) {
+                        showAlertDialog("Service alert!", serviceListResponse.message(), true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                dialogInterface.dismiss();
+
+                            }
+                        }).show();
+                    }
+
+
+                }, throwable -> {
+                    showAlertDialog("Error alert!", throwable.getMessage(), true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                            dialogInterface.dismiss();
+
+                        }
+                    }).show();
+                }));
+    }
+
+    private void openSellEarnFragment(int position) {
+        this.position = position;
+        SellEarnFragment sellEarnFragment = SellEarnFragment.newInstance(position);
+        onAttachFragment(viewBinding().frameLayout.getId(), sellEarnFragment, SellEarnFragment.class.getName());
     }
 
     private void openHomeFragment() {
-        HomeFragment homeFragment = HomeFragment.newInstance(serviceModelArrayList);
+        HomeFragment homeFragment = HomeFragment.newInstance();
         onAttachFragment(viewBinding().frameLayout.getId(), homeFragment, HomeFragment.class.getName());
     }
 

@@ -45,7 +45,8 @@ public class WelcomeActivity extends BaseActivity<WelcomeViewModel, ActivityWelc
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-            Manifest.permission.CAMERA
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_PHONE_STATE
     };
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     public String[] storage_permissions_33 = {
@@ -54,13 +55,15 @@ public class WelcomeActivity extends BaseActivity<WelcomeViewModel, ActivityWelc
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-            Manifest.permission.CAMERA
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_PHONE_STATE
     };
     public String[] storage_permissions_other = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.CAMERA
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_PHONE_STATE
     };
     int i = 0;
     private Disposable rxDisposable;
@@ -99,19 +102,24 @@ public class WelcomeActivity extends BaseActivity<WelcomeViewModel, ActivityWelc
                 && ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED
         ) {
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU &&
                     ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) &&
                     ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.INTERNET) &&
-                    ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_NETWORK_STATE)) {
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_NETWORK_STATE) &&
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)
+            ) {
                 startActionPostPermAccepted();
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
                     ActivityCompat.shouldShowRequestPermissionRationale(this, READ_MEDIA_IMAGES) &&
                     ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_MEDIA_AUDIO) &&
                     ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_MEDIA_VIDEO) &&
                     ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.INTERNET) &&
-                    ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_NETWORK_STATE)) {
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_NETWORK_STATE) &&
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)
+            ) {
                 startActionPostPermAccepted();
             } else {
 
@@ -140,20 +148,20 @@ public class WelcomeActivity extends BaseActivity<WelcomeViewModel, ActivityWelc
             if (aBoolean) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 
-                    if (i == 5) {
+                    if (i == 6) {
                         startActionPostPermAccepted();
                     }
                     requestPermission(storage_permissions_33[++i]);
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-                    if (i == 5) {
+                    if (i == 6) {
                         startActionPostPermAccepted();
                     }
 
                     requestPermission(storage_permissions_26[++i]);
                 } else {
 
-                    if (i == 4) {
+                    if (i == 6) {
                         startActionPostPermAccepted();
                     }
                     requestPermission(storage_permissions_other[++i]);

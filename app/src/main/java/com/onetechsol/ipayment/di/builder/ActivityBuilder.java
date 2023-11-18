@@ -23,7 +23,7 @@ import com.onetechsol.ipayment.ui.screen.service.insurance.BuyInsuranceActivity;
 import com.onetechsol.ipayment.ui.screen.service.recharge.MobileRechargeActivity;
 import com.onetechsol.ipayment.ui.screen.service.recharge.electricity.BillInsurancePayActivity;
 import com.onetechsol.ipayment.ui.screen.service.recharge.plan_selection.RechargePlanSelectionActivity;
-import com.onetechsol.ipayment.ui.screen.service.upi.UpiPayNowActivity;
+import com.onetechsol.ipayment.ui.screen.service.external_service.UpiPayNowActivity;
 import com.onetechsol.ipayment.ui.screen.share.ShareActivity;
 import com.onetechsol.ipayment.ui.screen.signup.RegisterActivity;
 import com.onetechsol.ipayment.ui.screen.welcome.WelcomeActivity;

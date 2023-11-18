@@ -138,13 +138,6 @@ public class Kyc18OtpBottomSheet extends CurvedBottomSheetDialogFragment<Kyc18Ot
     @Override
     public void dismiss() {
 
-        showToastAlertDialog("Finger Print Capture", "Please capture your fingerprint", false)
-                .setOnClickListener(() -> {
-                    fingerPrintBottomSheet = new FingerPrintBottomSheet();
-                    fingerPrintBottomSheet.setStep("2");
-                    fingerPrintBottomSheet.setOnClickListener(this);
-                    fingerPrintBottomSheet.show(getParentFragmentManager(), FingerPrintBottomSheet.class.getName());
-                }).show(getParentFragmentManager(), "showToastAlertDialog");
 
     }
 

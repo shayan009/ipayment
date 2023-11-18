@@ -86,16 +86,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:overrideLibrary="com.amplifyframework.api.aws"
-        tools:replace="android:theme">
+        tools:replace="android:theme,android:allowBackup,android:usesCleartextTraffic">
         <activity
             android:name=".ui.screen.service.aeps.aeps1.Aeps1OperationActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.screen.service.aeps.aeps1.FullscreenActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
-            android:label="@string/title_activity_fullscreen"
-            android:theme="@style/AppTheme.Fullscreen" />
+
         <activity
             android:name=".ui.screen.customer.AddCustomerActivity"
             android:exported="false" />
@@ -132,7 +127,7 @@
             android:theme="@style/AppTheme"
             tools:node="merge" />
         <activity
-            android:name=".ui.screen.service.upi.UpiPayNowActivity"
+            android:name=".ui.screen.service.external_service.UpiPayNowActivity"
             android:exported="true"
             android:theme="@style/AppTheme"
             tools:node="merge" />

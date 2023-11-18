@@ -139,7 +139,6 @@ public class TrackingService extends Service {
 
             mFusedLocationProviderClient.requestLocationUpdates(locationRequest.build(), location -> {
 
-                Toast.makeText(getApplicationContext(),"Current gps location: "+String.valueOf(location.getLatitude())+"-----"+String.valueOf(location.getLongitude()),Toast.LENGTH_SHORT).show();
                 prefManager.setCurrentLocation(location.getLatitude(), location.getLongitude());
 
 

@@ -11,6 +11,9 @@ public class GetDepartmentListResponseData {
     @Expose
     public List<DepartmentModel> departmentList;
 
+    public void setDepartmentList(List<DepartmentModel> departmentList) {
+        this.departmentList = departmentList;
+    }
 
     public List<DepartmentModel> departmentList() {
         return departmentList;

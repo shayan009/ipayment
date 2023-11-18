@@ -4,10 +4,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.onetechsol.ipayment.R;
 import com.onetechsol.ipayment.databinding.ActivityElectricityBillPayBinding;
 import com.onetechsol.ipayment.databinding.ElectricityPayClickListener;
@@ -21,6 +25,8 @@ import com.onetechsol.ipayment.ui.basefiles.BaseActivity;
 import com.onetechsol.ipayment.ui.screen.service.recharge.OperatorCircleBottomSheet;
 import com.onetechsol.ipayment.ui.screen.service.recharge.RechargeViewModel;
 
+import java.util.Objects;
+
 public class BillInsurancePayActivity extends BaseActivity<RechargeViewModel, ActivityElectricityBillPayBinding> implements ElectricityPayClickListener, OperatorCircleBottomSheet.AdapterCallback {
 
     String title = "";
@@ -31,6 +37,7 @@ public class BillInsurancePayActivity extends BaseActivity<RechargeViewModel, Ac
     private OperatorCircleBottomSheet operatorBottomSheet;
     private OpCircleItemDto selectedOperator;
     private ElectricityBillPayDto electricityBillPayDto;
+    private int currentState = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +45,31 @@ public class BillInsurancePayActivity extends BaseActivity<RechargeViewModel, Ac
 
 
         serviceCategoryModel = getIntent().getBundleExtra(ServiceCategoryModel.class.getName()).getParcelable(ServiceCategoryModel.class.getName());
-        Log.d("serviceCategoryModel.id ->", String.valueOf(serviceCategoryModel.id()));
-        Log.d("serviceCategoryModel.categoryId ->", String.valueOf(serviceCategoryModel.categoryId()));
+
 
         mobile = getIntent().getBundleExtra(ServiceCategoryModel.class.getName()).getString("mobile");
         UserLoginSession userSession = viewModel().prefManager().getUserSession();
+
+
+        operatorBottomSheet = new OperatorCircleBottomSheet();
+        operatorBottomSheet.setAdapterCallback(this);
+
+
+        if (operatorBottomSheet.getBottomSheetDialog() != null) {
+            operatorBottomSheet.getBottomSheetDialog().getBehavior().addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                    currentState = newState;
+                }
+
+                @Override
+                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+                }
+            });
+
+        }
+
 
         viewBinding().setElectricityPayClickListener(this);
 
@@ -166,16 +193,29 @@ public class BillInsurancePayActivity extends BaseActivity<RechargeViewModel, Ac
             onShowLoading();
             compositeDisposable().add(viewModel().getOperator(serviceCategoryModel.categoryId())
                     .subscribe(getOperatorResponse -> {
-
-                        operatorBottomSheet = new OperatorCircleBottomSheet();
                         operatorBottomSheet.setOperatorCircleItemModel(getOperatorResponse);
-                        operatorBottomSheet.setAdapterCallback(this);
                         onHideLoading();
 
                     }, throwable -> {
                         onHideLoading();
 
                     }));
+
+
+
+        /*    ((BottomSheetDialog) Objects.requireNonNull(operatorBottomSheet.getDialog())).getBehavior().addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
+                    currentState = newState;
+
+                }
+
+                @Override
+                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+                }
+            });*/
 
         }
 
@@ -209,8 +249,8 @@ public class BillInsurancePayActivity extends BaseActivity<RechargeViewModel, Ac
 
     @Override
     public void openOperator() {
-        if (operatorBottomSheet != null)
-            operatorBottomSheet.show(getSupportFragmentManager(), "Operator");
+            if (operatorBottomSheet != null)
+                operatorBottomSheet.show(getSupportFragmentManager(), "Operator");
     }
 
 
@@ -230,6 +270,34 @@ public class BillInsurancePayActivity extends BaseActivity<RechargeViewModel, Ac
         Glide.with(viewBinding().getRoot()).load(Uri.parse(selectedOperator.image())).into(viewBinding().ivOpLogo);
 
         getOperatorDetails(opCircleItemDto);
+
+        // callback for do something
+      /*  BottomSheetBehavior.from().setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View view, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED: {
+                        btn_bottom_sheet.setText("Close Sheet");
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_COLLAPSED: {
+                        btn_bottom_sheet.setText("Expand Sheet");
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View view, float v) {
+
+            }
+        });*/
 
     }
 

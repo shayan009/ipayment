@@ -46,6 +46,8 @@ public class MyOkHttpInterceptor implements Interceptor {
             basicLong = prefManager.getCurrentLocation().longitude();
         }
 
+        int maxStale = 60 * 60;
+        builder.header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale);
 
         String path = chain.request().url().url().getPath();
         Log.d("path : ", path);
@@ -131,8 +133,15 @@ public class MyOkHttpInterceptor implements Interceptor {
                         TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.CUSTOMER_UPGRADE_INFO, path) ||
                         TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.MATM_BALANCE_CHECK_WITHDRAW, path) ||
                         TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.MATM_MICRO_ATM_RESPONSE_BE, path) ||
-                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.SERVICE_33_MAIN, path)
-
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.SERVICE_33_MAIN, path) ||
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.PAYOUT_SERVICE_CHECK, path) ||
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.PAYOUT_BANK_LIST, path) ||
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.PAYOUT_BANK_CREATE, path) ||
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.PAYOUT_SUBMIT, path) ||
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.SERVICE_24_CHARGE, path) ||
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.CHANGE_PASS, path) ||
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.CHANGE_TPIN, path) ||
+                        TextUtils.equals(ApiConstant.CONTEXT_PATH + ApiConstant.SERVICE_EXTERNAL, path)
         ) {
 
             builder.addHeader(ApiConstant.VERSION, ApiConstant.BASIC_VERSION);
@@ -144,6 +153,8 @@ public class MyOkHttpInterceptor implements Interceptor {
 
 
         }
+
+
 
 
         return chain.proceed(builder.build());

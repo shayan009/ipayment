@@ -1,11 +1,13 @@
 package com.onetechsol.ipayment.ui.adapter;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.onetechsol.ipayment.R;
 import com.onetechsol.ipayment.databinding.DepartmentItemBinding;
@@ -50,7 +52,6 @@ public class AffiliateDepartmentAdapter extends BaseRecyclerViewAdapter<Departme
         public void onBind(DepartmentModel departmentModel) {
             Log.d("homeItemList", departmentModel.toString());
 
-
             binding().setDepartmentModel(departmentModel);
             binding().setDepartmentItemCLickListener(this);
 
@@ -65,6 +66,7 @@ public class AffiliateDepartmentAdapter extends BaseRecyclerViewAdapter<Departme
             homeSellEarnAdapter.setItems(sellEarnModels);
             binding().setHomeSellEarnAdapter(homeSellEarnAdapter);
 
+            binding().setDepartmentItemCLickListener(this);
             binding().executePendingBindings();
 
 
@@ -72,6 +74,10 @@ public class AffiliateDepartmentAdapter extends BaseRecyclerViewAdapter<Departme
 
         @Override
         public void openSellEarnMore() {
+
+            Intent intent = new Intent("seeMoreAffiliate");
+            intent.putExtra("position", getLayoutPosition());
+            LocalBroadcastManager.getInstance(itemView.getContext()).sendBroadcast(intent);
 
         }
     }

@@ -20,12 +20,6 @@
             type="com.onetechsol.ipayment.databinding.OpCircleSheetOnClickListener" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/cl_layout_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10dp">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -49,7 +43,6 @@
                 android:layout_height="@dimen/_30dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:clickable="@{operatorCircleItemModel.cancellable}"
                 android:onClick="@{() -> opCircleSheetOnClickListener.closeSheet()}"
                 android:src="@drawable/baseline_cancel_24"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -147,11 +140,10 @@
                 android:adapter="@{operatorCircleAdapter}"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view"
                 tools:listitem="@layout/recent_remitter_item" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+
 </layout>

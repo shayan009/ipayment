@@ -60,7 +60,7 @@ public class ShareContentFragment extends BaseFragment<ProductDetailViewModel, F
         args.putParcelableArrayList(imageContent, imageContents);
         args.putParcelableArrayList(videoContent, videoContents);
         args.putParcelableArrayList(benefitModel, benefitModels);
-        args.putParcelable(productData,data);
+        args.putParcelable(productData, data);
         fragment.setArguments(args);
         return fragment;
     }
@@ -90,13 +90,13 @@ public class ShareContentFragment extends BaseFragment<ProductDetailViewModel, F
         ShareContentAdapter shareContentAdapter = new ShareContentAdapter();
         shareContentAdapter.setCallback(this);
         shareContentAdapter.setItems(imageContents);
-        viewBinding().rvShareImage.setLayoutManager(new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false));
+        viewBinding().rvShareImage.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
         viewBinding().rvShareImage.setAdapter(shareContentAdapter);
 
         ShareContentAdapter shareVideoContentAdapter = new ShareContentAdapter();
         shareVideoContentAdapter.setCallback(this);
         shareVideoContentAdapter.setItems(videoContents);
-        viewBinding().rvShareVideo.setLayoutManager(new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false));
+        viewBinding().rvShareVideo.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
         viewBinding().rvShareVideo.setAdapter(shareVideoContentAdapter);
 
     }
@@ -122,8 +122,8 @@ public class ShareContentFragment extends BaseFragment<ProductDetailViewModel, F
     }
 
     @Override
-    public void shareWhatsApp(ContentModel ContentModel) {
-
+    public void shareWhatsApp(ContentModel contentModel) {
+        openWhatsApp(contentModel);
     }
 
     @Override
@@ -134,8 +134,7 @@ public class ShareContentFragment extends BaseFragment<ProductDetailViewModel, F
     private void shareLink(ContentModel contentModel) {
 
 
-
-        String contentImage = ApiConstant.BASE_URL_IMAGE_SERVICE + contentModel.url();
+        String contentImage = contentModel.url();
 
 
         StringBuilder out = new StringBuilder();
@@ -152,38 +151,38 @@ public class ShareContentFragment extends BaseFragment<ProductDetailViewModel, F
         }
 
 
-        String input = "https://partner.ipayments.in/share-link?service=" + data.id() + "&company=" + prefManager.getUserSession().companyVersion() + "&referral=" + prefManager.getUserSession().userName();
+        String input = "https://partner.ipayments.in/share-link?link=" + data.link();
 
         out.append(input);
         out.append("\n");
 
 
-            io.reactivex.disposables.Disposable subscribe1 = Observable.just(contentImage)
-                    .subscribeOn(Schedulers.io())
-                    .map(s -> Glide
-                            .with(getContext())
-                            .asBitmap()
-                            .load(s)
-                            .submit().get())
-                    .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
-                    .subscribe(bitmap -> {
+        io.reactivex.disposables.Disposable subscribe1 = Observable.just(contentImage)
+                .subscribeOn(Schedulers.io())
+                .map(s -> Glide
+                        .with(getContext())
+                        .asBitmap()
+                        .load(s)
+                        .submit().get())
+                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+                .subscribe(bitmap -> {
 
-                        Intent share = new Intent(Intent.ACTION_SEND);
+                    Intent share = new Intent(Intent.ACTION_SEND);
 
-                        String s = MediaStore.Images.Media.insertImage(requireActivity().getContentResolver(), bitmap, data.id(), data.id());
+                    String s = MediaStore.Images.Media.insertImage(requireActivity().getContentResolver(), bitmap, data.id(), data.id());
 
-                        share.putExtra(Intent.EXTRA_STREAM, Uri.parse(s));
-                        share.putExtra(Intent.EXTRA_TEXT, out.toString());
-                        share.setType("text/*");
-                        share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    share.putExtra(Intent.EXTRA_STREAM, Uri.parse(s));
+                    share.putExtra(Intent.EXTRA_TEXT, out.toString());
+                    share.setType("text/*");
+                    share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-                        startActivity(Intent.createChooser(share, "Share"));
+                    startActivity(Intent.createChooser(share, "Share"));
 
-                    }, throwable -> {
+                }, throwable -> {
 
-                        //Toast.makeText(this, throwable.getMessage(), //Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, throwable.getMessage(), //Toast.LENGTH_SHORT).show();
 
-                    });
+                });
 
 
     }
@@ -200,19 +199,51 @@ public class ShareContentFragment extends BaseFragment<ProductDetailViewModel, F
         return app_installed;
     }
 
-    private void openWhatsApp(String smsNumber, String text) {
-        try {
 
-            Intent sendIntent = new Intent("android.intent.action.MAIN");
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.setType("text/plain");
-            sendIntent.putExtra(Intent.EXTRA_TEXT, text);
-            sendIntent.putExtra("jid", smsNumber + "@s.whatsapp.net"); //phone number without "+" prefix
-            sendIntent.setPackage("com.whatsapp");
-            startActivity(sendIntent);
-        } catch (Exception e) {
-            //Toast.makeText(getContext(), "Error/n" + e.toString(), //Toast.LENGTH_SHORT).show();
+    public void openWhatsApp(ContentModel contentModel) {
+
+        boolean isWhatsappInstalled = whatsappInstalledOrNot("com.whatsapp");
+
+        StringBuilder out = new StringBuilder();
+
+        if (benefitModels != null && benefitModels.size() > 0) {
+
+            List<String> collect = benefitModels.stream().map(BenefitModel::name).collect(Collectors.toList());
+
+            for (String o : collect) {
+                out.append(o);
+                out.append("\n");
+            }
+
+        }
+
+
+        String input = "https://partner.ipayments.in/share-link?link=" + data.link();
+
+        out.append(input);
+        out.append("\n");
+
+        if (isWhatsappInstalled) {
+
+            Uri imageUri = Uri.parse(contentModel.url());
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            //Target whatsapp:
+            shareIntent.setPackage("com.whatsapp");
+            //Add text and then Image URI
+            shareIntent.putExtra(Intent.EXTRA_TEXT, out.toString());
+            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+            shareIntent.setType("image/jpeg");
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(shareIntent);
+
+        } else {
+            Uri uri = Uri.parse("market://details?id=com.whatsapp");
+            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(goToMarket);
+            requireActivity().finish();
         }
 
     }
+
 }

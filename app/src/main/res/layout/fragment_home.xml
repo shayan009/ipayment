@@ -35,13 +35,13 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/rlHomeContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:visibility="visible">
 
 
@@ -390,10 +390,11 @@
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nsvMainRoot"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:fillViewport="true"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/mcvNewHeader"
                 app:layout_constraintStart_toStartOf="@+id/mcvNewHeader"
                 app:layout_constraintTop_toBottomOf="@+id/mcvNewHeader">
@@ -490,17 +491,20 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvAffiliateServices"
+
+                    <com.shimmer.ShimmerRecyclerView
+                        android:id="@+id/shimmerAffiliateServices"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
-                        android:adapter="@{affiliateDepartmentAdapter}"
-                        android:orientation="vertical"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:layout_marginEnd="16dp"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         app:layout_constraintEnd_toEndOf="@+id/clServices"
                         app:layout_constraintStart_toStartOf="@+id/clServices"
-                        app:layout_constraintTop_toBottomOf="@+id/mcvRentCC" />
+                        app:layout_constraintTop_toBottomOf="@+id/mcvRentCC"
+                        app:shimmer_demo_layout="@layout/affiliate_demo_holder"
+                        app:shimmer_demo_shimmer_color="@color/shimmer_color" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/mcvRentCC"
@@ -665,7 +669,8 @@
                         android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="@+id/mcvReferEarn"
                         app:layout_constraintStart_toStartOf="@+id/mcvRentCC"
-                        app:layout_constraintTop_toBottomOf="@+id/rvAffiliateServices">
+                        app:layout_constraintTop_toBottomOf="@+id/shimmerAffiliateServices"
+                        tools:visibility="gone">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/appCompatTextView3"

@@ -94,4 +94,5 @@
     </string>
     <string name="balance_withdraw">Balance Withdraw</string>
     <string name="mini_statement">Mini Statement</string>
+    <string name="add_bank">Add Bank</string>
 </resources>

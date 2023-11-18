@@ -12,17 +12,13 @@ import com.onetechsol.ipayment.R;
 import com.onetechsol.ipayment.databinding.RecommendedProductItemBinding;
 import com.onetechsol.ipayment.databinding.RecommentedProductClickListener;
 import com.onetechsol.ipayment.pojo.RecommendedProductItem;
+import com.onetechsol.ipayment.ui.basefiles.baseadapter.BaseRecyclerViewAdapter;
+import com.onetechsol.ipayment.ui.basefiles.baseadapter.BaseViewHolder;
 
 import java.util.List;
 
-public class RecommendedProductAdapter extends RecyclerView.Adapter<RecommendedProductAdapter.RecommendedProductViewHolder> {
+public class RecommendedProductAdapter extends BaseRecyclerViewAdapter<RecommendedProductItemBinding, RecommendedProductItem, RecommendedProductAdapter.RecommendedProductViewHolder> {
 
-    private List<RecommendedProductItem> recommendedProductItems;
-
-    public void setRecommendedProductItems(List<RecommendedProductItem> recommendedProductItems) {
-        this.recommendedProductItems = recommendedProductItems;
-        notifyDataSetChanged();
-    }
 
     @NonNull
     @Override
@@ -31,31 +27,23 @@ public class RecommendedProductAdapter extends RecyclerView.Adapter<RecommendedP
         return new RecommendedProductViewHolder(recommendedProductItemBinding);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull RecommendedProductViewHolder holder, int position) {
-        holder.bind(recommendedProductItems.get(position));
-    }
 
-    @Override
-    public int getItemCount() {
-        return recommendedProductItems.size();
-    }
+    public static class RecommendedProductViewHolder extends BaseViewHolder<RecommendedProductItemBinding, RecommendedProductItem> implements RecommentedProductClickListener {
 
-    public static class RecommendedProductViewHolder extends RecyclerView.ViewHolder implements RecommentedProductClickListener {
-
-        private RecommendedProductItemBinding recommendedProductItemBinding;
 
         public RecommendedProductViewHolder(RecommendedProductItemBinding recommendedProductItemBinding) {
-            super(recommendedProductItemBinding.getRoot());
-            this.recommendedProductItemBinding = recommendedProductItemBinding;
+            super(recommendedProductItemBinding);
         }
 
-        public void bind(RecommendedProductItem recommendedProductItem) {
 
-            recommendedProductItemBinding.setRecommendedProductItem(recommendedProductItem);
-            recommendedProductItemBinding.executePendingBindings();
-            recommendedProductItemBinding.setRecommentedProductClickListener(this);
+        @Override
+        public void onBind(RecommendedProductItem recommendedProductItem) {
+            binding().setRecommendedProductItem(recommendedProductItem);
+            binding().executePendingBindings();
+            binding().setRecommentedProductClickListener(this);
         }
+
+
 
         @Override
         public void selectProduct(View view, RecommendedProductItem recommendedProductItem) {

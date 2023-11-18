@@ -13,6 +13,7 @@ import com.onetechsol.ipayment.ui.screen.productdetails.content.ShareContentFrag
 import com.onetechsol.ipayment.ui.screen.productdetails.detail.DetailsFragment;
 import com.onetechsol.ipayment.ui.screen.productdetails.earning.EarningFragment;
 import com.onetechsol.ipayment.ui.screen.report.ReportFragment;
+import com.onetechsol.ipayment.ui.screen.sellearn.AffiliateFragment;
 import com.onetechsol.ipayment.ui.screen.sellearn.SellEarnFragment;
 import com.onetechsol.ipayment.ui.screen.service.ServiceFragment;
 import com.onetechsol.ipayment.ui.screen.service.aeps.ReportFilterBottomSheet;
@@ -98,5 +99,8 @@ public abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract ToastAlertDialog contributeToastAlertDialog();
+
+    @ContributesAndroidInjector
+    abstract AffiliateFragment contributeAffiliateFragment();
 
 }

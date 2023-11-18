@@ -263,7 +263,7 @@
                             android:backgroundTint="@color/float_transparent"
                             android:hint="@{`Enter your `+electricityBillPayDto.txnNumber()}"
                             android:imeOptions="actionGo"
-                            android:inputType="number"
+                            android:inputType="text"
                             android:overScrollMode="always"
                             android:padding="@dimen/_5dp"
                             android:paddingStart="@dimen/_10dp"

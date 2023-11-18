@@ -79,7 +79,8 @@ public class ToastAlertDialog extends BaseDialogFragment<DialogToastAlertBinding
     @Override
     public void onClickOk() {
         dismiss();
-        onClickListener.onClickOK();
+        if (null != onClickListener)
+            onClickListener.onClickOK();
     }
 
     public interface OnClickListener {

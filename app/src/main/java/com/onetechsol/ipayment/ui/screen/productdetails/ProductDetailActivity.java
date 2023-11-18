@@ -2,6 +2,7 @@ package com.onetechsol.ipayment.ui.screen.productdetails;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.onetechsol.ipayment.R;
+import com.onetechsol.ipayment.app.MainApp;
 import com.onetechsol.ipayment.databinding.ActivityProductDetailBinding;
 import com.onetechsol.ipayment.databinding.ProductDetailClickListener;
 import com.onetechsol.ipayment.pojo.ApprovalRatingType;
@@ -127,23 +129,48 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailViewModel, 
         ArrayList<ContentModel> imageContent = new ArrayList<>();
         ArrayList<ContentModel> videoContent = new ArrayList<>();
 
-        if(contentImages.isEmpty()) {
-            imageContent.add(new ContentModel("1",1,ApiConstant.BASE_URL_IMAGE_SERVICE+"logo/icon/1012-img-1693033017.jpg"));
-            imageContent.add(new ContentModel("2",1,ApiConstant.BASE_URL_IMAGE_SERVICE+"logo/icon/1012-img-1693033017.jpg"));
-            imageContent.add(new ContentModel("3",1,ApiConstant.BASE_URL_IMAGE_SERVICE+"logo/icon/1012-img-1693033017.jpg"));
+        if (contentImages.isEmpty()) {
+            imageContent.add(new ContentModel("1", 1, ApiConstant.BASE_URL_IMAGE_SERVICE + "logo/icon/1012-img-1693033017.jpg"));
+            imageContent.add(new ContentModel("2", 1, ApiConstant.BASE_URL_IMAGE_SERVICE + "logo/icon/1012-img-1693033017.jpg"));
+            imageContent.add(new ContentModel("3", 1, ApiConstant.BASE_URL_IMAGE_SERVICE + "logo/icon/1012-img-1693033017.jpg"));
         } else {
             for (ContentModel contentModel : contentImages) {
-                imageContent.add(new ContentModel(contentModel.id(),1,ApiConstant.BASE_URL_IMAGE_SERVICE+contentModel.url()));
+                imageContent.add(new ContentModel(contentModel.id(), 1, ApiConstant.BASE_URL_IMAGE_SERVICE + contentModel.url()));
             }
         }
+        Uri inquiry = Uri.parse("android.resource://" + MainApp.getContext().getPackageName() + "/" + R.drawable.golf_player);
 
+        if (benefitModels.isEmpty()) {
+            benefitModels.add(new BenefitModel("0", "unlimited access of golf course", "Access your gold courses worldwide & 12 free lessons/year", inquiry.toString()));
+            benefitModels.add(new BenefitModel("1", "free membership", "Free membership to layalty programs. HotelLux and many more*", inquiry.toString()));
+            benefitModels.add(new BenefitModel("2", "hotel booking", "12% discount on worldwide hotel booking on Agoda", inquiry.toString()));
+        }
 
-        if(contentVideos.isEmpty()) {
-            videoContent.add(new ContentModel("1",2,"https://www.youtube.com/watch?v:O7ro3sh2rkw"));
-            videoContent.add(new ContentModel("2",2,"https://www.youtube.com/watch?v:O7ro3sh2rkw"));
+        if (whomToSellModels.isEmpty()) {
+            whomToSellModels.add(new WhomToSellModel("0", "Primary Cardholder:21 to 70 years | Add-on Cardholder: 18 years and above", inquiry.toString()));
+            whomToSellModels.add(new WhomToSellModel("1", "Income--Salaried: 4 lacks p.a. & above | Self Emploted: 6 lakhs p.a. & above", inquiry.toString()));
+        }
+
+        if (instructionModels.isEmpty()) {
+            instructionModels.add(new InstructionModel("0", "Watch the training video.", inquiry.toString()));
+            instructionModels.add(new InstructionModel("1", "Share the link with everyone in your network(friends/customers)", inquiry.toString()));
+            instructionModels.add(new InstructionModel("2", "Select your card", inquiry.toString()));
+        }
+
+        if (termsConditionsModels.isEmpty()) {
+            termsConditionsModels.add(new TermsConditionsModel("0", "Complete the process in a single journey", inquiry.toString()));
+            termsConditionsModels.add(new TermsConditionsModel("1", "Customers who receive salary in the form of cash will be considered 'Self Employed'.", inquiry.toString()));
+            termsConditionsModels.add(new TermsConditionsModel("2", "Provide correct address details and specify if current address is not the same as permanent address.", inquiry.toString()));
+            termsConditionsModels.add(new TermsConditionsModel("3", "Avoid customers who have a utilization of more than 70% on previous cards.", inquiry.toString()));
+            termsConditionsModels.add(new TermsConditionsModel("4", "Check pincodes availibility.", inquiry.toString()));
+        }
+
+        if (contentVideos.isEmpty()) {
+            videoContent.add(new ContentModel("1", 2, "https://www.youtube.com/watch?v:O7ro3sh2rkw"));
+            videoContent.add(new ContentModel("2", 2, "https://www.youtube.com/watch?v:O7ro3sh2rkw"));
         } else {
             for (ContentModel contentModel : contentVideos) {
-                videoContent.add(new ContentModel(contentModel.id(),2,ApiConstant.BASE_URL_IMAGE_SERVICE+contentModel.url()));
+                videoContent.add(new ContentModel(contentModel.id(), 2, ApiConstant.BASE_URL_IMAGE_SERVICE + contentModel.url()));
             }
         }
 
@@ -152,7 +179,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailViewModel, 
 
 
         viewBinding().tvTitleProduct.setText(product.name());
-        ProductDetailViewPagerAdapter productDetailViewPagerAdapter = new ProductDetailViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), benefitModels, whomToSellModels, instructionModels, termsConditionsModels, contentImages, contentVideos,product);
+        ProductDetailViewPagerAdapter productDetailViewPagerAdapter = new ProductDetailViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), benefitModels, whomToSellModels, instructionModels, termsConditionsModels, contentImages, contentVideos, product);
         viewBinding().setProductDetailViewPagerAdapter(productDetailViewPagerAdapter);
         viewBinding().vpProductItems.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

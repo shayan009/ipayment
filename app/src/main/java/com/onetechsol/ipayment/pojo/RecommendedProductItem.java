@@ -6,21 +6,26 @@ public class RecommendedProductItem {
     private double amount;
     private String imagePath;
 
+    private double reward;
     private SellEarnType sellEarnType;
 
     private String colorCard;
     private String colorText;
 
 
-    public RecommendedProductItem(String name, double amount, String imagePath, SellEarnType sellEarnType, String colorCard, String colorText) {
+    public RecommendedProductItem(String name, double amount, String imagePath, SellEarnType sellEarnType, String colorCard, String colorText,double reward) {
         this.name = name;
         this.amount = amount;
         this.imagePath = imagePath;
         this.sellEarnType = sellEarnType;
         this.colorCard = colorCard;
         this.colorText = colorText;
+        this.reward = reward;
     }
 
+    public double getReward() {
+        return reward;
+    }
 
     public String colorCard() {
         return colorCard;

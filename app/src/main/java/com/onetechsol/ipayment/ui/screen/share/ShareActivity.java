@@ -16,11 +16,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.onetechsol.ipayment.R;
+import com.onetechsol.ipayment.app.MainApp;
 import com.onetechsol.ipayment.databinding.ActivityShareBinding;
 import com.onetechsol.ipayment.databinding.ShareClickListener;
 import com.onetechsol.ipayment.pojo.BenefitModel;
 import com.onetechsol.ipayment.pojo.ContentModel;
 import com.onetechsol.ipayment.pojo.GetAffiliateProductDetailData;
+import com.onetechsol.ipayment.pojo.InstructionModel;
+import com.onetechsol.ipayment.pojo.TermsConditionsModel;
+import com.onetechsol.ipayment.pojo.WhomToSellModel;
 import com.onetechsol.ipayment.ui.adapter.BenefitAdapter;
 import com.onetechsol.ipayment.ui.basefiles.BaseActivity;
 import com.onetechsol.ipayment.utils.ApiConstant;
@@ -62,19 +66,26 @@ public class ShareActivity extends BaseActivity<ShareViewModel, ActivityShareBin
 
                     if (product.images().isEmpty()) {
                         ArrayList<ContentModel> imageContent = new ArrayList<>();
-                        imageContent.add(new ContentModel("1",1,ApiConstant.BASE_URL_IMAGE_SERVICE+"logo/icon/1012-img-1693033017.jpg"));
-                        imageContent.add(new ContentModel("2",1,ApiConstant.BASE_URL_IMAGE_SERVICE+"logo/icon/1012-img-1693033017.jpg"));
-                        imageContent.add(new ContentModel("3",1,ApiConstant.BASE_URL_IMAGE_SERVICE+"logo/icon/1012-img-1693033017.jpg"));
+                        imageContent.add(new ContentModel("1", 1, ApiConstant.BASE_URL_IMAGE_SERVICE + "logo/icon/1012-img-1693033017.jpg"));
+                        imageContent.add(new ContentModel("2", 1, ApiConstant.BASE_URL_IMAGE_SERVICE + "logo/icon/1012-img-1693033017.jpg"));
+                        imageContent.add(new ContentModel("3", 1, ApiConstant.BASE_URL_IMAGE_SERVICE + "logo/icon/1012-img-1693033017.jpg"));
                         product.setImages(imageContent);
                     }
 
-                    Glide.with(viewBinding().getRoot()).load(ApiConstant.BASE_URL_IMAGE_SERVICE+product.images().get(0).url()).apply(RequestOptions.fitCenterTransform().error(R.drawable.hdfc_content)).into(viewBinding().ivShareImg);
+                    Glide.with(viewBinding().getRoot()).load(ApiConstant.BASE_URL_IMAGE_SERVICE + product.images().get(0).url()).apply(RequestOptions.fitCenterTransform().error(R.drawable.hdfc_content)).into(viewBinding().ivShareImg);
 
 
                     List<BenefitModel> benefitModelList = product.benefitModels();
+                    Uri inquiry = Uri.parse("android.resource://" + MainApp.getContext().getPackageName() + "/" + R.drawable.golf_player);
 
-                    if (benefitModelList.size() > 0)
-                        benefitAdapter.setBenefitList(benefitModelList);
+
+                    if (benefitModelList.isEmpty()) {
+                        benefitModelList.add(new BenefitModel("0", "unlimited access of golf course", "Access your gold courses worldwide & 12 free lessons/year", inquiry.toString()));
+                        benefitModelList.add(new BenefitModel("1", "free membership", "Free membership to layalty programs. HotelLux and many more*", inquiry.toString()));
+                        benefitModelList.add(new BenefitModel("2", "hotel booking", "12% discount on worldwide hotel booking on Agoda", inquiry.toString()));
+                    }
+
+                    benefitAdapter.setBenefitList(benefitModelList);
                     viewBinding().setProduct(product);
                     onHideLoading();
 
@@ -146,44 +157,37 @@ public class ShareActivity extends BaseActivity<ShareViewModel, ActivityShareBin
 
             }
 
-            String input = "https://partner.ipayments.in/share-link?service=" + product.id() + "&company=" + prefManager.getUserSession().companyVersion() + "&referral=" + prefManager.getUserSession().userName();
-            //String cipherText = new AESUtil().encrypt(input, "AESC123");
-
-            //Log.d("cipherText ::::::", cipherText);
-            // Log.d("actualText ::::::", new AESUtil().decrypt(cipherText,"AESC123"));
-
-            //String newURlLink = product.getLink().trim() +"/"+cipherText;
+            String input = "https://partner.ipayments.in/share-link?link=" + product.link();
 
             out.append(input);
             out.append("\n");
 
             io.reactivex.disposables.Disposable subscribe1 = Observable.just(contentImage)
-                        .subscribeOn(Schedulers.io())
-                        .map(s -> Glide
-                                .with(getContext())
-                                .asBitmap()
-                                .load(s)
-                                .submit().get())
-                        .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
-                        .subscribe(bitmap -> {
+                    .subscribeOn(Schedulers.io())
+                    .map(s -> Glide
+                            .with(getContext())
+                            .asBitmap()
+                            .load(s)
+                            .submit().get())
+                    .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+                    .subscribe(bitmap -> {
 
-                            Intent share = new Intent(Intent.ACTION_SEND);
+                        Intent share = new Intent(Intent.ACTION_SEND);
 
-                            String s = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, product.id(), product.id());
+                        String s = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, product.id(), product.id());
 
-                            share.putExtra(Intent.EXTRA_STREAM, Uri.parse(s));
-                            share.putExtra(Intent.EXTRA_TEXT, out.toString());
-                            share.setType("text/*");
-                            share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        share.putExtra(Intent.EXTRA_STREAM, Uri.parse(s));
+                        share.putExtra(Intent.EXTRA_TEXT, out.toString());
+                        share.setType("text/*");
+                        share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-                            startActivity(Intent.createChooser(share, "Share"));
+                        startActivity(Intent.createChooser(share, "Share"));
 
-                        }, throwable -> {
+                    }, throwable -> {
 
-                            //Toast.makeText(this, throwable.getMessage(), //Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(this, throwable.getMessage(), //Toast.LENGTH_SHORT).show();
 
-                        });
-
+                    });
 
 
         } catch (Exception e) {

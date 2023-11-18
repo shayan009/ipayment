@@ -58,7 +58,7 @@ public abstract class BaseFragment<VM extends ViewModel, VB extends ViewDataBind
         viewModel = setUpViewModel(new ViewModelProvider(this));
         viewBinding = setupViewBinding(inflater, container);
         prefManager = baseActivity.prefManager;
-        setProgressDialog(getBaseContext());
+        setProgressDialog(viewBinding.getRoot().getContext());
         rxPermissions = baseActivity.rxPermissions();
         return viewBinding.getRoot();
     }

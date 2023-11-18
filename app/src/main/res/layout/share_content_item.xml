@@ -32,12 +32,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clContent"
-        android:layout_width="@dimen/_180dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivContent"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_160dp"
             android:layout_height="150dp"
             android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,6 @@
                 android:id="@+id/ivWhatsappShare"
                 android:layout_width="@dimen/_20dp"
                 android:layout_height="@dimen/_20dp"
-                android:layout_marginStart="8dp"
                 android:onClick="@{() -> shareContentOnClickListener.shareWhatsApp(contentModel)}"
                 android:src="@drawable/whatsapp_icon"
                 app:layout_constraintBottom_toBottomOf="@+id/view5"
@@ -92,7 +91,6 @@
                 android:id="@+id/ivLinkShare"
                 android:layout_width="@dimen/_20dp"
                 android:layout_height="@dimen/_20dp"
-                android:layout_marginEnd="8dp"
                 android:onClick="@{() -> shareContentOnClickListener.shareDirectLink(contentModel)}"
                 android:src="@drawable/icon_share"
                 app:layout_constraintBottom_toBottomOf="@+id/view5"

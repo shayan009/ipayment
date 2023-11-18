@@ -39,6 +39,7 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
     private UserLocation userLocation;
     private ServiceCategoryModel serviceCategoryModel;
     private FingerPrintBottomSheet fingerPrintBottomSheet;
+    private boolean twoFactorDone = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,9 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
             mUsbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
 
             viewBinding().setAeps1ClickListener(this);
-            //startService33Onboarding();
+
+            startService33Onboarding();
+
 
         }
 
@@ -75,8 +78,7 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
             if (onboardingCheckResponse.status().equals("1")) {
                 String txnStatus = onboardingCheckResponse.txnStatus();
                 if (txnStatus.equals("1")) {
-
-
+                    twoFactorDone = true;
                 } else if (txnStatus.equals("3")) {
                     //Open kYC fragment
 
@@ -100,9 +102,9 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
 
                 } else if (txnStatus.equals("4")) {
                     //Finger print 2 factor authentication
-
                     fingerPrintBottomSheet = new FingerPrintBottomSheet();
                     fingerPrintBottomSheet.setStep("4");
+                    fingerPrintBottomSheet.setCategoryId(serviceCategoryModel.categoryId());
                     fingerPrintBottomSheet.setCancelable(false);
                     fingerPrintBottomSheet.setOnClickListener(this);
                     fingerPrintBottomSheet.show(getSupportFragmentManager(), FingerPrintBottomSheet.class.getName());
@@ -194,9 +196,17 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
     @Override
     public void openBalEnquiry(int type) {
 
-        Intent intent = new Intent(this, Aeps1OperationActivity.class);
-        intent.putExtra("type",type);
-        startActivity(intent);
+        if(twoFactorDone) {
+            Intent intent = new Intent(this, Aeps1OperationActivity.class);
+            intent.putExtra("type",type);
+            startActivity(intent);
+        } else {
+            showToastAlertDialog("Alert","Please complete your two factor authentication.",false)
+                    .setOnClickListener(this::startService33Onboarding)
+                    .show(getSupportFragmentManager(),"showToastAlertDialog");
+
+        }
+
 
     }
 
@@ -212,13 +222,6 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
 
     @Override
     public void dismiss() {
-        showToastAlertDialog("Finger Print Capture", "Please complete your two factor authentication", false)
-                .setOnClickListener(() -> {
-                    fingerPrintBottomSheet = new FingerPrintBottomSheet();
-                    fingerPrintBottomSheet.setStep("4");
-                    fingerPrintBottomSheet.setCancelable(false);
-                    fingerPrintBottomSheet.setOnClickListener(this);
-                    fingerPrintBottomSheet.show(getSupportFragmentManager(), FingerPrintBottomSheet.class.getName());
-                }).show(getSupportFragmentManager(), "showToastAlertDialog");
+
     }
 }

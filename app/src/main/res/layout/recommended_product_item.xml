@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -24,58 +25,64 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcvProductItem"
-        android:layout_width="@dimen/_150dp"
-        android:layout_height="@dimen/_170dp"
+        android:layout_width="@dimen/_140dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:clickable="true"
-        android:focusable="true"
         android:onClick="@{(view) -> recommentedProductClickListener.selectProduct(view,recommendedProductItem)}"
-        app:cardBackgroundColor="@{Color.parseColor(recommendedProductItem.colorCard())}"
+        android:theme="@style/Widget.Material3.CardView.Elevated"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/_10dp"
-        app:cardElevation="@dimen/_5dp"
-        app:cardUseCompatPadding="true">
+        app:cardElevation="@dimen/_2dp"
+        app:cardUseCompatPadding="true"
+        app:strokeWidth="0.2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/ivServiceText"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivServiceImg"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:fontFamily="@font/balsamiqsansregular"
-                android:text="@{recommendedProductItem.name()}"
-                android:textColor="@{Color.parseColor(recommendedProductItem.colorText())}"
-                android:textSize="@dimen/_10sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="@dimen/_25dp"
+                android:layout_marginTop="25dp"
+                android:src="@{recommendedProductItem.imagePath()}"
+                app:layout_constraintEnd_toEndOf="@+id/mcvCardIcon"
                 app:layout_constraintStart_toStartOf="@+id/mcvCardIcon"
                 app:layout_constraintTop_toBottomOf="@+id/mcvCardIcon" />
 
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mcvCardIcon"
-                android:layout_width="@dimen/_40dp"
-                android:layout_height="@dimen/_40dp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_20dp"
                 android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="18dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/_12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.13999999">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/_25dp"
-                        android:layout_height="@dimen/_25dp"
-                        android:src="@{recommendedProductItem.imagePath()}"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/ivServiceText"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/balsamiqsansregular"
+                        android:lines="1"
+                        android:text="@{recommendedProductItem.name()}"
+                        android:textColor="@{Color.parseColor(recommendedProductItem.colorText())}"
+                        android:textSize="@dimen/_10sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -86,27 +93,52 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvRecomEarn"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_height="@dimen/_20dp"
+                android:layout_marginTop="25dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/balsamiqsansbold"
-                android:lines="2"
-                android:text="@{`Earn up to ₹`+recommendedProductItem.amount()}"
-                android:textColor="#3C4B52"
+                android:text="@{`₹`+recommendedProductItem.amount()}"
+                android:textColor="#4CAF50"
                 android:textSize="@dimen/_13sp"
-                app:layout_constraintEnd_toEndOf="@+id/ivServiceText"
-                app:layout_constraintStart_toStartOf="@+id/ivServiceText"
-                app:layout_constraintTop_toBottomOf="@+id/ivServiceText" />
+                app:layout_constraintEnd_toEndOf="@+id/mcvCardIcon"
+                app:layout_constraintHorizontal_bias="0.386"
+                app:layout_constraintStart_toStartOf="@+id/mcvCardIcon"
+                app:layout_constraintTop_toBottomOf="@+id/ivServiceImg" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivNextRec"
-                android:layout_width="@dimen/_25dp"
-                android:layout_height="@dimen/_25dp"
-                android:src="@drawable/ic_baseline_navigate_next_24"
-                app:layout_constraintBottom_toBottomOf="@+id/tvRecomEarn"
+                android:id="@+id/ivCoinPlus"
+                android:layout_width="@dimen/_20dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/payu_add_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCoinIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivCoinIcon" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCoinIcon"
+                android:layout_width="@dimen/_20dp"
+                android:layout_height="0dp"
+                android:src="@drawable/coin"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCoinReward"
+                app:layout_constraintStart_toEndOf="@+id/ivCoinPlus"
+                app:layout_constraintTop_toTopOf="@+id/tvCoinReward" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCoinReward"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/sf_pro_regular"
+                android:text="@{``+recommendedProductItem.reward}"
+                android:textColor="#FFC107"
+                android:textSize="@dimen/_13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvRecomEarn"
-                app:layout_constraintTop_toTopOf="@+id/tvRecomEarn" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/ivCoinIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecomEarn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

@@ -84,10 +84,15 @@ public abstract class BaseActivity<VM extends ViewModel, VB extends ViewBinding>
 
     @Override
     public void onAttachFragment(int id, Fragment fragment, String tag) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(id, fragment, tag);
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        fragmentTransaction.commit();
+
+        FragmentManager supportFragmentManager = getSupportFragmentManager();
+        if (!supportFragmentManager.isDestroyed() && !fragment.isAdded()) {
+            FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
+            fragmentTransaction.replace(id, fragment, tag);
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            fragmentTransaction.commit();
+        }
+
     }
 
     public CompositeDisposable compositeDisposable() {

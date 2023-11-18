@@ -14,6 +14,7 @@ import com.onetechsol.ipayment.service.repository.ModelRepositoryImpl;
 import com.onetechsol.ipayment.utils.ApiConstant;
 import com.onetechsol.ipayment.widgets.NotificationUtils;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -21,6 +22,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
@@ -130,7 +132,11 @@ public class AppModule {
         client.readTimeout(120, TimeUnit.SECONDS);
         client.writeTimeout(120, TimeUnit.SECONDS);*/
 
+
+        long SIZE_OF_CACHE = (10 * 1024 * 1024); // 10 MiB
+        Cache cache = new Cache(new File("cacheapp"), SIZE_OF_CACHE);
         OkHttpClient.Builder builder = UnsafeOkHttpClient.getUnsafeOkHttpClient()
+                .cache(cache)
                 .connectTimeout(ApiConstant.TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(ApiConstant.TIMEOUT_READ, TimeUnit.SECONDS)
                 .writeTimeout(ApiConstant.TIMEOUT_WRITE, TimeUnit.SECONDS)

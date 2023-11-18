@@ -24,14 +24,16 @@ import com.onetechsol.ipayment.session.UserLocation;
 import com.onetechsol.ipayment.session.UserLoginSession;
 import com.onetechsol.ipayment.ui.adapter.AEPS1TaskAdapter;
 import com.onetechsol.ipayment.ui.basefiles.BaseActivity;
+import com.onetechsol.ipayment.ui.screen.fingerprint.FingerPrintBottomSheet;
 import com.onetechsol.ipayment.ui.screen.report.ReportFragment;
 import com.onetechsol.ipayment.ui.screen.service.aeps.AEPSViewModel;
+import com.onetechsol.ipayment.ui.screen.service.aeps.aeps1.Aeps1OperationActivity;
 import com.onetechsol.ipayment.ui.screen.service.aeps.uploadKyc.UploadKycActivity;
 import com.paysprint.onboardinglib.activities.HostActivity;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Binding> implements AEPS1TaskAdapter.AdapterCallback, AEPS1ClickListener {
+public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Binding> implements AEPS1TaskAdapter.AdapterCallback, AEPS1ClickListener, FingerPrintBottomSheet.OnClickListener {
 
 
     private ServiceCategoryModel serviceCategoryModel;
@@ -39,6 +41,9 @@ public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Bind
     private UsbManager mUsbManager;
     private StartKyc12ResponseData startKyc12ResponseData;
     private ActivityResultLauncher<Intent> startActivityIntent;
+
+    private boolean twoFactorDone = false;
+    private FingerPrintBottomSheet fingerPrintBottomSheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +64,9 @@ public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Bind
 
             mUsbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
 
-            getBankItems();
+
+            startService25Onboarding();
+
 
             onAttachFragment(viewBinding().flReport.getId(), ReportFragment.newInstance("AEPS 2"), ReportFragment.class.getName());
 
@@ -75,7 +82,20 @@ public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Bind
                             final boolean status = data.getBooleanExtra("status", false);
                             final int response = data.getIntExtra("response", 0);
                             final String message = data.getStringExtra("message");
-                            // TODO show alery dialog followed by api call - > aeps_map_user_12_response
+
+                           //call aeps_map_user_12_response
+
+                            onShowLoading();
+                             compositeDisposable().add(viewModel().startKyc12CallbackResponse(status,response,message,startKyc12ResponseData.merchant())
+                                    .subscribe(startKyc12CallbackResponse -> {
+                                      onHideLoading();
+
+                                      if(startKyc12CallbackResponse.status().equals("1")) {
+                                          startService25Onboarding();
+                                      }
+                                    },throwable -> {
+                                        onHideLoading();
+                                    }));
 
                         }
                     } catch (Exception e) {
@@ -89,22 +109,6 @@ public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Bind
 
     }
 
-    private void getBankItems() {
-
-        compositeDisposable().add(viewModel().getAeps1Features().subscribe(aeps1TaskModels -> {
-
-
-            AEPS1TaskAdapter aeps1TaskAdapter = new AEPS1TaskAdapter();
-            aeps1TaskAdapter.setAEPS1TaskModelList(aeps1TaskModels);
-            aeps1TaskAdapter.setCallback(this);
-            viewBinding().setAeps2TaskAdapter(aeps1TaskAdapter);
-            viewBinding().setAeps2ClickListener(this);
-
-        }, throwable -> {
-
-        }));
-
-    }
 
     @Override
     public ActivityAeps2Binding setupViewBinding(LayoutInflater inflater) {
@@ -129,23 +133,24 @@ public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Bind
     @Override
     public void openBalEnquiry(int type) {
 
+        if(twoFactorDone) {
+            Intent intent = new Intent(this, Aeps1OperationActivity.class);
+            intent.putExtra("type",type);
+            startActivity(intent);
+        } else {
+            showToastAlertDialog("Alert","Please complete your two factor authentication.",false)
+                    .setOnClickListener(this::startService25Onboarding)
+                    .show(getSupportFragmentManager(),"showToastAlertDialog");
+
+        }
+
+
     }
 
 
     @Override
     public void onRefresh() {
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (serviceCategoryModel.kycNeeded()) {
-            showKycPromptDialog();
-        } else {
-            startService25Onboarding();
-        }
     }
 
     private void startService25Onboarding() {
@@ -156,12 +161,11 @@ public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Bind
                     if (onboardingCheckResponse.status().equals("1")) {
                         String txnStatus = onboardingCheckResponse.txnStatus();
                         if (txnStatus.equals("1")) {
-
-                        } else if (txnStatus.equals("2")) {
-
-                            showTextDialog(onboardingCheckResponse.message());
+                            twoFactorDone = true;
                         } else if (txnStatus.equals("3")) {
-                            //Open kYC fragment
+
+
+                            //auth+getUrl api
 
                             if (StringUtils.isNotBlank(userLocation.latitude()) && StringUtils.isNotBlank(userLocation.longitude())) {
 
@@ -193,6 +197,17 @@ public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Bind
                                         }));
 
                             }
+
+                        } else if (txnStatus.equals("4")) {
+
+                            //Finger print 2 factor authentication
+                            fingerPrintBottomSheet = new FingerPrintBottomSheet();
+                            fingerPrintBottomSheet.setStep("4");
+                            fingerPrintBottomSheet.setCategoryId(serviceCategoryModel.categoryId());
+                            fingerPrintBottomSheet.setCancelable(false);
+                            fingerPrintBottomSheet.setOnClickListener(this);
+                            fingerPrintBottomSheet.show(getSupportFragmentManager(), FingerPrintBottomSheet.class.getName());
+
 
                         }
                     }
@@ -231,6 +246,16 @@ public class AEPS2Activity extends BaseActivity<AEPSViewModel, ActivityAeps2Bind
 
     @Override
     public void onItemClicked(AEPS1TaskModel serviceModel) {
+
+    }
+
+    @Override
+    public void hitOnBoardingCk() {
+        startService25Onboarding();
+    }
+
+    @Override
+    public void dismiss() {
 
     }
 }

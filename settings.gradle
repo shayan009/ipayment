@@ -4,6 +4,11 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         maven { url "https://jitpack.io" }
+        maven
+                {
+                    url 'https://maven.cashfree.com/release'
+                }
+        maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases/' }
     }
 
 }
@@ -15,8 +20,14 @@ dependencyResolutionManagement {
         gradlePluginPortal()
 
         maven { url "https://jitpack.io" }
+        maven
+                {
+                    url 'https://maven.cashfree.com/release'
+                }
+        maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases/' }
     }
 
 }
 rootProject.name = "OnTechV2"
 include ':app', ':rx_paparazzo'
+include ':shimmer'

@@ -9,6 +9,8 @@ import com.onetechsol.ipayment.pojo.AEPS1ReportResponse;
 import com.onetechsol.ipayment.pojo.AEPS1TaskModel;
 import com.onetechsol.ipayment.pojo.OnboardingCheckRequest;
 import com.onetechsol.ipayment.pojo.OnboardingCheckResponse;
+import com.onetechsol.ipayment.pojo.StartKyc12CallbackRequest;
+import com.onetechsol.ipayment.pojo.StartKyc12CallbackResponse;
 import com.onetechsol.ipayment.pojo.StartKyc12Request;
 import com.onetechsol.ipayment.pojo.StartKyc12Response;
 import com.onetechsol.ipayment.pojo.StartKyc18Request;
@@ -79,4 +81,13 @@ public class AEPSViewModel extends BaseViewModel {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<StartKyc12CallbackResponse> startKyc12CallbackResponse(boolean status, int response, String message, String merchant) {
+
+
+        StartKyc12CallbackRequest startKyc12CallbackRequest = new StartKyc12CallbackRequest(merchant,String.valueOf(status),String.valueOf(response),message);
+
+
+        return iModelRepository().startKyc12CallbackResponse(startKyc12CallbackRequest)
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

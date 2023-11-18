@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringJoiner;
 
 public class ServiceModel implements Parcelable {
@@ -31,6 +33,15 @@ public class ServiceModel implements Parcelable {
     private ServiceType serviceType;
     private String isRedirectUrl;
 
+    private SellEarnType sellEarnType;
+
+    private List<SellEarnModel> affiliateModels;
+
+
+    public List<SellEarnModel> getAffiliateModels() {
+        return affiliateModels;
+    }
+
     public ServiceModel() {
     }
 
@@ -50,6 +61,19 @@ public class ServiceModel implements Parcelable {
         this.color = color;
     }
 
+
+    public ServiceModel(int id, String categoryId, String title, String imagePath, SellEarnType sellEarnType, String isRedirectUrl, boolean selected, String color,List<SellEarnModel> affiliateModels) {
+        this.id = id;
+        this.categoryId = categoryId;
+        this.title = title;
+        this.imagePath = imagePath;
+        this.sellEarnType = sellEarnType;
+        this.isRedirectUrl = isRedirectUrl;
+        this.selected = selected;
+        this.color = color;
+        this.affiliateModels = affiliateModels;
+    }
+
     protected ServiceModel(Parcel in) {
         id = in.readInt();
         categoryId = in.readString();
@@ -58,6 +82,10 @@ public class ServiceModel implements Parcelable {
         isRedirectUrl = in.readString();
         selected = in.readByte() != 0;
         color = in.readString();
+    }
+
+    public SellEarnType getSellEarnType() {
+        return sellEarnType;
     }
 
     public boolean previous() {

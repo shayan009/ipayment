@@ -1,6 +1,7 @@
 package com.onetechsol.ipayment.ui.screen.home;
 
 import com.onetechsol.ipayment.pojo.CustomerUpgradeInfoResponse;
+import com.onetechsol.ipayment.pojo.GetDepartmentListResponse;
 import com.onetechsol.ipayment.pojo.ServiceList;
 import com.onetechsol.ipayment.pojo.ServiceListRequest;
 import com.onetechsol.ipayment.pojo.ServiceListResponse;
@@ -12,12 +13,13 @@ import com.onetechsol.ipayment.utils.ApiConstant;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class HomeActivityViewModel extends BaseViewModel {
 
-    public Observable<ServiceListResponse> getServiceList(int position) {
+    public Observable<ServiceListResponse> getServiceList() {
 
         ServiceListRequest serviceListRequest = new ServiceListRequest(ApiConstant.BASIC_VERSION);
 
@@ -40,12 +42,10 @@ public class HomeActivityViewModel extends BaseViewModel {
 
                             if (!serviceList.label().equalsIgnoreCase("Others Service")) {
 
-                                if (i == position)
+                                if (i == 0)
                                     serviceModelList.add(new ServiceModel(i, serviceList.id(), serviceList.label(), ApiConstant.BASE_URL_IMAGE_SERVICE + serviceList.img(), ServiceType.get(serviceList.label().trim()), "", true, colorSelected));
                                 else
                                     serviceModelList.add(new ServiceModel(i, serviceList.id(), serviceList.label(), ApiConstant.BASE_URL_IMAGE_SERVICE + serviceList.img(), ServiceType.get(serviceList.label().trim()), "", false, colorUnSelected));
-
-
                             }
                         }
                         m.setServiceModelList(serviceModelList);
@@ -63,5 +63,11 @@ public class HomeActivityViewModel extends BaseViewModel {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+
+    public Observable<GetDepartmentListResponse> getDepartmentList() {
+
+        return iModelRepository().getDepartmentList()
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
 }

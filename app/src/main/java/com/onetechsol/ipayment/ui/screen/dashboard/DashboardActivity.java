@@ -26,6 +26,8 @@ import com.onetechsol.ipayment.pojo.SettingItem;
 import com.onetechsol.ipayment.session.UserLoginSession;
 import com.onetechsol.ipayment.ui.adapter.SettingAdapter;
 import com.onetechsol.ipayment.ui.basefiles.BaseActivity;
+import com.onetechsol.ipayment.ui.screen.change_pass.ChangePasswordBottomSheet;
+import com.onetechsol.ipayment.ui.screen.change_tpass.ChangeTpinBottomSheet;
 import com.onetechsol.ipayment.ui.screen.home.HomeActivity;
 import com.onetechsol.ipayment.ui.screen.login_singup.LoginSignupActivity;
 import com.onetechsol.ipayment.ui.screen.mydiary.GromoDiaryActivity;
@@ -267,6 +269,16 @@ public class DashboardActivity extends BaseActivity<DashboardViewModel, Activity
             logout("Are you sure want to logout from the account ?");
         } else if (settingItem.id() == 2) {
             startActivity(new Intent(this, PackageKitActivity.class));
+        } else if (settingItem.id() == 1) {
+
+            ChangeTpinBottomSheet changeTpinBottomSheet = new ChangeTpinBottomSheet();
+            changeTpinBottomSheet.show(getSupportFragmentManager(),ChangeTpinBottomSheet.class.getName());
+        }
+
+        else if (settingItem.id() == 0) {
+
+            ChangePasswordBottomSheet changePasswordBottomSheet = new ChangePasswordBottomSheet();
+            changePasswordBottomSheet.show(getSupportFragmentManager(),ChangeTpinBottomSheet.class.getName());
         }
     }
 
