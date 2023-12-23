@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.onetechsol.ipayment.R;
@@ -188,7 +189,7 @@ public class Aeps1OperationActivity extends BaseActivity<AEPSOperationViewModel,
     @Override
     public void submitAepsOperation(String bankName, String mobileNo, String adhar, String amount) {
 
-        AepsRequestDto aepsRequestDto = new AepsRequestDto(bankName, mobileNo, type[0], amount, adhar);
+        AepsRequestDto aepsRequestDto = new AepsRequestDto(bankName, mobileNo, type[0], amount, adhar.replaceAll("\\s",""));
         fingerPrintBottomSheet = new FingerPrintBottomSheet();
         fingerPrintBottomSheet.setAepsRequestDto(aepsRequestDto);
         fingerPrintBottomSheet.setStep("5");

@@ -80,6 +80,7 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
                 if (txnStatus.equals("1")) {
                     twoFactorDone = true;
                 } else if (txnStatus.equals("3")) {
+
                     //Open kYC fragment
 
                     if (StringUtils.isNotBlank(userLocation.latitude()) && StringUtils.isNotBlank(userLocation.longitude())) {
@@ -171,14 +172,6 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
 
     }
 
-    private void showKycPromptDialog() {
-        new MaterialAlertDialogBuilder(this, com.google.android.material.R.style.MaterialAlertDialog_Material3_Animation).setTitle("Kyc Details").setMessage("Banking Kfc details not uploaded.").setCancelable(false).setPositiveButton("Ok", (dialogInterface, i) -> {
-            startActivity(new Intent(AEPS1Activity.this, UploadKycActivity.class));
-        }).setNegativeButton("Cancel", (dialogInterface, i) -> {
-            dialogInterface.dismiss();
-            showKycPromptDialog();
-        }).show();
-    }
 
 
     @Override
@@ -197,7 +190,7 @@ public class AEPS1Activity extends BaseActivity<AEPSViewModel, ActivityAeps1Bind
     public void openBalEnquiry(int type) {
 
         if(twoFactorDone) {
-            Intent intent = new Intent(this, Aeps1OperationActivity.class);
+            Intent intent = new Intent(AEPS1Activity.this, Aeps1OperationActivity.class);
             intent.putExtra("type",type);
             startActivity(intent);
         } else {
